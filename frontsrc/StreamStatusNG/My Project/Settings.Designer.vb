@@ -110,8 +110,7 @@ Partial Public NotInheritable Class MySettings
     End Property
     
     <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
     Public Property Setting() As Boolean
         Get
             Return CType(Me("Setting"),Boolean)

@@ -12,10 +12,8 @@
             'For i As Integer = 0 To modlistbiglist.Count
             '    Me.MainModList.Items.Add(modlistbiglist(i))
             'Next
-            modlistentry.Add("testing")
-            modlistentry.Add("testing2")
             modlistentry.Add(ModTextBox.Text)
-            'MainModList.Items.Clear()
+            MainModList.Items.Clear()
             For Each listmain In modlistentry
                 Me.MainModList.Items.Add(listmain)
             Next

@@ -24,4 +24,14 @@
         Dim Modlist As New ModlistForm
         Modlist.Show()
     End Sub
+
+    Private Sub ModlistCheckbox_CheckedChanged(sender As Object, e As EventArgs) Handles ModlistCheckbox.CheckedChanged
+        If ModlistCheckbox.Checked = True Then
+            My.Settings.ModList = True
+            ModlistCheckbox.Text = "Modlist Enabled"
+        Else
+            My.Settings.ModList = False
+            ModlistCheckbox.Text = "modlist Disabled"
+        End If
+    End Sub
 End Class

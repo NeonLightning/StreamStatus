@@ -25,6 +25,7 @@ Partial Class SettingsForm
         Me.GilDisplayBox = New System.Windows.Forms.CheckBox()
         Me.WepBox = New System.Windows.Forms.CheckBox()
         Me.ModlistButton = New System.Windows.Forms.Button()
+        Me.ModlistCheckbox = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'GilDisplayBox
@@ -49,18 +50,29 @@ Partial Class SettingsForm
         '
         'ModlistButton
         '
-        Me.ModlistButton.Location = New System.Drawing.Point(697, 426)
+        Me.ModlistButton.Location = New System.Drawing.Point(681, 426)
         Me.ModlistButton.Name = "ModlistButton"
         Me.ModlistButton.Size = New System.Drawing.Size(75, 23)
         Me.ModlistButton.TabIndex = 2
         Me.ModlistButton.Text = "Modlist"
         Me.ModlistButton.UseVisualStyleBackColor = True
         '
+        'ModlistCheckbox
+        '
+        Me.ModlistCheckbox.AutoSize = True
+        Me.ModlistCheckbox.Location = New System.Drawing.Point(681, 403)
+        Me.ModlistCheckbox.Name = "ModlistCheckbox"
+        Me.ModlistCheckbox.Size = New System.Drawing.Size(59, 17)
+        Me.ModlistCheckbox.TabIndex = 3
+        Me.ModlistCheckbox.Text = "Modlist"
+        Me.ModlistCheckbox.UseVisualStyleBackColor = True
+        '
         'SettingsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 461)
+        Me.Controls.Add(Me.ModlistCheckbox)
         Me.Controls.Add(Me.ModlistButton)
         Me.Controls.Add(Me.WepBox)
         Me.Controls.Add(Me.GilDisplayBox)
@@ -97,4 +109,5 @@ Partial Class SettingsForm
     Friend WithEvents GilDisplayBox As CheckBox
     Friend WithEvents WepBox As CheckBox
     Friend WithEvents ModlistButton As Button
+    Friend WithEvents ModlistCheckbox As CheckBox
 End Class
