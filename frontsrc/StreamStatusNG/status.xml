@@ -3,6 +3,50 @@
   <quicknotes>None</quicknotes>
   <disc>1</disc>
   <location>No.5 Reactor</location>
-  <streamtime>00:00:09</streamtime>
-  <gametime>06:34:31</gametime>
+  <streamtime>00:01:21</streamtime>
+  <gametime>06:39:10</gametime>
+  <modlist>
+    <modentry>1</modentry>
+    <modentry>1</modentry>
+    <modentry>1</modentry>
+  </modlist>
+  <gil>1862</gil>
+  <party>
+    <member>
+      <name>Cloud</name>
+      <hp>320</hp>
+      <basehp>379</basehp>
+      <mp>75</mp>
+      <basemp>71</basemp>
+      <level>10</level>
+      <exptolevel>214</exptolevel>
+      <weapon>Buster</weapon>
+      <armor>Iron Bangle</armor>
+      <accessory>none</accessory>
+    </member>
+    <member>
+      <name>Barret</name>
+      <hp>367</hp>
+      <basehp>397</basehp>
+      <mp>59</mp>
+      <basemp>67</basemp>
+      <level>10</level>
+      <exptolevel>641</exptolevel>
+      <weapon>Assault Gun</weapon>
+      <armor>Bronze Bangle</armor>
+      <accessory>none</accessory>
+    </member>
+    <member>
+      <name>Tifa</name>
+      <hp>303</hp>
+      <basehp>355</basehp>
+      <mp>56</mp>
+      <basemp>64</basemp>
+      <level>9</level>
+      <exptolevel>516</exptolevel>
+      <weapon>Leather Glove</weapon>
+      <armor>Bronze Bangle</armor>
+      <accessory>none</accessory>
+    </member>
+  </party>
 </status>
