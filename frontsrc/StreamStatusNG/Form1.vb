@@ -5,7 +5,17 @@ Imports System.Text.RegularExpressions
 Imports System.Drawing
 
 
-Public Class StatusUpdateGUIFrontend
+Public Class StatusUpdateGUIFrontend : Inherits Form
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Dim Modlist As New List(Of String)
+        ModlistForm.MainModList.Items.Add("None")
+        StatusIcon.BackColor = Color.Transparent
+        SetStyle(ControlStyles.SupportsTransparentBackColor, True)
+        StatusIcon.Image = My.Resources.Resources._stop
+        LastEvent.Text = "Press start to be able to save notes. Press enter to confirm notes in box."
+        CurrentNotes.Text = My.Settings.quicknotes
+    End Sub
 
 #Region "Variables and Definitions"
 
@@ -109,12 +119,17 @@ Public Class StatusUpdateGUIFrontend
                 writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                 If My.Settings.ModList = True Then
+                    Using writer2 As XmlWriter = XmlWriter.Create(".\modlist.xml", Settings)
+                        'writer2.WriteStartDocument()
+                        For Each myMods In ModlistForm.modlistentry
+                            writer2.WriteElementString("modentry", myMods)                       '        <mod>Reunion R03b</mod>
+                        Next
+                        'writer2.WriteEndDocument()
+                    End Using
                     writer.WriteStartElement("modlist")
-                    'For Each myMods In ModlistForm.modlistentry
-                    Dim tempmods As String
-                    tempmods = "myMods"
-                    writer.WriteElementString("modentry", tempmods)                       '        <mod>Reunion R03b</mod>
-                    'Next
+                    For Each myMods In ModlistForm.modlistentry
+                        writer.WriteElementString("modentry", myMods)                       '        <mod>Reunion R03b</mod>
+                    Next
                     writer.WriteEndElement()
                 End If
                 If My.Settings.GilDisplay = True Then
@@ -254,9 +269,7 @@ Public Class StatusUpdateGUIFrontend
             myXMLInput.PartyNames(0) = "None"
             myXMLInput.BaseHP(0) = 0
             myXMLInput.HP(0) = 0
-            If My.Settings.GilDisplay = True Then
-                myXMLInput.LiveGil = 0
-            End If
+            myXMLInput.LiveGil = 0
             myXMLInput.Weapon(0) = "None"
             myXMLInput.Accessory(255) = "None"
             myXMLInput.Armor(0) = "None"
@@ -581,18 +594,6 @@ Public Class FF7SaveMap
             Return BitConverter.ToInt16(_Map, &HC14)
         End Get
     End Property
-
-    ' Stubbing this out because it's a copy of our live CharIDs
-    '
-    'Public ReadOnly Property YetAnotherCharIDs As Byte()
-    '    Get
-    '        Dim RetArray(2) As Byte
-    '        RetArray(0) = _Map(&HCAD)
-    '        RetArray(1) = _Map(&HCAE)
-    '        RetArray(2) = _Map(&HCAF)
-    '        Return RetArray
-    '    End Get
-    'End Property
 
     Public ReadOnly Property PartyGP As Int16
         Get

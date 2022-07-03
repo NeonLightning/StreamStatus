@@ -166,15 +166,6 @@ Partial Class StatusUpdateGUIFrontend
 
     End Sub
 
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim Modlist As New List(Of String)
-        ModlistForm.MainModList.Items.Add("None")
-        StatusIcon.BackColor = Color.Transparent
-        SetStyle(ControlStyles.SupportsTransparentBackColor, True)
-        StatusIcon.Image = My.Resources.Resources._stop
-        LastEvent.Text = "Press start to be able to save notes. Press enter to confirm notes in box."
-        CurrentNotes.Text = My.Settings.quicknotes
-    End Sub
 
     Private Sub LastEvent_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles LastEvent.KeyDown
         If Started = True Then

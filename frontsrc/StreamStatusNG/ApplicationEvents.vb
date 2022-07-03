@@ -9,9 +9,9 @@ Namespace My
     ' StartupNextInstance: Raised when launching a single-instance application and the application is already active. 
     ' NetworkAvailabilityChanged: Raised when the network connection is connected or disconnected.
     Partial Friend Class MyApplication
-        Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
-            PortableSettingsProvider.SettingsFileName = "settings.config"
-            PortableSettingsProvider.ApplyProvider(Settings.Default)
-        End Sub
+        '    Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
+        '       PortableSettingsProvider.ApplyProvider(Settings.Default)
+        '       PortableSettingsProvider.SettingsFileName = "settings.config"
+        'End Sub
     End Class
 End Namespace
