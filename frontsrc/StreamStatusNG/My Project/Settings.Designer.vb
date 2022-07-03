@@ -110,13 +110,29 @@ Partial Public NotInheritable Class MySettings
     End Property
     
     <Global.System.Configuration.UserScopedSettingAttribute(),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-    Public Property Setting() As Boolean
+     Global.System.Configuration.SettingsProviderAttribute(GetType(Bluegrams.Application.PortableSettingsProvider)),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True"),  _
+     Global.System.Configuration.SettingsManageabilityAttribute(Global.System.Configuration.SettingsManageability.Roaming)>  _
+    Public Property Level() As Boolean
         Get
-            Return CType(Me("Setting"),Boolean)
+            Return CType(Me("Level"),Boolean)
         End Get
         Set
-            Me("Setting") = value
+            Me("Level") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True"),  _
+     Global.System.Configuration.SettingsManageabilityAttribute(Global.System.Configuration.SettingsManageability.Roaming)>  _
+    Public Property Discnums() As Boolean
+        Get
+            Return CType(Me("Discnums"),Boolean)
+        End Get
+        Set
+            Me("Discnums") = value
         End Set
     End Property
 End Class

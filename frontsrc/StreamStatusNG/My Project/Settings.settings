@@ -14,8 +14,11 @@
     <Setting Name="ModList" Provider="Bluegrams.Application.PortableSettingsProvider" Roaming="true" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="Level" Provider="Bluegrams.Application.PortableSettingsProvider" Roaming="true" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Discnums" Roaming="true" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

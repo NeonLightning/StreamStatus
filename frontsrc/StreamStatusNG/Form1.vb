@@ -103,7 +103,9 @@ Public Class StatusUpdateGUIFrontend
                 writer.WriteStartDocument()
                 writer.WriteStartElement("status")                                 ' <status>
                 writer.WriteElementString("quicknotes", Input.LastEvent)            '    <lastevent>I Picked a Booger</lastevent>
-                writer.WriteElementString("disc", Input.Disc)                      '    <disc>1</disc>
+                If My.Settings.Discnums = True Then
+                    writer.WriteElementString("disc", Input.Disc)                      '    <disc>1</disc>
+                End If
                 writer.WriteElementString("location", Input.Location)              '    <location>God Knows</location>
                 writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
@@ -113,7 +115,6 @@ Public Class StatusUpdateGUIFrontend
                         Dim tempmods As String
                         tempmods = myMods
                         writer.WriteElementString("mod", tempmods)                       '        <mod>Reunion R03b</mod>
-                        MessageBox.Show(ModlistForm.modlistentry(0), "Welcome", MessageBoxButtons.OKCancel)
                     Next
                     writer.WriteEndElement()
                 End If
@@ -129,8 +130,10 @@ Public Class StatusUpdateGUIFrontend
                     writer.WriteElementString("basehp", Input.BaseHP(Index).ToString())                      '            <basehp>6969</basehp>
                     writer.WriteElementString("mp", Input.MP(Index).ToString())                      '            <mp>6969</mp>
                     writer.WriteElementString("basemp", Input.BaseMP(Index).ToString())                      '            <basemp>6969</basemp>
-                    writer.WriteElementString("level", Input.PartyLevels(Index).ToString()) '   <level>3</level>
-                    writer.WriteElementString("exptolevel", Input.ExpToLevel(Index).ToString()) '   <level>3</level>
+                    If My.Settings.Level = True Then
+                        writer.WriteElementString("level", Input.PartyLevels(Index).ToString()) '   <level>3</level>
+                        writer.WriteElementString("exptolevel", Input.ExpToLevel(Index).ToString()) '   <level>3</level>
+                    End If
                     If My.Settings.WpDisplay = True Then
                         writer.WriteElementString("weapon", WeaponNames(Input.Weapon(Index)))    '            <weapon>Blah</weapon>
                     End If
@@ -370,12 +373,6 @@ Public Class StatusUpdateGUIFrontend
         End If
         ScreenUpdate()
     End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Settings.Click
-        Dim Settings As New SettingsForm
-        Settings.Show()
-    End Sub
-
 End Class
 
 Public Class FF7SaveMap

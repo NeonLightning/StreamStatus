@@ -26,6 +26,8 @@ Partial Class SettingsForm
         Me.WepBox = New System.Windows.Forms.CheckBox()
         Me.ModlistButton = New System.Windows.Forms.Button()
         Me.ModlistCheckbox = New System.Windows.Forms.CheckBox()
+        Me.LevelCheckbox = New System.Windows.Forms.CheckBox()
+        Me.DiscCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'GilDisplayBox
@@ -67,11 +69,33 @@ Partial Class SettingsForm
         Me.ModlistCheckbox.Text = "Modlist"
         Me.ModlistCheckbox.UseVisualStyleBackColor = True
         '
+        'LevelCheckbox
+        '
+        Me.LevelCheckbox.AutoSize = True
+        Me.LevelCheckbox.Location = New System.Drawing.Point(12, 60)
+        Me.LevelCheckbox.Name = "LevelCheckbox"
+        Me.LevelCheckbox.Size = New System.Drawing.Size(89, 17)
+        Me.LevelCheckbox.TabIndex = 4
+        Me.LevelCheckbox.Text = "Level Display"
+        Me.LevelCheckbox.UseVisualStyleBackColor = True
+        '
+        'DiscCheckBox1
+        '
+        Me.DiscCheckBox1.AutoSize = True
+        Me.DiscCheckBox1.Location = New System.Drawing.Point(12, 83)
+        Me.DiscCheckBox1.Name = "DiscCheckBox1"
+        Me.DiscCheckBox1.Size = New System.Drawing.Size(84, 17)
+        Me.DiscCheckBox1.TabIndex = 5
+        Me.DiscCheckBox1.Text = "Disc Display"
+        Me.DiscCheckBox1.UseVisualStyleBackColor = True
+        '
         'SettingsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 461)
+        Me.Controls.Add(Me.DiscCheckBox1)
+        Me.Controls.Add(Me.LevelCheckbox)
         Me.Controls.Add(Me.ModlistCheckbox)
         Me.Controls.Add(Me.ModlistButton)
         Me.Controls.Add(Me.WepBox)
@@ -104,6 +128,20 @@ Partial Class SettingsForm
             WepBox.CheckState = CheckState.Checked
             WepBox.Text = "Weapon Enabled"
         End If
+        If My.Settings.Level = False Then
+            LevelCheckbox.CheckState = CheckState.Unchecked
+            LevelCheckbox.Text = "Level Disabled"
+        Else
+            LevelCheckbox.CheckState = CheckState.Checked
+            LevelCheckbox.Text = "Level Enabled"
+        End If
+        If My.Settings.Discnums = False Then
+            DiscCheckBox1.CheckState = CheckState.Unchecked
+            DiscCheckBox1.Text = "Disc Disabled"
+        Else
+            DiscCheckBox1.CheckState = CheckState.Checked
+            DiscCheckBox1.Text = "Disc Enabled"
+        End If
         If My.Settings.ModList = False Then
             ModlistCheckbox.CheckState = CheckState.Unchecked
             ModlistCheckbox.Text = "Modlist Disabled"
@@ -117,4 +155,6 @@ Partial Class SettingsForm
     Friend WithEvents WepBox As CheckBox
     Friend WithEvents ModlistButton As Button
     Friend WithEvents ModlistCheckbox As CheckBox
+    Friend WithEvents LevelCheckbox As CheckBox
+    Friend WithEvents DiscCheckBox1 As CheckBox
 End Class

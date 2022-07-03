@@ -201,6 +201,14 @@ Partial Class StatusUpdateGUIFrontend
             End If
         End If
     End Sub
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Settings.Click
+        If SettingsForm.Visible = False Then
+            SettingsForm.Show()
+        Else
+            SettingsForm.Close()
+            SettingsForm.Show()
+        End If
+    End Sub
 
     Friend WithEvents DiscNum As System.Windows.Forms.Label
     Friend WithEvents LocationLabel As System.Windows.Forms.Label
