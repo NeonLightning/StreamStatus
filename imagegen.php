@@ -267,7 +267,12 @@ foreach (range(1, $localspaces) as $unused)
 $outstring = $outstring . "Local" . $localpad . " - " . date("H:i:s") . "\n";
 //$outstring = $outstring . "Stream" . $streampad . " - " . $streamtime . "\n";
 $outstring = $outstring . "In-Game - " . $gametime . "\n";
-$outstring = $outstring . "Disc " . $disc . "/3\n" . "Location:\n " . $location . "\n";
+if (isset($disc)) {
+	$outstring = $outstring . "Disc " . $disc . "/3\n";
+}
+if (isset($location)) {
+	 $outstring = $outstring . "Location:\n " . $location . "\n";
+}
 if (isset($status->gil))
 {
     $outstring = $outstring . "Gil " . $status->gil . "\n";
