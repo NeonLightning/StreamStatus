@@ -29,6 +29,7 @@ Partial Class SettingsForm
         Me.LevelCheckbox = New System.Windows.Forms.CheckBox()
         Me.DiscCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.LocCheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.QuicknotesCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'GilDisplayBox
@@ -100,11 +101,22 @@ Partial Class SettingsForm
         Me.LocCheckBox1.Text = "Location Display"
         Me.LocCheckBox1.UseVisualStyleBackColor = True
         '
+        'QuicknotesCheckBox1
+        '
+        Me.QuicknotesCheckBox1.AutoSize = True
+        Me.QuicknotesCheckBox1.Location = New System.Drawing.Point(13, 129)
+        Me.QuicknotesCheckBox1.Name = "QuicknotesCheckBox1"
+        Me.QuicknotesCheckBox1.Size = New System.Drawing.Size(119, 17)
+        Me.QuicknotesCheckBox1.TabIndex = 7
+        Me.QuicknotesCheckBox1.Text = "QuickNotes Display"
+        Me.QuicknotesCheckBox1.UseVisualStyleBackColor = True
+        '
         'SettingsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 461)
+        Me.Controls.Add(Me.QuicknotesCheckBox1)
         Me.Controls.Add(Me.LocCheckBox1)
         Me.Controls.Add(Me.DiscCheckBox1)
         Me.Controls.Add(Me.LevelCheckbox)
@@ -168,6 +180,13 @@ Partial Class SettingsForm
             ModlistCheckbox.CheckState = CheckState.Checked
             ModlistCheckbox.Text = "Modlist Enabled"
         End If
+        If My.Settings.QuicknotesOn = False Then
+            QuicknotesCheckBox1.CheckState = CheckState.Unchecked
+            QuicknotesCheckBox1.Text = "Quicknotes Disabled"
+        Else
+            QuicknotesCheckBox1.CheckState = CheckState.Checked
+            QuicknotesCheckBox1.Text = "Quicknotes Enabled"
+        End If
 
     End Sub
 
@@ -178,4 +197,5 @@ Partial Class SettingsForm
     Friend WithEvents LevelCheckbox As CheckBox
     Friend WithEvents DiscCheckBox1 As CheckBox
     Friend WithEvents LocCheckBox1 As CheckBox
+    Friend WithEvents QuicknotesCheckBox1 As CheckBox
 End Class

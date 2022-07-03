@@ -68,4 +68,14 @@
             LocCheckBox1.Text = "Location Disabled"
         End If
     End Sub
+
+    Private Sub QuicknotesCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles QuicknotesCheckBox1.CheckedChanged
+        If QuicknotesCheckBox1.Checked = True Then
+            My.Settings.QuicknotesOn = True
+            LocCheckBox1.Text = "Quicknotes Enabled"
+        Else
+            My.Settings.QuicknotesOn = False
+            QuicknotesCheckBox1.Text = "Quicknotes Disabled"
+        End If
+    End Sub
 End Class

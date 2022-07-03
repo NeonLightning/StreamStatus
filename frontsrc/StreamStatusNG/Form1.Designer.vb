@@ -55,9 +55,9 @@ Partial Class StatusUpdateGUIFrontend
         Me.Time.Location = New System.Drawing.Point(-2, 0)
         Me.Time.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Time.Name = "Time"
-        Me.Time.Size = New System.Drawing.Size(318, 13)
+        Me.Time.Size = New System.Drawing.Size(224, 13)
         Me.Time.TabIndex = 1
-        Me.Time.Text = "Time: Local (HH:MM:SS) Stream (HH:MM:SS) Game (HH:MM:SS)"
+        Me.Time.Text = "Time: Local (HH:MM:SS) Stream (HH:MM:SS)"
         '
         'PartyLabel
         '

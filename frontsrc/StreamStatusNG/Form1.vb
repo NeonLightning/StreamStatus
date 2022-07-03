@@ -44,6 +44,16 @@ Public Class StatusUpdateGUIFrontend
 
 #Region "Internal Functions"
 
+    Private Sub wait(ByVal interval As Integer)
+        Dim sw As New Stopwatch
+        sw.Start()
+        Do While sw.ElapsedMilliseconds < interval
+            ' Allows UI to remain responsive
+            Application.DoEvents()
+        Loop
+        sw.Stop()
+    End Sub
+
     Private Sub UpdateStatus()
         Select Case StatusBar
             Case 255
@@ -55,19 +65,6 @@ Public Class StatusUpdateGUIFrontend
             Case 0
                 StatusIcon.ImageLocation = ("base/icons/start.png")
                 StatusIcon.Load()
-                StatusBar = StatusBar + 1
-            Case 1
-                StatusIcon.ImageLocation = ("base/icons/start.png")
-                StatusIcon.Load()
-                StatusBar = StatusBar + 1
-            Case 2
-                StatusIcon.ImageLocation = ("base/icons/start.png")
-                StatusIcon.Load()
-                StatusBar = StatusBar + 1
-            Case 3
-                StatusIcon.ImageLocation = ("base/icons/start.png")
-                StatusIcon.Load()
-                StatusBar = 0
             Case Else
                 StatusIcon.ImageLocation = ("base/icons/stop.png")
                 StatusIcon.Load()
@@ -99,10 +96,13 @@ Public Class StatusUpdateGUIFrontend
         Dim Settings As XmlWriterSettings = New XmlWriterSettings()
         Settings.Indent = True
         Try
+            wait(50)
             Using writer As XmlWriter = XmlWriter.Create(".\status.xml", Settings)
                 writer.WriteStartDocument()
                 writer.WriteStartElement("status")                                 ' <status>
-                writer.WriteElementString("quicknotes", Input.LastEvent)            '    <lastevent>I Picked a Booger</lastevent>
+                If My.Settings.QuicknotesOn = True Then
+                    writer.WriteElementString("quicknotes", Input.LastEvent)            '    <lastevent>I Picked a Booger</lastevent>
+                End If
                 If My.Settings.Discnums = True Then
                     writer.WriteElementString("disc", Input.Disc)                      '    <disc>1</disc>
                 End If
@@ -197,7 +197,7 @@ Public Class StatusUpdateGUIFrontend
             myXMLInput.StreamTime = SecsToHMS(StreamTime)
             Time.Text = "Time: Local (" & DateTime.Now.ToString("HH:mm:ss") & ") Stream (" & SecsToHMS(StreamTime) & ")"
             If StreamTime > 0 And mySaveMap.LiveTotalSeconds > 0 Then
-                Time.Text = "Time: Local (" & DateTime.Now.ToString("HH:mm:ss") & ") Stream (" & SecsToHMS(StreamTime) & ") Game (" & SecsToHMS(mySaveMap.LiveTotalSeconds) & ")"
+                Time.Text = "Time: Local (" & DateTime.Now.ToString("HH:mm:ss") & ") Stream (" & SecsToHMS(StreamTime) & ")"
                 myXMLInput.GameTime = SecsToHMS(mySaveMap.LiveTotalSeconds)
             End If
             If StreamTime > 0 And mySaveMap.LiveTotalSeconds <= 0 Then
@@ -277,6 +277,7 @@ Public Class StatusUpdateGUIFrontend
         End If
 #Disable Warning BC42108 ' Variable is passed by reference before it has been assigned a value
         myXMLInput.LastEvent = committedLastEvent
+        wait(50)
         XmlWrite(myXMLInput)
 #Enable Warning BC42108 ' Variable is passed by reference before it has been assigned a value
 
