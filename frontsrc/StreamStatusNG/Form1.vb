@@ -146,15 +146,6 @@ Public Class StatusUpdateGUIFrontend
                 Next
                 writer.WriteEndElement()                                           '    </party>
                 writer.WriteEndElement()                                              ' </status>
-
-                'If My.Settings.ModList = True Then
-                ' writer.WriteStartElement("modlisting")
-                ' For Each listtext As String In ModlistForm.modlistentry
-                ' writer.WriteElementString("modentry", listtext)             ' <modentry>listtext</modentry>
-                ' Next
-                ' writer.WriteEndElement()
-                ' End If
-
                 writer.WriteEndDocument()
             End Using
         Catch ex As System.IO.IOException
@@ -475,26 +466,6 @@ Public Class FF7SaveMap
             Return resultArray
         End Get
     End Property
-
-    ' Stubbing this out as it's a 1:1 copy of our live party.
-    'Public ReadOnly Property YetAnotherParty As Character()
-    '    Get
-    '        Dim resultArray(2) As Character
-    '        If FillChar(_Map(&HCAD), resultArray(0)) = False Then
-    '            Return Nothing
-    '        End If
-    '        If FillChar(_Map(&HCAE), resultArray(1)) = False Then
-    '            resultArray(1) = Nothing
-    '            resultArray(2) = Nothing
-    '            Return resultArray
-    '        End If
-    '        If FillChar(_Map(&HCAF), resultArray(2)) = False Then
-    '            resultArray(2) = Nothing
-    '            Return resultArray
-    '        End If
-    '        Return resultArray
-    '    End Get
-    'End Property
 
     Public ReadOnly Property PreviewGil As Int32
         Get
