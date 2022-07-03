@@ -119,16 +119,6 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                 If My.Settings.ModList = True Then
-                    Using writer2 As XmlWriter = XmlWriter.Create(".\modlist.xml")
-                        writer2.WriteStartDocument()
-                        writer2.WriteStartElement("listomods")
-                        Dim modname As String
-                        For Each myMod In ModlistForm.modlistentry
-                            writer2.WriteElementString("modname", myMod)
-                        Next
-                        writer2.WriteEndElement()
-                        writer2.WriteEndDocument()
-                    End Using
                     writer.WriteStartElement("modlist")
                     For Each myMods In ModlistForm.modlistentry
                         writer.WriteElementString("modentry", myMods)                       '        <mod>Reunion R03b</mod>
