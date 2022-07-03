@@ -164,6 +164,20 @@ Partial Public NotInheritable Class MySettings
             Me("QuicknotesOn") = value
         End Set
     End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("<?xml version=""1.0"" encoding=""utf-16""?>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"<ArrayOfString xmlns:xsd=""http://www.w3."& _ 
+        "org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <s"& _ 
+        "tring>None</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"</ArrayOfString>")>  _
+    Public Property Modstringlist() As Global.System.Collections.Specialized.StringCollection
+        Get
+            Return CType(Me("Modstringlist"),Global.System.Collections.Specialized.StringCollection)
+        End Get
+        Set
+            Me("Modstringlist") = value
+        End Set
+    End Property
 End Class
 
 Namespace My

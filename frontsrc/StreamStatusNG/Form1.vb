@@ -103,7 +103,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         Settings.Indent = True
         Try
             wait(50)
-            Using writer As XmlWriter = XmlWriter.Create(".\status.xml", Settings)
+            Using writer As XmlWriter = XmlWriter.Create("../../status.xml", Settings)
                 writer.WriteStartDocument()
                 writer.WriteStartElement("status")                                 ' <status>
                 If My.Settings.QuicknotesOn = True Then
@@ -118,14 +118,14 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
 
                 writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
-                If My.Settings.ModList = True Then
-                    Using writer2 As XmlWriter = XmlWriter.Create(".\modlist.xml", Settings)
-                        'writer2.WriteStartDocument()
+                Using writer2 As XmlWriter = XmlWriter.Create("../../modlist.xml")
+                    If My.Settings.ModList = True Then
                         For Each myMods In ModlistForm.modlistentry
                             writer2.WriteElementString("modentry", myMods)                       '        <mod>Reunion R03b</mod>
                         Next
-                        'writer2.WriteEndDocument()
-                    End Using
+                    End If
+                End Using
+                If My.Settings.ModList = True Then
                     writer.WriteStartElement("modlist")
                     For Each myMods In ModlistForm.modlistentry
                         writer.WriteElementString("modentry", myMods)                       '        <mod>Reunion R03b</mod>
