@@ -58,4 +58,14 @@
             DiscCheckBox1.Text = "Disc Disabled"
         End If
     End Sub
+
+    Private Sub LocCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles LocCheckBox1.CheckedChanged
+        If LocCheckBox1.Checked = True Then
+            My.Settings.LocSet = True
+            LocCheckBox1.Text = "Location Enabled"
+        Else
+            My.Settings.LocSet = False
+            LocCheckBox1.Text = "Location Disabled"
+        End If
+    End Sub
 End Class

@@ -25,7 +25,6 @@ Partial Class StatusUpdateGUIFrontend
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StatusUpdateGUIFrontend))
-        Me.DiscNum = New System.Windows.Forms.Label()
         Me.LocationLabel = New System.Windows.Forms.Label()
         Me.Time = New System.Windows.Forms.Label()
         Me.PartyLabel = New System.Windows.Forms.Label()
@@ -39,16 +38,6 @@ Partial Class StatusUpdateGUIFrontend
         Me.Settings = New System.Windows.Forms.Button()
         CType(Me.StatusIcon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'DiscNum
-        '
-        Me.DiscNum.AutoSize = True
-        Me.DiscNum.Location = New System.Drawing.Point(11, 56)
-        Me.DiscNum.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.DiscNum.Name = "DiscNum"
-        Me.DiscNum.Size = New System.Drawing.Size(49, 13)
-        Me.DiscNum.TabIndex = 1
-        Me.DiscNum.Text = "Disc X/3"
         '
         'LocationLabel
         '
@@ -162,7 +151,6 @@ Partial Class StatusUpdateGUIFrontend
         Me.Controls.Add(Me.PartyLabel)
         Me.Controls.Add(Me.Time)
         Me.Controls.Add(Me.LocationLabel)
-        Me.Controls.Add(Me.DiscNum)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
@@ -209,8 +197,6 @@ Partial Class StatusUpdateGUIFrontend
             SettingsForm.Show()
         End If
     End Sub
-
-    Friend WithEvents DiscNum As System.Windows.Forms.Label
     Friend WithEvents LocationLabel As System.Windows.Forms.Label
     Friend WithEvents Time As System.Windows.Forms.Label
     Friend WithEvents PartyLabel As System.Windows.Forms.Label

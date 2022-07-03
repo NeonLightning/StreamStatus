@@ -106,7 +106,9 @@ Public Class StatusUpdateGUIFrontend
                 If My.Settings.Discnums = True Then
                     writer.WriteElementString("disc", Input.Disc)                      '    <disc>1</disc>
                 End If
-                writer.WriteElementString("location", Input.Location)              '    <location>God Knows</location>
+                If My.Settings.LocSet = True Then
+                    writer.WriteElementString("location", Input.Location)              '    <location>God Knows</location>
+                End If
                 writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                 If My.Settings.ModList = True Then
@@ -175,10 +177,8 @@ Public Class StatusUpdateGUIFrontend
         End If
         UpdateStatus()
         If mySaveMap.Disc >= 1 And mySaveMap.Disc <= 3 Then
-            'DiscNum.Text = "Disc " & mySaveMap.Disc.ToString() & "/3"
             myXMLInput.Disc = mySaveMap.Disc
         Else
-            'DiscNum.Text = "Disc X/3"
             myXMLInput.Disc = 0
         End If
         If mySaveMap.LiveGil = 0 Then

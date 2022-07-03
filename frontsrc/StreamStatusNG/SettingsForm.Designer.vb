@@ -28,6 +28,7 @@ Partial Class SettingsForm
         Me.ModlistCheckbox = New System.Windows.Forms.CheckBox()
         Me.LevelCheckbox = New System.Windows.Forms.CheckBox()
         Me.DiscCheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.LocCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'GilDisplayBox
@@ -89,11 +90,22 @@ Partial Class SettingsForm
         Me.DiscCheckBox1.Text = "Disc Display"
         Me.DiscCheckBox1.UseVisualStyleBackColor = True
         '
+        'LocCheckBox1
+        '
+        Me.LocCheckBox1.AutoSize = True
+        Me.LocCheckBox1.Location = New System.Drawing.Point(13, 106)
+        Me.LocCheckBox1.Name = "LocCheckBox1"
+        Me.LocCheckBox1.Size = New System.Drawing.Size(104, 17)
+        Me.LocCheckBox1.TabIndex = 6
+        Me.LocCheckBox1.Text = "Location Display"
+        Me.LocCheckBox1.UseVisualStyleBackColor = True
+        '
         'SettingsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 461)
+        Me.Controls.Add(Me.LocCheckBox1)
         Me.Controls.Add(Me.DiscCheckBox1)
         Me.Controls.Add(Me.LevelCheckbox)
         Me.Controls.Add(Me.ModlistCheckbox)
@@ -135,6 +147,13 @@ Partial Class SettingsForm
             LevelCheckbox.CheckState = CheckState.Checked
             LevelCheckbox.Text = "Level Enabled"
         End If
+        If My.Settings.LocSet = False Then
+            LocCheckBox1.CheckState = CheckState.Unchecked
+            LocCheckBox1.Text = "Location Disabled"
+        Else
+            LocCheckBox1.CheckState = CheckState.Checked
+            LocCheckBox1.Text = "Location Enabled"
+        End If
         If My.Settings.Discnums = False Then
             DiscCheckBox1.CheckState = CheckState.Unchecked
             DiscCheckBox1.Text = "Disc Disabled"
@@ -149,6 +168,7 @@ Partial Class SettingsForm
             ModlistCheckbox.CheckState = CheckState.Checked
             ModlistCheckbox.Text = "Modlist Enabled"
         End If
+
     End Sub
 
     Friend WithEvents GilDisplayBox As CheckBox
@@ -157,4 +177,5 @@ Partial Class SettingsForm
     Friend WithEvents ModlistCheckbox As CheckBox
     Friend WithEvents LevelCheckbox As CheckBox
     Friend WithEvents DiscCheckBox1 As CheckBox
+    Friend WithEvents LocCheckBox1 As CheckBox
 End Class
