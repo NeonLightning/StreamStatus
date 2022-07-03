@@ -108,9 +108,12 @@ Public Class StatusUpdateGUIFrontend
                 writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                 writer.WriteStartElement("mods")
-                'For Each myMods In ModlistForm.modlistentry
-                writer.WriteElementString("mod", ModlistForm.modlistentry(0))                       '        <mod>Reunion R03b</mod>
-                'Next
+                For Each myMods In ModlistForm.modlistentry
+                    Dim tempmods As String
+                    tempmods = myMods
+                    writer.WriteElementString("mod", tempmods)                       '        <mod>Reunion R03b</mod>
+                Next
+                MessageBox.Show(ModlistForm.modlistentry(0), "Welcome", MessageBoxButtons.OKCancel)
                 writer.WriteEndElement()
                 If My.Settings.GilDisplay = True Then
                     writer.WriteElementString("gil", Input.LiveGil)                        '    <gil>1234</gil>

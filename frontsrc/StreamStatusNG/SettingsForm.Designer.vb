@@ -104,6 +104,13 @@ Partial Class SettingsForm
             WepBox.CheckState = CheckState.Checked
             WepBox.Text = "Weapon Enabled"
         End If
+        If My.Settings.ModList = False Then
+            ModlistCheckbox.CheckState = CheckState.Unchecked
+            ModlistCheckbox.Text = "Modlist Disabled"
+        Else
+            ModlistCheckbox.CheckState = CheckState.Checked
+            ModlistCheckbox.Text = "Modlist Enabled"
+        End If
     End Sub
 
     Friend WithEvents GilDisplayBox As CheckBox
