@@ -1,25 +1,10 @@
-# NeonLightning's Edits
-[Screenshot of output](https://raw.githubusercontent.com/NeonLightning/StreamStatus/master/SSOUT.png)
-
-[Screenshot of GUI](https://raw.githubusercontent.com/NeonLightning/StreamStatus/master/SSGUI.png)
-
+#NeonLightning's Edits
 well i changed a bunch i can't really rememember what right now. the original i couldn't get working so in the process
 of trying to figure out how i did some changes. and those just kept going. i hope to merge this but i doubt they will.
 (mostly because i have no idea what i'm doing)
 one thing to note that i didn't realize is the resolution for the overlay is mostly based on the image size
-you'll need to use full path for the fonts.
+and for the earliest supported version of xammp(last one to have php 7.x) you'll need to use full path for the fonts.
 should be easy to figure out how to change my modlist. and where to edit the font/put the fonts/what font is needed.
-
-# Instructions
-You will need to install apache and php in the 7 versions or lower.
-and get dejavu mono font if you wanna use it or verdana if you wanna use that.
-copy the streamstatus files to your htdocs in a subfolder
-edit imagegen.php to make the font path to where yours is. i've found it really picky about what fonts and only verdana 
-and dejavu have worked right.
-run the game. then run the exe then click start.
-then add a browser source pointed at http://127.0.0.1/streamstatus/
-make sure the size is set to the same as the background.png in base.
-you can replace background.png with whatever you want. i suggest a 320x900 image.
 
 # StreamStatus
 My stream overlay project, designed for my Final Fantasy 7 streaming. An unholy combination of VB, PHP, and JavaScript.
