@@ -192,6 +192,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Resources\stop.png" />
     <None Include="Resources\start.png" />
     <None Include="Resources\error.png" />

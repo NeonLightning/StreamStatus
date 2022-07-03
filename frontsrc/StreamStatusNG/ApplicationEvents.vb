@@ -10,9 +10,8 @@ Namespace My
     ' NetworkAvailabilityChanged: Raised when the network connection is connected or disconnected.
     Partial Friend Class MyApplication
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
-            'PortableSettingsProvider.ApplyProvider(Properties.Settings.Default)
-            'PortableSettingsProvider.SettingsFileName = "settings.config"
-            'PortableSettingsProvider.SettingsDirectory = "base"
+            PortableSettingsProvider.SettingsFileName = "settings.config"
+            PortableSettingsProvider.ApplyProvider(Settings.Default)
         End Sub
     End Class
 End Namespace
