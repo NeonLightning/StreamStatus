@@ -57,17 +57,13 @@ Public Class StatusUpdateGUIFrontend
     Private Sub UpdateStatus()
         Select Case StatusBar
             Case 255
-                StatusIcon.ImageLocation = ("base/icons/stop.png")
-                StatusIcon.Load()
+                StatusIcon.Image = My.Resources.Resources._stop
             Case 254
-                StatusIcon.ImageLocation = ("base/icons/error.png")
-                StatusIcon.Load()
+                StatusIcon.Image = My.Resources.Resources._error
             Case 0
-                StatusIcon.ImageLocation = ("base/icons/start.png")
-                StatusIcon.Load()
+                StatusIcon.Image = My.Resources.Resources._start
             Case Else
-                StatusIcon.ImageLocation = ("base/icons/stop.png")
-                StatusIcon.Load()
+                StatusIcon.Image = My.Resources.Resources._stop
                 StatusBar = 0
         End Select
     End Sub
@@ -330,8 +326,7 @@ Public Class StatusUpdateGUIFrontend
             Started = False
             Timer1.Enabled = False
             StatusBar = 255
-            StatusIcon.ImageLocation = ("base/icons/start.png")
-            StatusIcon.Load()
+            StatusIcon.Image = My.Resources._start
             UpdateStatus()
             Return
         End If
@@ -359,8 +354,7 @@ Public Class StatusUpdateGUIFrontend
             Started = True
             Timer1.Enabled = True
             StatusBar = 1
-            StatusIcon.ImageLocation = ("base/icons/stop.png")
-            StatusIcon.Load()
+            StatusIcon.Image = My.Resources._stop
             UpdateStatus()
             Return
         End If

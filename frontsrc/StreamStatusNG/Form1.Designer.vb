@@ -24,7 +24,6 @@ Partial Class StatusUpdateGUIFrontend
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StatusUpdateGUIFrontend))
         Me.LocationLabel = New System.Windows.Forms.Label()
         Me.Time = New System.Windows.Forms.Label()
         Me.PartyLabel = New System.Windows.Forms.Label()
@@ -119,7 +118,8 @@ Partial Class StatusUpdateGUIFrontend
         '
         'StatusIcon
         '
-        Me.StatusIcon.InitialImage = CType(resources.GetObject("StatusIcon.InitialImage"), System.Drawing.Image)
+        Me.StatusIcon.ErrorImage = Global.StreamStatusNeon.My.Resources.Resources._error
+        Me.StatusIcon.InitialImage = Global.StreamStatusNeon.My.Resources.Resources._stop
         Me.StatusIcon.Location = New System.Drawing.Point(425, 9)
         Me.StatusIcon.Margin = New System.Windows.Forms.Padding(0)
         Me.StatusIcon.Name = "StatusIcon"
@@ -152,7 +152,7 @@ Partial Class StatusUpdateGUIFrontend
         Me.Controls.Add(Me.Time)
         Me.Controls.Add(Me.LocationLabel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Icon = Global.StreamStatusNeon.My.Resources.Resources.Icon
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(500, 156)
@@ -171,8 +171,7 @@ Partial Class StatusUpdateGUIFrontend
         ModlistForm.MainModList.Items.Add("None")
         StatusIcon.BackColor = Color.Transparent
         SetStyle(ControlStyles.SupportsTransparentBackColor, True)
-        StatusIcon.ImageLocation = ("base/icons/error.png")
-        StatusIcon.Load()
+        StatusIcon.Image = My.Resources.Resources._stop
         LastEvent.Text = "Press start to be able to save notes. Press enter to confirm notes in box."
         CurrentNotes.Text = My.Settings.quicknotes
     End Sub
