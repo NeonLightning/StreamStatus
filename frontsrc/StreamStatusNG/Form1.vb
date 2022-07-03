@@ -109,15 +109,16 @@ Public Class StatusUpdateGUIFrontend
                 If My.Settings.LocSet = True Then
                     writer.WriteElementString("location", Input.Location)              '    <location>God Knows</location>
                 End If
+
                 writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                 If My.Settings.ModList = True Then
-                    writer.WriteStartElement("mods")
-                    For Each myMods In ModlistForm.modlistentry
-                        Dim tempmods As String
-                        tempmods = myMods
-                        writer.WriteElementString("mod", tempmods)                       '        <mod>Reunion R03b</mod>
-                    Next
+                    writer.WriteStartElement("modlist")
+                    'For Each myMods In ModlistForm.modlistentry
+                    Dim tempmods As String
+                    tempmods = "myMods"
+                    writer.WriteElementString("modentry", tempmods)                       '        <mod>Reunion R03b</mod>
+                    'Next
                     writer.WriteEndElement()
                 End If
                 If My.Settings.GilDisplay = True Then

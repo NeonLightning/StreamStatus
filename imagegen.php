@@ -13,15 +13,7 @@
 */
 
 $font = dirname(__FILE__) . '/base/washrab.ttf';
-
-// Function to log a line to a file.
-function logIt($logstring)
-{
-    $logfile = fopen("imagegen.log", "a");
-    fwrite($logfile, $logstring . "\n");
-    fclose($logfile);
-}
-
+$modlisttext = "Mods:\n-Custom Random Battle/Fanfare\n-Custom Soundtrack\n-Cosmo Memory\n-60 FPS Gameplay(and NT addon)\n-Ninostyle Models(dyn+chibi)\n-Avalanche Arisen Battle\n-SYW Field Textures\n-New Threat 2.0\n-SYW Minigame Textures\n-SYW Spell Textures\n-Finishing Touch\n-Enhanced Stock UI\n-SYW Worldmap Textures\n";
 function pxtoPt($pixels)
 {
     return ($pixels * 3) / 4;
@@ -144,6 +136,13 @@ if (isset($status->disc))
 else
 {
 }
+if (isset($status->modslist))
+{
+    $mods = $status->modentry;
+}
+else
+{
+}
 if (isset($status->gil))
 {
     $gil = $status->gil;
@@ -181,44 +180,8 @@ else
 }
 if (isset($status->party))
 {
-    if (isset($status
-        ->party
-        ->member))
-    {
-        $members = $status
-            ->party->member;
-        foreach ($members as $memnumber => $member)
-        {
-            if (isset($member->name))
-            {
-            }
-            else
-            {
-            }
-            if (isset($member->level))
-            {
-            }
-            else
-            {
-            }
-        }
-    }
-    else
-    {
-    }
+    if (isset($status->party->member)) { $members = $status->party->member; }
 }
-else
-{
-}
-/* if ($counter < 8) {
-    logIt("ERR: Dying due to previous errors. DEBUG: Counter was " . $counter);
-    beautifulCorpse("ERROR: Could not generate image due to incomplete XML file. See log.");
-}
-*/
-
-/* The following bits create our image as a 320x720 png,
-   using Covarr's background image, and set our colors.
-*/
 
 // Create our image, and be sure to save alpha
 $img = imagecreatefrompng("base/background.png");
@@ -256,27 +219,14 @@ $streamspaces = $streamdiff / $spacelen;
 $localspaces = $localdiff / $spacelen;
 $streampad = "";
 $localpad = "";
-foreach (range(1, $streamspaces) as $unused)
-{
-    $streampad = $streampad . " ";
-}
-foreach (range(1, $localspaces) as $unused)
-{
-    $localpad = $localpad . " ";
-}
+foreach (range(1, $streamspaces) as $unused) { $streampad = $streampad . " "; }
+foreach (range(1, $localspaces) as $unused) { $localpad = $localpad . " "; }
 $outstring = $outstring . "Local" . $localpad . " - " . date("H:i:s") . "\n";
-//$outstring = $outstring . "Stream" . $streampad . " - " . $streamtime . "\n";
+if (isset($streamtime)) { $outstring = $outstring . "Stream" . $streampad . " - " . $streamtime . "\n"; }
 $outstring = $outstring . "In-Game - " . $gametime . "\n";
-if (isset($disc)) {
-	$outstring = $outstring . "Disc " . $disc . "/3\n";
-}
-if (isset($location)) {
-	 $outstring = $outstring . "Location:\n " . $location . "\n";
-}
-if (isset($status->gil))
-{
-    $outstring = $outstring . "Gil " . $status->gil . "\n";
-}
+if (isset($disc)) { $outstring = $outstring . "Disc " . $disc . "/3\n"; }
+if (isset($location)) { $outstring = $outstring . "Location:\n " . $location . "\n"; }
+if (isset($status->gil)) { $outstring = $outstring . "Gil " . $status->gil . "\n"; }
 else
 {
 }
@@ -285,56 +235,20 @@ foreach ($members as $member)
 {
     $namebbox = imagettfbbox(pxtoPt(16) , 0, (dirname(__FILE__) . '/base/washrab.ttf') , $member->name);
     $namelen = $namebbox[2] - $namebbox[0];
-    /* 	if ($namelen < $charlen) {
-    $namestr = $member->name;
-    $diff = $charlen - $namelen;
-    $spaces = $diff/$spacelen;
-    if (($diff%$spacelen) > $spacelen-3) {
-    $spaces = $spaces + 1;
-    }
-    //foreach (range(1, $spaces) as $unused) {
-    foreach (range(1, $spaces) as $unused) {
-    $namestr = $namestr . " ";
-    }
-    } else {
-    $namestr = $member->name;
-    
-    } */
+    if ($namelen < $charlen) { $namestr = $member->name;	$diff = $charlen - $namelen;	$spaces = $diff/$spacelen;
+		if (($diff%$spacelen) > $spacelen-3) { $spaces = $spaces + 1; }
+		foreach (range(1, $spaces) as $unused) { $namestr = $namestr . " "; }
+	}
+	else { $namestr = $member->name; }
     $namestr = $member->name;
     $outstring = $outstring . $namestr;
-    if (isset($member->level))
-    {
-        $outstring = $outstring . " " . " L";
-        $outstring = $outstring . $member->level;
-    }
-    if (isset($member->exptolevel))
-    {
-        $outstring = $outstring . " XpToLvl ";
-        $outstring = $outstring . $member->exptolevel;
-    }
-    if (isset($member->hp))
-    {
-        $outstring = $outstring . "\n  HP ";
-        $outstring = $outstring . $member->hp;
-    }
-    if (isset($member->basehp))
-    {
-        $outstring = $outstring . "/";
-        $outstring = $outstring . $member->basehp;
-    }
-    if (isset($member->mp))
-    {
-        $outstring = $outstring . " MP ";
-        $outstring = $outstring . $member->mp;
-    }
-    if (isset($member->basemp))
-    {
-        $outstring = $outstring . "/";
-        $outstring = $outstring . $member->basemp;
-    }
-    if (isset($member->weapon))
-    {
-        $outstring = $outstring . "\n ";
+    if (isset($member->level)) { $outstring = $outstring . " " . " L";	$outstring = $outstring . $member->level; }
+    if (isset($member->exptolevel)) { $outstring = $outstring . " XpToLvl "; $outstring = $outstring . $member->exptolevel; }
+    if (isset($member->hp))	{ $outstring = $outstring . "\n  HP ";	$outstring = $outstring . $member->hp; }
+    if (isset($member->basehp)) { $outstring = $outstring . "/";	$outstring = $outstring . $member->basehp; }
+    if (isset($member->mp)) { $outstring = $outstring . " MP ";	$outstring = $outstring . $member->mp; }
+    if (isset($member->basemp)) { $outstring = $outstring . "/";	$outstring = $outstring . $member->basemp; }
+    if (isset($member->weapon)) { $outstring = $outstring . "\n ";
         $outstring = $outstring . " Wp: ";
         $outstring = $outstring . $member->weapon;
     }
@@ -358,8 +272,11 @@ if (isset($status->quicknotes))
 }
 $outstring = $outstring . "\n\n";
 // Mods
-$outstring = $outstring . "Mods:\n-Custom Random Battle/Fanfare\n-Custom Soundtrack\n-Cosmo Memory\n-60 FPS Gameplay(and NT addon)\n-Ninostyle Models(dyn+chibi)\n-Avalanche Arisen Battle\n-SYW Field Textures\n-New Threat 2.0\n-SYW Minigame Textures\n-SYW Spell Textures\n-Finishing Touch\n-Enhanced Stock UI\n-SYW Worldmap Textures\n";
 
+if (isset($status->modslist)) {
+$outstring = $outstring . $status->modlist->modentry;
+$outstring = $outstring . $modlisttext;
+}
 // Trim any leading/trailing newlines or etc from output string
 $outstring = trim($outstring);
 

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<status>
+  <quicknotes>None</quicknotes>
+  <disc>1</disc>
+  <location>Sector 7 Slums</location>
+  <streamtime>00:04:52</streamtime>
+  <gametime>01:05:56</gametime>
+  <modlist>
+    <modentry>myMods</modentry>
+  </modlist>
+  <gil>759</gil>
+  <party>
+    <member>
+      <name>Cloud</name>
+      <hp>247</hp>
+      <basehp>353</basehp>
+      <mp>61</mp>
+      <basemp>59</basemp>
+      <level>8</level>
+      <exptolevel>22</exptolevel>
+      <weapon>Buster</weapon>
+      <armor>Bronze Bangle</armor>
+      <accessory>none</accessory>
+    </member>
+  </party>
+</status>
