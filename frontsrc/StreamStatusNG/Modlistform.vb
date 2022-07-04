@@ -2,17 +2,16 @@
 Imports System.Xml
 Public Class ModlistForm
     Private Sub ModlistForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not System.IO.File.Exists(".\Modlist_read.xml") Then
+        If Not System.IO.File.Exists(".\modlist.xml") Then
             Dim xmlset As XmlWriterSettings = New XmlWriterSettings()
             Using writer2 As XmlWriter = XmlWriter.Create(".\modlist.xml", xmlset)
                 xmlset.Indent = True
                 xmlset.NewLineOnAttributes = True
                 writer2.WriteStartDocument()
                 writer2.WriteStartElement("listomods")
-                writer2.WriteElementString("modname", "None")
-
             End Using
         End If
+        If Me.MainModList.Items.Count = 0 Then Me.MainModList.Items.Add("None")
         Modlist_read()
     End Sub
     Public Sub Modlist_update()
@@ -48,13 +47,22 @@ Public Class ModlistForm
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles AddModButton.Click
         If Not String.IsNullOrWhiteSpace(ModTextBox.Text) Then
+            If Me.MainModList.Items.Count = 1 AndAlso Me.MainModList.Items(0) = "None" Then
+                Me.MainModList.Items.Clear()
+            End If
             Me.MainModList.Items.Add(ModTextBox.Text)
             Modlist_update()
-            Me.MainModList.Items.Clear()
             Modlist_read()
             Me.ModTextBox.Text = ""
         End If
     End Sub
 
-
+    Private Sub DelModButton_Click(sender As Object, e As EventArgs) Handles DelModButton.Click
+        If Me.MainModList.SelectedIndex >= 0 Then
+            Me.MainModList.Items.RemoveAt(Me.MainModList.SelectedIndex)
+            Modlist_update()
+            Me.MainModList.Items.Clear()
+            Modlist_read()
+        End If
+    End Sub
 End Class
