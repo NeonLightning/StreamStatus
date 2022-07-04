@@ -11,8 +11,8 @@ Public Class ModlistForm
                 writer2.WriteStartElement("listomods")
             End Using
         End If
-        If Me.MainModList.Items.Count = 0 Then Me.MainModList.Items.Add("None")
         Modlist_read()
+        If Me.MainModList.Items.Count = 0 Then Me.MainModList.Items.Add("None")
     End Sub
     Public Sub Modlist_update()
         Dim xmlset As XmlWriterSettings = New XmlWriterSettings()
