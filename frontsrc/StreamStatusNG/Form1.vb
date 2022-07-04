@@ -9,7 +9,6 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim Modlist As New List(Of String)
-        ModlistForm.MainModList.Items.Add("None")
         StatusIcon.BackColor = Color.Transparent
         SetStyle(ControlStyles.SupportsTransparentBackColor, True)
         StatusIcon.Image = My.Resources.Resources._stop

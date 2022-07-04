@@ -2,7 +2,18 @@
 Imports System.Xml
 Public Class ModlistForm
     Private Sub ModlistForm_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If Not System.IO.File.Exists(".\Modlist_read.xml") Then
+            Dim xmlset As XmlWriterSettings = New XmlWriterSettings()
+            Using writer2 As XmlWriter = XmlWriter.Create(".\modlist.xml", xmlset)
+                xmlset.Indent = True
+                xmlset.NewLineOnAttributes = True
+                writer2.WriteStartDocument()
+                writer2.WriteStartElement("listomods")
+                writer2.WriteElementString("modname", "None")
 
+            End Using
+        End If
+        Modlist_read()
     End Sub
     Public Sub Modlist_update()
         Dim xmlset As XmlWriterSettings = New XmlWriterSettings()
@@ -18,13 +29,17 @@ Public Class ModlistForm
         End Using
         Me.MainModList.Items.Clear()
     End Sub
+
     Public Sub Modlist_read()
         Dim reader2 As XmlReaderSettings = New XmlReaderSettings()
-        Using readermain As XmlReader = XmlReader.Create(".\modlist.xml", reader2)
-            While readermain.Read()
-                If readermain.IsStartElement Then
-                    If readermain.Name = "modname" Then
-                        Me.MainModList.Items.Add(readermain.ToString)
+        Using Reader As XmlReader = XmlReader.Create(".\modlist.xml", reader2)
+            While Reader.Read()
+                If Reader.IsStartElement Then
+                    If Reader.Name = "modname" Then
+                        If Reader.Read() Then
+                            Dim value As String = Reader.Value.Trim()
+                            Me.MainModList.Items.Add(value)
+                        End If
                     End If
                 End If
             End While
