@@ -120,7 +120,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                 If My.Settings.ModList = True Then
                     writer.WriteStartElement("modlist")
-                    For Each myMods In ModlistForm.modlistentry
+                    For Each myMods In ModlistForm.MainModList.Items
                         writer.WriteElementString("modentry", myMods)                       '        <mod>Reunion R03b</mod>
                     Next
                     writer.WriteEndElement()
