@@ -9,6 +9,19 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim Modlist As New List(Of String)
+        If Not System.IO.File.Exists(".\modlist.xml") Then
+            Dim xmlset As XmlWriterSettings = New XmlWriterSettings()
+            xmlset.Indent = True
+            xmlset.NewLineOnAttributes = True
+            Using writer2 As XmlWriter = XmlWriter.Create(".\modlist.xml", xmlset)
+                writer2.WriteStartDocument()
+                writer2.WriteStartElement("listomods")
+                For Each modnamed In ModlistForm.MainModList.Items
+                    writer2.WriteElementString("modname", modnamed)
+                Next
+                writer2.WriteEndDocument()
+            End Using
+        End If
         StatusIcon.BackColor = Color.Transparent
         SetStyle(ControlStyles.SupportsTransparentBackColor, True)
         StatusIcon.Image = My.Resources.Resources._stop
