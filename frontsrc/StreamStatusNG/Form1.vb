@@ -17,7 +17,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 writer2.WriteStartDocument()
                 writer2.WriteStartElement("listomods")
                 For Each modnamed In ModlistForm.MainModList.Items
-                    writer2.WriteElementString("modname", modnamed)
+                    writer2.WriteElementString("modname", "None")
                 Next
                 writer2.WriteEndDocument()
             End Using
@@ -132,9 +132,19 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                 If My.Settings.ModList = True Then
                     writer.WriteStartElement("modlist")
-                    For Each myMods In ModlistForm.MainModList.Items
-                        writer.WriteElementString("modentry", myMods)                       '        <mod>Reunion R03b</mod>
-                    Next
+                    Dim reader2 As XmlReaderSettings = New XmlReaderSettings()
+                    Using Reader As XmlReader = XmlReader.Create(".\modlist.xml", reader2)
+                        While Reader.Read()
+                            If Reader.IsStartElement Then
+                                If Reader.Name = "modname" Then
+                                    If Reader.Read() Then
+                                        Dim value As String = Reader.Value.Trim()
+                                        writer.WriteElementString("modentry", value)                       '        <mod>Reunion R03b</mod>
+                                    End If
+                                End If
+                            End If
+                        End While
+                    End Using
                     writer.WriteEndElement()
                 End If
                 If My.Settings.GilDisplay = True Then

@@ -9,6 +9,7 @@ Public Class ModlistForm
                 xmlset.NewLineOnAttributes = True
                 writer2.WriteStartDocument()
                 writer2.WriteStartElement("listomods")
+                writer2.WriteElementString("modname", "None")
             End Using
         End If
         Modlist_read()

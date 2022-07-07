@@ -13,7 +13,6 @@
 */
 
 $font = dirname(__FILE__) . '/base/washrab.ttf';
-$modlisttext = "Mods:\n-Custom Random Battle/Fanfare\n-Custom Soundtrack\n-Cosmo Memory\n-60 FPS Gameplay(and NT addon)\n-Ninostyle Models(dyn+chibi)\n-Avalanche Arisen Battle\n-SYW Field Textures\n-New Threat 2.0\n-SYW Minigame Textures\n-SYW Spell Textures\n-Finishing Touch\n-Enhanced Stock UI\n-SYW Worldmap Textures\n";
 function pxtoPt($pixels)
 {
     return ($pixels * 3) / 4;
@@ -136,9 +135,9 @@ if (isset($status->disc))
 else
 {
 }
-if (isset($status->modslist))
+if (isset($status->modlist))
 {
-    $mods = $status->modentry;
+    $modslist = $status->modlist;
 }
 else
 {
@@ -233,7 +232,7 @@ else
 $nummems = 0;
 foreach ($members as $member)
 {
-    $namebbox = imagettfbbox(pxtoPt(16) , 0, (dirname(__FILE__) . '/base/washrab.ttf') , $member->name);
+    /*$namebbox = imagettfbbox(pxtoPt(16) , 0, (dirname(__FILE__) . '/base/washrab.ttf') , $member->name);
     $namelen = $namebbox[2] - $namebbox[0];
     if ($namelen < $charlen) { $namestr = $member->name;	$diff = $charlen - $namelen;	$spaces = $diff/$spacelen;
 		if (($diff%$spacelen) > $spacelen-3) { $spaces = $spaces + 1; }
@@ -241,28 +240,17 @@ foreach ($members as $member)
 	}
 	else { $namestr = $member->name; }
     $namestr = $member->name;
-    $outstring = $outstring . $namestr;
+    $outstring = $outstring . $namestr;*/
+	$outstring = $outstring . $member->name;
     if (isset($member->level)) { $outstring = $outstring . " " . " L";	$outstring = $outstring . $member->level; }
     if (isset($member->exptolevel)) { $outstring = $outstring . " XpToLvl "; $outstring = $outstring . $member->exptolevel; }
     if (isset($member->hp))	{ $outstring = $outstring . "\n  HP ";	$outstring = $outstring . $member->hp; }
     if (isset($member->basehp)) { $outstring = $outstring . "/";	$outstring = $outstring . $member->basehp; }
     if (isset($member->mp)) { $outstring = $outstring . " MP ";	$outstring = $outstring . $member->mp; }
     if (isset($member->basemp)) { $outstring = $outstring . "/";	$outstring = $outstring . $member->basemp; }
-    if (isset($member->weapon)) { $outstring = $outstring . "\n ";
-        $outstring = $outstring . " Wp: ";
-        $outstring = $outstring . $member->weapon;
-    }
-
-    if (isset($member->armor))
-    {
-        $outstring = $outstring . "\n  Ar: ";
-        $outstring = $outstring . $member->armor;
-    }
-    if (isset($member->accessory))
-    {
-        $outstring = $outstring . "\n  Ac: ";
-        $outstring = $outstring . $member->accessory . "\n";
-    }
+    if (isset($member->weapon)) { $outstring = $outstring . "\n ";	$outstring = $outstring . " Wp: ";	$outstring = $outstring . $member->weapon; }
+    if (isset($member->armor)) { $outstring = $outstring . "\n  Ar: ";	$outstring = $outstring . $member->armor; }
+    if (isset($member->accessory)) { $outstring = $outstring . "\n  Ac: ";	$outstring = $outstring . $member->accessory . "\n"; }
     $outstring = $outstring . "\n";
 }
 if (isset($status->quicknotes))
@@ -273,11 +261,12 @@ if (isset($status->quicknotes))
 $outstring = $outstring . "\n\n";
 // Mods
 
-if (isset($status->modslist)) {
-$outstring = $outstring . $status->modlist->modentry;
-$outstring = $outstring . $modlisttext;
-}
+if (isset($status->modlist)) {
+	$outstring = $outstring . "Mods Used\n";
+	foreach ($modslist->modentry as $modsenum) { $outstring = $outstring . "-" . $modsenum . "\n"; } }
+	
 // Trim any leading/trailing newlines or etc from output string
+
 $outstring = trim($outstring);
 
 // And output! Now with hacky drop shadow.
