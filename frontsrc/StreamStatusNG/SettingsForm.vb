@@ -1,6 +1,14 @@
 ﻿Imports System.ComponentModel
+Imports System.IO
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class SettingsForm
+
+
+    Dim mybgArray() As String = Directory.GetFiles("backgrounds\", "*.png")
+    Dim temp As String = ""
+
+
     Private Sub SettingsForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If ModlistForm.Visible = True Then
             ModlistForm.Close()
@@ -137,6 +145,10 @@ Public Class SettingsForm
             QuicknotesCheckBox1.CheckState = CheckState.Checked
             QuicknotesCheckBox1.Text = "Quicknotes Enabled"
         End If
+
+        BackgroundDrop.Items.AddRange(mybgArray)
+        Dim backgroundfilename As String = ""
+
     End Sub
 
 
@@ -318,5 +330,10 @@ Public Class SettingsForm
                 GameTimeCheckBox1.Text = "GameTime Enabled"
             End If
         End If
+    End Sub
+
+    Private Sub BackgroundDrop_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles BackgroundDrop.SelectionChangeCommitted
+        temp = mybgArray(BackgroundDrop.SelectedIndex)
+        MsgBox(temp)
     End Sub
 End Class
