@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<status>
+  <timeset>
+    <localtimeset>true</localtimeset>
+    <streamtime>00:00:05</streamtime>
+    <gametime>13:18:41</gametime>
+  </timeset>
+  <disc>1</disc>
+  <location>Grasslands Area</location>
+  <gil>3896</gil>
+  <party>
+    <member>
+      <name>Cloud</name>
+      <hp>962</hp>
+      <basehp>809</basehp>
+      <mp>122</mp>
+      <basemp>132</basemp>
+      <level>18</level>
+      <exptolevel>1576</exptolevel>
+      <weapon>Hardedge</weapon>
+      <armor>Gold Armlet</armor>
+      <accessory>Protect Vest</accessory>
+    </member>
+    <member>
+      <name>Tifa</name>
+      <hp>652</hp>
+      <basehp>640</basehp>
+      <mp>109</mp>
+      <basemp>113</basemp>
+      <level>17</level>
+      <exptolevel>1931</exptolevel>
+      <weapon>Leather Glove</weapon>
+      <armor>Four Slots</armor>
+      <accessory>White Cape</accessory>
+    </member>
+    <member>
+      <name>Yuffie</name>
+      <hp>685</hp>
+      <basehp>612</basehp>
+      <mp>101</mp>
+      <basemp>114</basemp>
+      <level>17</level>
+      <exptolevel>2049</exptolevel>
+      <weapon>Boomerang</weapon>
+      <armor>Four Slots</armor>
+      <accessory>Sneak Glove</accessory>
+    </member>
+  </party>
+  <modlist />
+</status>

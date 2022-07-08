@@ -12,7 +12,7 @@
    code is freely available for your use.
 */
 
-$font = dirname(__FILE__) . '/font.ttf';
+$font = dirname(__FILE__) . '/../font.ttf';
 function pxtoPt($pixels)
 {
     return ($pixels * 3) / 4;
@@ -110,7 +110,7 @@ function fullWrap($string, $length, $font, $pt)
 }
 
 // Load our XML status file.
-$status = simplexml_load_file("status.xml");
+$status = simplexml_load_file("../status.xml");
 
 // Check XML for completeness and parse to variables.
 if (isset($status->disc)){$disc = $status->disc;}
@@ -133,7 +133,7 @@ else{}
 if (isset($status->party)){if (isset($status->party->member)) { $members = $status->party->member; }}
 
 // Create our image, and be sure to save alpha
-$img = imagecreatefrompng("background/background.png");
+$img = imagecreatefrompng("../background/background.png");
 imagesavealpha($img, true);
 
 /* Define our colors: This time it's a lot easier, as for
