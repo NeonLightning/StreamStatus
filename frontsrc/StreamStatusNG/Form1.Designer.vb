@@ -37,6 +37,7 @@ Partial Class StatusUpdateGUIFrontend
         Me.Settings = New System.Windows.Forms.Button()
         Me.StartButton = New System.Windows.Forms.Button()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.StartStop = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'LocationLabel
@@ -193,4 +194,5 @@ Partial Class StatusUpdateGUIFrontend
     Friend WithEvents Settings As Button
     Friend WithEvents StartButton As Button
     Friend WithEvents NotifyIcon1 As NotifyIcon
+    Friend WithEvents StartStop As ToolTip
 End Class

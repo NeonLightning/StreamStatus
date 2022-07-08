@@ -46,6 +46,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         StartButton.Image = My.Resources.Resources._start
         LastEvent.Text = "Press start to be able to save notes. Press enter to confirm notes in box."
         CurrentNotes.Text = My.Settings.quicknotes
+        Me.StartStop.SetToolTip(Me.StartButton, "Start/Stop")
     End Sub
 
 #Region "Variables and Definitions"

@@ -130,7 +130,7 @@
         VjA14inisKrplC+kPVY5b3HWShXW6JO/MJjVV5JcpzWMKJYQQxwiFFRQRAk2IrTrpFhI0LnUxj/k+uPk
         UshVBCPHAsrQILt+8D/4PVsrNznhJQUloPPFcT5GgMAuUK86zvex49RPAP8zcKU3/eUaMPtJerWphY+A
         3m3g4rqpKXvA5Q4w+GTIpuxKflpCLge8n9E3ZYD+W6B7zZtb4xynD0CKZrV8AxwcAqN5yl5v8+6u1rn9
-        ecedH6QfiP5ysCaoAC0AAAAJcEhZcwAADsAAAA7AAWrWiQkAAAAHdElNRQfmBwEQOwuxE3yKAAAAGXRF
+        ecedH6QfiP5ysCaoAC0AAAAJcEhZcwAADr8AAA6/ATgFUyQAAAAHdElNRQfmBwEQOwuxE3yKAAAAGXRF
         WHRDb21tZW50AENyZWF0ZWQgd2l0aCBHSU1QV4EOFwAACu5JREFUaEPNWmlsFdcVHrxgg40XvOG0UtK0
         CY0iqrT5UVW0KiQVjUhLwbTs2MaY3WYJCZilgUBIWggpoNBG0KCqZQkBb9jGYJs9QEMCUaSmpUSof/u7
         f/Pj9PvOvXfezHszA5iAcqSj9/zm3HPPd893zr0zY++rlrWHPts5Y/dVKa5vk7L57VJutbShXR5v7pHp
@@ -1907,6 +1907,9 @@
         AOA/AADgHwAA8A8AAA==
 </value>
   </data>
+  <metadata name="StartStop.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>221, 17</value>
+  </metadata>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
