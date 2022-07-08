@@ -36,6 +36,7 @@ Partial Class StatusUpdateGUIFrontend
         Me.CurrentNotes = New System.Windows.Forms.Label()
         Me.Settings = New System.Windows.Forms.Button()
         Me.StartButton = New System.Windows.Forms.Button()
+        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.SuspendLayout()
         '
         'LocationLabel
@@ -142,6 +143,13 @@ Partial Class StatusUpdateGUIFrontend
         Me.StartButton.TabIndex = 6
         Me.StartButton.UseVisualStyleBackColor = False
         '
+        'NotifyIcon1
+        '
+        Me.NotifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
+        Me.NotifyIcon1.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.NotifyIcon1.Visible = True
+        '
         'StatusUpdateGUIFrontend
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -184,4 +192,5 @@ Partial Class StatusUpdateGUIFrontend
     Friend WithEvents CurrentNotes As Label
     Friend WithEvents Settings As Button
     Friend WithEvents StartButton As Button
+    Friend WithEvents NotifyIcon1 As NotifyIcon
 End Class

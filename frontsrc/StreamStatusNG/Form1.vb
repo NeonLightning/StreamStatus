@@ -409,6 +409,16 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         End If
         ScreenUpdate()
     End Sub
+
+    Private Sub NotifyIcon1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
+        If Me.Visible = False Then
+            Me.Show()
+        Else
+            Me.Hide()
+            SettingsForm.Close()
+            ModlistForm.Close()
+        End If
+    End Sub
 End Class
 
 Public Class FF7SaveMap
