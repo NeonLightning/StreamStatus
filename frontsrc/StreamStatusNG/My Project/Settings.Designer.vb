@@ -178,6 +178,19 @@ Partial Public NotInheritable Class MySettings
             Me("Modstringlist") = value
         End Set
     End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Configuration.SettingsProviderAttribute(GetType(Bluegrams.Application.PortableSettingsProvider)),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+    Public Property LocalTimeSet() As Boolean
+        Get
+            Return CType(Me("LocalTimeSet"),Boolean)
+        End Get
+        Set
+            Me("LocalTimeSet") = value
+        End Set
+    End Property
 End Class
 
 Namespace My

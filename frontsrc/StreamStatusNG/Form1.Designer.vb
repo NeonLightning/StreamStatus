@@ -24,6 +24,7 @@ Partial Class StatusUpdateGUIFrontend
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StatusUpdateGUIFrontend))
         Me.LocationLabel = New System.Windows.Forms.Label()
         Me.Time = New System.Windows.Forms.Label()
         Me.PartyLabel = New System.Windows.Forms.Label()
@@ -33,9 +34,8 @@ Partial Class StatusUpdateGUIFrontend
         Me.LastEvent = New System.Windows.Forms.TextBox()
         Me.LastEventLabel = New System.Windows.Forms.Label()
         Me.CurrentNotes = New System.Windows.Forms.Label()
-        Me.StatusIcon = New System.Windows.Forms.PictureBox()
         Me.Settings = New System.Windows.Forms.Button()
-        CType(Me.StatusIcon, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StartButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'LocationLabel
@@ -116,17 +116,6 @@ Partial Class StatusUpdateGUIFrontend
         Me.CurrentNotes.Size = New System.Drawing.Size(0, 13)
         Me.CurrentNotes.TabIndex = 1
         '
-        'StatusIcon
-        '
-        Me.StatusIcon.ErrorImage = Global.StreamStatusNeon.My.Resources.Resources._error
-        Me.StatusIcon.InitialImage = Global.StreamStatusNeon.My.Resources.Resources._stop
-        Me.StatusIcon.Location = New System.Drawing.Point(425, 9)
-        Me.StatusIcon.Margin = New System.Windows.Forms.Padding(0)
-        Me.StatusIcon.Name = "StatusIcon"
-        Me.StatusIcon.Size = New System.Drawing.Size(50, 50)
-        Me.StatusIcon.TabIndex = 4
-        Me.StatusIcon.TabStop = False
-        '
         'Settings
         '
         Me.Settings.Location = New System.Drawing.Point(408, 72)
@@ -136,13 +125,30 @@ Partial Class StatusUpdateGUIFrontend
         Me.Settings.Text = "Settings"
         Me.Settings.UseVisualStyleBackColor = True
         '
+        'StartButton
+        '
+        Me.StartButton.AutoSize = True
+        Me.StartButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.StartButton.BackColor = System.Drawing.Color.Transparent
+        Me.StartButton.FlatAppearance.BorderSize = 0
+        Me.StartButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.StartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.StartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.StartButton.Image = CType(resources.GetObject("StartButton.Image"), System.Drawing.Image)
+        Me.StartButton.Location = New System.Drawing.Point(427, 1)
+        Me.StartButton.Margin = New System.Windows.Forms.Padding(0)
+        Me.StartButton.Name = "StartButton"
+        Me.StartButton.Size = New System.Drawing.Size(56, 56)
+        Me.StartButton.TabIndex = 6
+        Me.StartButton.UseVisualStyleBackColor = False
+        '
         'StatusUpdateGUIFrontend
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(484, 117)
+        Me.Controls.Add(Me.StartButton)
         Me.Controls.Add(Me.Settings)
-        Me.Controls.Add(Me.StatusIcon)
         Me.Controls.Add(Me.CurrentNotes)
         Me.Controls.Add(Me.LastEvent)
         Me.Controls.Add(Me.LastEventLabel)
@@ -152,7 +158,7 @@ Partial Class StatusUpdateGUIFrontend
         Me.Controls.Add(Me.Time)
         Me.Controls.Add(Me.LocationLabel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = Global.StreamStatusNeon.My.Resources.Resources.Icon
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(500, 156)
@@ -160,45 +166,22 @@ Partial Class StatusUpdateGUIFrontend
         Me.Name = "StatusUpdateGUIFrontend"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.Text = "FF7 Stream Status Overlay: Live Updater"
-        CType(Me.StatusIcon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
 
-    Private Sub LastEvent_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles LastEvent.KeyDown
-        If Started = True Then
-            If e.KeyCode = Keys.Enter Then
-                e.Handled = True
-                e.SuppressKeyPress = True
-                CurrentNotes.Text = LTrim(LastEvent.Text)
-                committedLastEvent = LTrim(LastEvent.Text)
-                My.Settings.quicknotes = LTrim(LastEvent.Text)
-                ScreenUpdate()
-            End If
-        End If
-    End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Settings.Click
-        If SettingsForm.Visible = False Then
-            SettingsForm.Show()
-        Else
-            SettingsForm.Close()
-            SettingsForm.Show()
-        End If
-    End Sub
+
     Friend WithEvents LocationLabel As System.Windows.Forms.Label
     Friend WithEvents Time As System.Windows.Forms.Label
     Friend WithEvents PartyLabel As System.Windows.Forms.Label
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents Party As System.Windows.Forms.Label
-#Disable Warning BC40004 ' Member conflicts with member in the base type and should be declared 'Shadows'
     Friend WithEvents Location As System.Windows.Forms.Label
     Friend WithEvents LastEvent As TextBox
     Friend WithEvents LastEventLabel As Label
     Friend WithEvents CurrentNotes As Label
-    Friend WithEvents StatusIcon As PictureBox
     Friend WithEvents Settings As Button
-#Enable Warning BC40004 ' Member conflicts with member in the base type and should be declared 'Shadows'
-
+    Friend WithEvents StartButton As Button
 End Class

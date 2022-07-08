@@ -6,6 +6,26 @@ Imports System.Drawing
 
 
 Public Class StatusUpdateGUIFrontend : Inherits Form
+    Private Sub LastEvent_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles LastEvent.KeyDown
+        If Started = True Then
+            If e.KeyCode = Keys.Enter Then
+                e.Handled = True
+                e.SuppressKeyPress = True
+                CurrentNotes.Text = LTrim(LastEvent.Text)
+                committedLastEvent = LTrim(LastEvent.Text)
+                My.Settings.quicknotes = LTrim(LastEvent.Text)
+                ScreenUpdate()
+            End If
+        End If
+    End Sub
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Settings.Click
+        If SettingsForm.Visible = False Then
+            SettingsForm.Show()
+        Else
+            SettingsForm.Close()
+            SettingsForm.Show()
+        End If
+    End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim Modlist As New List(Of String)
@@ -22,9 +42,8 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 writer2.WriteEndDocument()
             End Using
         End If
-        StatusIcon.BackColor = Color.Transparent
         SetStyle(ControlStyles.SupportsTransparentBackColor, True)
-        StatusIcon.Image = My.Resources.Resources._stop
+        StartButton.Image = My.Resources.Resources._start
         LastEvent.Text = "Press start to be able to save notes. Press enter to confirm notes in box."
         CurrentNotes.Text = My.Settings.quicknotes
     End Sub
@@ -79,13 +98,13 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
     Private Sub UpdateStatus()
         Select Case StatusBar
             Case 255
-                StatusIcon.Image = My.Resources.Resources._stop
+                StartButton.Image = My.Resources.Resources._start
             Case 254
-                StatusIcon.Image = My.Resources.Resources._error
+                StartButton.Image = My.Resources.Resources._stop
             Case 0
-                StatusIcon.Image = My.Resources.Resources._start
+                StartButton.Image = My.Resources.Resources._error
             Case Else
-                StatusIcon.Image = My.Resources.Resources._stop
+                StartButton.Image = My.Resources.Resources._start
                 StatusBar = 0
         End Select
     End Sub
@@ -127,7 +146,9 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 If My.Settings.LocSet = True Then
                     writer.WriteElementString("location", Input.Location)              '    <location>God Knows</location>
                 End If
-
+                If My.Settings.LocalTimeSet Then
+                    writer.WriteElementString("localtimeset", "true")
+                End If
                 writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
                 writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                 If My.Settings.ModList = True Then
@@ -348,13 +369,13 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         ScreenUpdate()
     End Sub
 
-    Private Sub StatusIcon_Click(sender As Object, e As EventArgs) Handles StatusIcon.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles StartButton.Click
         If Started = True Then
             StreamTime = 0
             Started = False
             Timer1.Enabled = False
             StatusBar = 255
-            StatusIcon.Image = My.Resources._start
+            StartButton.Image = My.Resources._stop
             UpdateStatus()
             Return
         End If
@@ -382,7 +403,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             Started = True
             Timer1.Enabled = True
             StatusBar = 1
-            StatusIcon.Image = My.Resources._stop
+            StartButton.Image = My.Resources._start
             UpdateStatus()
             Return
         End If
