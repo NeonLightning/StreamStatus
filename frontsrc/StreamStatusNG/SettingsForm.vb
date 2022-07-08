@@ -1,7 +1,6 @@
 ﻿Imports System.ComponentModel
 
 Public Class SettingsForm
-
     Private Sub SettingsForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If ModlistForm.Visible = True Then
             ModlistForm.Close()
@@ -79,6 +78,13 @@ Public Class SettingsForm
         Else
             GameTimeCheckBox1.CheckState = CheckState.Unchecked
             GameTimeCheckBox1.Text = "GameTime Disabled"
+        End If
+        If My.Settings.StreamTimeSet = True Then
+            StreamTimeCheckBox1.CheckState = CheckState.Checked
+            StreamTimeCheckBox1.Text = "StreamTime Enabled"
+        Else
+            StreamTimeCheckBox1.CheckState = CheckState.Unchecked
+            StreamTimeCheckBox1.Text = "StreamTime Disabled"
         End If
     End Sub
     Private Sub GilDisplayBox_CheckedChanged(sender As Object, e As EventArgs) Handles GilDisplayBox.CheckedChanged
@@ -212,17 +218,6 @@ Public Class SettingsForm
                 GameTimeCheckBox1.CheckState = CheckState.Checked
                 GameTimeCheckBox1.Text = "GameTime Enabled"
             End If
-        Else
-            StreamTimeCheckBox1.CheckState = CheckState.Unchecked
-            StreamTimeCheckBox1.Text = "StreamTime Disabled"
-            LocalTimeSetCheckBox1.CheckState = CheckState.Unchecked
-            LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
-            GameTimeCheckBox1.CheckState = CheckState.Unchecked
-            GameTimeCheckBox1.Text = "GameTime Disabled"
-
         End If
-
     End Sub
-
-
 End Class
