@@ -3,6 +3,7 @@ Imports System.Diagnostics
 Imports System.Xml
 Imports System.Text.RegularExpressions
 Imports System.Drawing
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Taskbar
 
 
 Public Class StatusUpdateGUIFrontend : Inherits Form
@@ -27,6 +28,30 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        If Not System.IO.Directory.Exists("backgrounds") Then
+            My.Computer.FileSystem.CreateDirectory("backgrounds")
+            MsgBox("Put a png in backgrounds.")
+            My.Forms.StatusUpdateGUIFrontend.Close()
+        Else
+            Dim pngcounter As Integer
+            pngcounter = 0
+            For Each pngfile In Directory.EnumerateFiles("backgrounds", "*.png")
+                pngcounter = pngcounter + 1
+            Next
+            If pngcounter > 0 Then
+                If pngcounter = 1 Then
+                    Dim mybgArray() As String = Directory.GetFiles("backgrounds", "*.png")
+                    My.Forms.SettingsForm.BackgroundDrop.Items.AddRange(mybgArray)
+                    My.Computer.FileSystem.CopyFile(mybgArray(0), "base\background\background.png", overwrite:=True)
+                Else
+                    Dim mybgArray() As String = Directory.GetFiles("backgrounds", "*.png")
+                    My.Forms.SettingsForm.BackgroundDrop.Items.AddRange(mybgArray)
+                End If
+            Else
+                    MsgBox("Put a png in backgrounds.")
+                My.Forms.StatusUpdateGUIFrontend.Close()
+            End If
+        End If
         Dim Modlist As New List(Of String)
         If Not System.IO.File.Exists(".\base\modlist.xml") Then
             Dim xmlset As XmlWriterSettings = New XmlWriterSettings()

@@ -4,10 +4,6 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class SettingsForm
 
-
-    Dim mybgArray() As String = Directory.GetFiles("backgrounds\", "*.png")
-
-
     Private Sub SettingsForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If ModlistForm.Visible = True Then
             ModlistForm.Close()
@@ -21,6 +17,7 @@ Public Class SettingsForm
         End If
     End Sub
     Private Sub Form2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
 
         If My.Settings.TimeSet = True Then
             TimeCheckBox1.CheckState = CheckState.Checked
@@ -144,9 +141,6 @@ Public Class SettingsForm
             QuicknotesCheckBox1.CheckState = CheckState.Checked
             QuicknotesCheckBox1.Text = "Quicknotes Enabled"
         End If
-
-        BackgroundDrop.Items.AddRange(mybgArray)
-
     End Sub
 
 
@@ -331,6 +325,7 @@ Public Class SettingsForm
     End Sub
 
     Private Sub BackgroundDrop_SelectedValueChanged(sender As Object, e As EventArgs) Handles BackgroundDrop.SelectedValueChanged
+        Dim mybgArray() As String = Directory.GetFiles("backgrounds\", "*.png")
         Dim temp = mybgArray(BackgroundDrop.SelectedIndex)
         My.Computer.FileSystem.CopyFile(temp, "base\background\background.png", overwrite:=True)
     End Sub
