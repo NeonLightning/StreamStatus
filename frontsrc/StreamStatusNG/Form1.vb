@@ -146,11 +146,17 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 If My.Settings.LocSet = True Then
                     writer.WriteElementString("location", Input.Location)              '    <location>God Knows</location>
                 End If
-                If My.Settings.LocalTimeSet Then
-                    writer.WriteElementString("localtimeset", "true")
+                If My.Settings.TimeSet Then
+                    writer.WriteStartElement("timeset")
+                    If My.Settings.LocalTimeSet Then
+                        writer.WriteElementString("localtimeset", "true")
+                    End If
+                    If My.Settings.StreamTimeSet Then
+                        writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
+                    End If
+                    writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
+                    writer.WriteEndElement()
                 End If
-                writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
-                writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                 If My.Settings.ModList = True Then
                     writer.WriteStartElement("modlist")
                     Dim reader2 As XmlReaderSettings = New XmlReaderSettings()

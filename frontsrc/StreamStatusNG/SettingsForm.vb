@@ -52,13 +52,29 @@ Public Class SettingsForm
             QuicknotesCheckBox1.CheckState = CheckState.Checked
             QuicknotesCheckBox1.Text = "Quicknotes Enabled"
         End If
-        If My.Settings.LocalTimeSet = False Then
-            LocalTimeSetCheckBox1.CheckState = CheckState.Unchecked
-            LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
+        If My.Settings.TimeSet = True Then
+            TimeCheckBox1.CheckState = CheckState.Checked
+            TimeCheckBox1.Text = "Time Enabled"
+            TimeGroupBox1.Visible = True
+            If My.Settings.LocalTimeSet = False Then
+                LocalTimeSetCheckBox1.CheckState = CheckState.Unchecked
+                LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
+            Else
+                LocalTimeSetCheckBox1.CheckState = CheckState.Checked
+                LocalTimeSetCheckBox1.Text = "LocalTime Enabled"
+            End If
+            If My.Settings.StreamTimeSet = False Then
+                StreamTimeCheckBox1.CheckState = CheckState.Unchecked
+                StreamTimeCheckBox1.Text = "StreamTime Disabled"
+            Else
+                StreamTimeCheckBox1.CheckState = CheckState.Checked
+                StreamTimeCheckBox1.Text = "StreamTime Enabled"
+            End If
         Else
-            LocalTimeSetCheckBox1.CheckState = CheckState.Checked
-            LocalTimeSetCheckBox1.Text = "LocalTime Enabled"
-        End If
+            TimeCheckBox1.CheckState = CheckState.Unchecked
+            TimeCheckBox1.Text = "Time Disabled"
+            TimeGroupBox1.Visible = False
+        End if
     End Sub
 
     Private Sub ModlistButton_Click(sender As Object, e As EventArgs) Handles ModlistButton.Click
@@ -153,6 +169,36 @@ Public Class SettingsForm
         Else
             My.Settings.LocalTimeSet = False
             LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
+        End If
+    End Sub
+
+    Private Sub StreamTimeCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles StreamTimeCheckBox1.CheckedChanged
+        If StreamTimeCheckBox1.Checked = True Then
+            My.Settings.StreamTimeSet = True
+            StreamTimeCheckBox1.Text = "StreamTime Enabled"
+        Else
+            My.Settings.StreamTimeSet = False
+            StreamTimeCheckBox1.Text = "StreamTime Disabled"
+        End If
+    End Sub
+
+    Private Sub TimeCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles TimeCheckBox1.CheckedChanged
+        If TimeCheckBox1.Checked = True Then
+            My.Settings.TimeSet = True
+            My.Settings.StreamTimeSet = True
+            My.Settings.LocalTimeSet = True
+            LocalTimeSetCheckBox1.Text = "LocalTime Enabled"
+            TimeCheckBox1.Text = "Time Enabled"
+            StreamTimeCheckBox1.Text = "StreamTime Enabled"
+            Me.TimeGroupBox1.Visible = True
+        Else
+            My.Settings.TimeSet = False
+            My.Settings.StreamTimeSet = False
+            My.Settings.LocalTimeSet = False
+            LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
+            TimeCheckBox1.Text = "Time Disabled"
+            StreamTimeCheckBox1.Text = "StreamTime Disabled"
+            Me.TimeGroupBox1.Visible = False
         End If
     End Sub
 End Class

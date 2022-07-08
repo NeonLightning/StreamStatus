@@ -34,14 +34,18 @@ Partial Class SettingsForm
         Me.SettingsPanel = New System.Windows.Forms.FlowLayoutPanel()
         Me.CharSetBox = New System.Windows.Forms.GroupBox()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.StreamTimeCheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.TimeGroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TimeCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SettingsPanel.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
+        Me.TimeGroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GilDisplayBox
         '
         Me.GilDisplayBox.AutoSize = True
-        Me.GilDisplayBox.Location = New System.Drawing.Point(3, 72)
+        Me.GilDisplayBox.Location = New System.Drawing.Point(3, 156)
         Me.GilDisplayBox.Name = "GilDisplayBox"
         Me.GilDisplayBox.Size = New System.Drawing.Size(75, 17)
         Me.GilDisplayBox.TabIndex = 0
@@ -61,7 +65,7 @@ Partial Class SettingsForm
         'ModlistButton
         '
         Me.ModlistButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ModlistButton.Location = New System.Drawing.Point(47, 141)
+        Me.ModlistButton.Location = New System.Drawing.Point(60, 225)
         Me.ModlistButton.Name = "ModlistButton"
         Me.ModlistButton.Size = New System.Drawing.Size(75, 23)
         Me.ModlistButton.TabIndex = 2
@@ -71,7 +75,7 @@ Partial Class SettingsForm
         'ModlistCheckbox
         '
         Me.ModlistCheckbox.AutoSize = True
-        Me.ModlistCheckbox.Location = New System.Drawing.Point(3, 118)
+        Me.ModlistCheckbox.Location = New System.Drawing.Point(3, 202)
         Me.ModlistCheckbox.Name = "ModlistCheckbox"
         Me.ModlistCheckbox.Size = New System.Drawing.Size(59, 17)
         Me.ModlistCheckbox.TabIndex = 3
@@ -91,7 +95,7 @@ Partial Class SettingsForm
         'DiscCheckBox1
         '
         Me.DiscCheckBox1.AutoSize = True
-        Me.DiscCheckBox1.Location = New System.Drawing.Point(3, 26)
+        Me.DiscCheckBox1.Location = New System.Drawing.Point(3, 110)
         Me.DiscCheckBox1.Name = "DiscCheckBox1"
         Me.DiscCheckBox1.Size = New System.Drawing.Size(84, 17)
         Me.DiscCheckBox1.TabIndex = 5
@@ -101,7 +105,7 @@ Partial Class SettingsForm
         'LocCheckBox1
         '
         Me.LocCheckBox1.AutoSize = True
-        Me.LocCheckBox1.Location = New System.Drawing.Point(3, 49)
+        Me.LocCheckBox1.Location = New System.Drawing.Point(3, 133)
         Me.LocCheckBox1.Name = "LocCheckBox1"
         Me.LocCheckBox1.Size = New System.Drawing.Size(104, 17)
         Me.LocCheckBox1.TabIndex = 6
@@ -111,7 +115,7 @@ Partial Class SettingsForm
         'QuicknotesCheckBox1
         '
         Me.QuicknotesCheckBox1.AutoSize = True
-        Me.QuicknotesCheckBox1.Location = New System.Drawing.Point(3, 95)
+        Me.QuicknotesCheckBox1.Location = New System.Drawing.Point(3, 179)
         Me.QuicknotesCheckBox1.Name = "QuicknotesCheckBox1"
         Me.QuicknotesCheckBox1.Size = New System.Drawing.Size(119, 17)
         Me.QuicknotesCheckBox1.TabIndex = 7
@@ -121,7 +125,7 @@ Partial Class SettingsForm
         'LocalTimeSetCheckBox1
         '
         Me.LocalTimeSetCheckBox1.AutoSize = True
-        Me.LocalTimeSetCheckBox1.Location = New System.Drawing.Point(3, 3)
+        Me.LocalTimeSetCheckBox1.Location = New System.Drawing.Point(7, 42)
         Me.LocalTimeSetCheckBox1.Name = "LocalTimeSetCheckBox1"
         Me.LocalTimeSetCheckBox1.Size = New System.Drawing.Size(112, 17)
         Me.LocalTimeSetCheckBox1.TabIndex = 8
@@ -133,7 +137,8 @@ Partial Class SettingsForm
         Me.SettingsPanel.AutoSize = True
         Me.SettingsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.SettingsPanel.BackColor = System.Drawing.Color.Transparent
-        Me.SettingsPanel.Controls.Add(Me.LocalTimeSetCheckBox1)
+        Me.SettingsPanel.Controls.Add(Me.TimeCheckBox1)
+        Me.SettingsPanel.Controls.Add(Me.TimeGroupBox1)
         Me.SettingsPanel.Controls.Add(Me.DiscCheckBox1)
         Me.SettingsPanel.Controls.Add(Me.LocCheckBox1)
         Me.SettingsPanel.Controls.Add(Me.GilDisplayBox)
@@ -143,7 +148,7 @@ Partial Class SettingsForm
         Me.SettingsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.SettingsPanel.Location = New System.Drawing.Point(12, 12)
         Me.SettingsPanel.Name = "SettingsPanel"
-        Me.SettingsPanel.Size = New System.Drawing.Size(125, 167)
+        Me.SettingsPanel.Size = New System.Drawing.Size(138, 251)
         Me.SettingsPanel.TabIndex = 9
         '
         'CharSetBox
@@ -153,7 +158,7 @@ Partial Class SettingsForm
         Me.CharSetBox.BackColor = System.Drawing.Color.Transparent
         Me.CharSetBox.Location = New System.Drawing.Point(539, 107)
         Me.CharSetBox.Name = "CharSetBox"
-        Me.CharSetBox.Size = New System.Drawing.Size(6, 5)
+        Me.CharSetBox.Size = New System.Drawing.Size(6, 19)
         Me.CharSetBox.TabIndex = 10
         Me.CharSetBox.TabStop = False
         Me.CharSetBox.Text = "Char Settings"
@@ -166,22 +171,55 @@ Partial Class SettingsForm
         Me.FlowLayoutPanel1.Controls.Add(Me.LevelCheckbox)
         Me.FlowLayoutPanel1.Controls.Add(Me.WepBox)
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 185)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(15, 291)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(110, 46)
         Me.FlowLayoutPanel1.TabIndex = 10
+        '
+        'StreamTimeCheckBox1
+        '
+        Me.StreamTimeCheckBox1.AutoSize = True
+        Me.StreamTimeCheckBox1.Location = New System.Drawing.Point(7, 19)
+        Me.StreamTimeCheckBox1.Name = "StreamTimeCheckBox1"
+        Me.StreamTimeCheckBox1.Size = New System.Drawing.Size(119, 17)
+        Me.StreamTimeCheckBox1.TabIndex = 9
+        Me.StreamTimeCheckBox1.Text = "StreamTime Display"
+        Me.StreamTimeCheckBox1.UseVisualStyleBackColor = True
+        '
+        'TimeGroupBox1
+        '
+        Me.TimeGroupBox1.AutoSize = True
+        Me.TimeGroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TimeGroupBox1.Controls.Add(Me.LocalTimeSetCheckBox1)
+        Me.TimeGroupBox1.Controls.Add(Me.StreamTimeCheckBox1)
+        Me.TimeGroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.TimeGroupBox1.Location = New System.Drawing.Point(3, 26)
+        Me.TimeGroupBox1.Name = "TimeGroupBox1"
+        Me.TimeGroupBox1.Size = New System.Drawing.Size(132, 78)
+        Me.TimeGroupBox1.TabIndex = 10
+        Me.TimeGroupBox1.TabStop = False
+        Me.TimeGroupBox1.Text = "Time Group"
+        '
+        'TimeCheckBox1
+        '
+        Me.TimeCheckBox1.AutoSize = True
+        Me.TimeCheckBox1.Location = New System.Drawing.Point(3, 3)
+        Me.TimeCheckBox1.Name = "TimeCheckBox1"
+        Me.TimeCheckBox1.Size = New System.Drawing.Size(86, 17)
+        Me.TimeCheckBox1.TabIndex = 11
+        Me.TimeCheckBox1.Text = "Time Display"
+        Me.TimeCheckBox1.UseVisualStyleBackColor = True
         '
         'SettingsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(184, 261)
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(149, 349)
         Me.Controls.Add(Me.CharSetBox)
         Me.Controls.Add(Me.SettingsPanel)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(200, 300)
-        Me.MinimumSize = New System.Drawing.Size(200, 300)
         Me.Name = "SettingsForm"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
@@ -191,6 +229,8 @@ Partial Class SettingsForm
         Me.SettingsPanel.PerformLayout()
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.FlowLayoutPanel1.PerformLayout()
+        Me.TimeGroupBox1.ResumeLayout(False)
+        Me.TimeGroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -208,4 +248,7 @@ Partial Class SettingsForm
     Friend WithEvents SettingsPanel As FlowLayoutPanel
     Friend WithEvents CharSetBox As GroupBox
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents StreamTimeCheckBox1 As CheckBox
+    Friend WithEvents TimeCheckBox1 As CheckBox
+    Friend WithEvents TimeGroupBox1 As GroupBox
 End Class
