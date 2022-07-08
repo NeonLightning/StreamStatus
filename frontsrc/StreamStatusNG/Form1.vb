@@ -184,8 +184,10 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 For Each myName In Input.PartyNames
                     writer.WriteStartElement("member")                             '        <member>
                     writer.WriteElementString("name", myName)                      '            <name>Blah</name>
-                    writer.WriteElementString("hp", Input.HP(Index).ToString())                      '            <hp>6969</hp>
-                    writer.WriteElementString("basehp", Input.BaseHP(Index).ToString())                      '            <basehp>6969</basehp>
+                    If My.Settings.HPSet = True Then
+                        writer.WriteElementString("hp", Input.HP(Index).ToString())                      '            <hp>6969</hp>
+                        writer.WriteElementString("basehp", Input.BaseHP(Index).ToString())                      '            <basehp>6969</basehp>
+                    End If
                     writer.WriteElementString("mp", Input.MP(Index).ToString())                      '            <mp>6969</mp>
                     writer.WriteElementString("basemp", Input.BaseMP(Index).ToString())                      '            <basemp>6969</basemp>
                     If My.Settings.Level = True Then

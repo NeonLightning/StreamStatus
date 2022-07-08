@@ -236,6 +236,20 @@ Partial Public NotInheritable Class MySettings
             Me("GameTimeSet") = value
         End Set
     End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Configuration.SettingsProviderAttribute(GetType(Bluegrams.Application.PortableSettingsProvider)),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True"),  _
+     Global.System.Configuration.SettingsManageabilityAttribute(Global.System.Configuration.SettingsManageability.Roaming)>  _
+    Public Property HPSet() As Boolean
+        Get
+            Return CType(Me("HPSet"),Boolean)
+        End Get
+        Set
+            Me("HPSet") = value
+        End Set
+    End Property
 End Class
 
 Namespace My
