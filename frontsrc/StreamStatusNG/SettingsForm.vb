@@ -67,7 +67,6 @@ Public Class SettingsForm
         Else
             GameTimeCheckBox1.CheckState = CheckState.Unchecked
             GameTimeCheckBox1.Text = "GameTime Disabled"
-            GameTimeCheckBox1.Visible = False
         End If
     End Sub
 
@@ -226,7 +225,7 @@ Public Class SettingsForm
     Private Sub GameTimeCheckBox1_CheckedChanged_1(sender As Object, e As EventArgs) Handles GameTimeCheckBox1.CheckedChanged
         If GameTimeCheckBox1.Checked = True Then
             My.Settings.GameTimeSet = True
-            StreamTimeCheckBox1.Text = "GameTime Enabled"
+            GameTimeCheckBox1.Text = "GameTime Enabled"
         Else
             My.Settings.GameTimeSet = False
             GameTimeCheckBox1.Text = "GameTime Disabled"
