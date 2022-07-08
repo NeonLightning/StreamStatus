@@ -250,6 +250,62 @@ Partial Public NotInheritable Class MySettings
             Me("HPSet") = value
         End Set
     End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Configuration.SettingsProviderAttribute(GetType(Bluegrams.Application.PortableSettingsProvider)),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True"),  _
+     Global.System.Configuration.SettingsManageabilityAttribute(Global.System.Configuration.SettingsManageability.Roaming)>  _
+    Public Property MPSet() As Boolean
+        Get
+            Return CType(Me("MPSet"),Boolean)
+        End Get
+        Set
+            Me("MPSet") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Configuration.SettingsProviderAttribute(GetType(Bluegrams.Application.PortableSettingsProvider)),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True"),  _
+     Global.System.Configuration.SettingsManageabilityAttribute(Global.System.Configuration.SettingsManageability.Roaming)>  _
+    Public Property ArDisplay() As Boolean
+        Get
+            Return CType(Me("ArDisplay"),Boolean)
+        End Get
+        Set
+            Me("ArDisplay") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Configuration.SettingsProviderAttribute(GetType(Bluegrams.Application.PortableSettingsProvider)),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True"),  _
+     Global.System.Configuration.SettingsManageabilityAttribute(Global.System.Configuration.SettingsManageability.Roaming)>  _
+    Public Property AcDisplay() As Boolean
+        Get
+            Return CType(Me("AcDisplay"),Boolean)
+        End Get
+        Set
+            Me("AcDisplay") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Configuration.SettingsProviderAttribute(GetType(Bluegrams.Application.PortableSettingsProvider)),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("True"),  _
+     Global.System.Configuration.SettingsManageabilityAttribute(Global.System.Configuration.SettingsManageability.Roaming)>  _
+    Public Property PartySet() As Boolean
+        Get
+            Return CType(Me("PartySet"),Boolean)
+        End Get
+        Set
+            Me("PartySet") = value
+        End Set
+    End Property
 End Class
 
 Namespace My

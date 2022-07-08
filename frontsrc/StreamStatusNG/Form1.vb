@@ -137,15 +137,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             Using writer As XmlWriter = XmlWriter.Create(".\status.xml", Settings)
                 writer.WriteStartDocument()
                 writer.WriteStartElement("status")                                 ' <status>
-                If My.Settings.QuicknotesOn = True Then
-                    writer.WriteElementString("quicknotes", Input.LastEvent)            '    <lastevent>I Picked a Booger</lastevent>
-                End If
-                If My.Settings.Discnums = True Then
-                    writer.WriteElementString("disc", Input.Disc)                      '    <disc>1</disc>
-                End If
-                If My.Settings.LocSet = True Then
-                    writer.WriteElementString("location", Input.Location)              '    <location>God Knows</location>
-                End If
+
                 If My.Settings.TimeSet Then
                     writer.WriteStartElement("timeset")
                     If My.Settings.LocalTimeSet Then
@@ -158,8 +150,56 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                         writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
                     End If
                     writer.WriteEndElement()
-                    End If
-                    If My.Settings.ModList = True Then
+                End If
+
+
+                If My.Settings.Discnums = True Then
+                    writer.WriteElementString("disc", Input.Disc)                      '    <disc>1</disc>
+                End If
+                If My.Settings.LocSet = True Then
+                    writer.WriteElementString("location", Input.Location)              '    <location>God Knows</location>
+                End If
+                If My.Settings.GilDisplay = True Then
+                    writer.WriteElementString("gil", Input.LiveGil)                        '    <gil>1234</gil>
+                End If
+
+                If My.Settings.PartySet = True Then
+                    writer.WriteStartElement("party")                                  '    <party>
+                    Dim Index As Byte = 0
+                    For Each myName In Input.PartyNames
+                        writer.WriteStartElement("member")                             '        <member>
+                        writer.WriteElementString("name", myName)                      '            <name>Blah</name>
+                        If My.Settings.HPSet = True Then
+                            writer.WriteElementString("hp", Input.HP(Index).ToString())                      '            <hp>6969</hp>
+                            writer.WriteElementString("basehp", Input.BaseHP(Index).ToString())                      '            <basehp>6969</basehp>
+                        End If
+                        If My.Settings.MPSet = True Then
+                            writer.WriteElementString("mp", Input.MP(Index).ToString())                      '            <mp>6969</mp>
+                            writer.WriteElementString("basemp", Input.BaseMP(Index).ToString())                      '            <basemp>6969</basemp>
+                        End If
+                        If My.Settings.Level = True Then
+                            writer.WriteElementString("level", Input.PartyLevels(Index).ToString()) '   <level>3</level>
+                            writer.WriteElementString("exptolevel", Input.ExpToLevel(Index).ToString()) '   <level>3</level>
+                        End If
+                        If My.Settings.WpDisplay = True Then
+                            writer.WriteElementString("weapon", WeaponNames(Input.Weapon(Index)))    '            <weapon>Blah</weapon>
+                        End If
+                        If My.Settings.ArDisplay = True Then
+                            writer.WriteElementString("armor", ArmorNames(Input.Armor(Index)))    '            <armour>Blah</armour>
+                        End If
+                        If My.Settings.AcDisplay = True Then
+                            writer.WriteElementString("accessory", AccessoryNames(Input.Accessory(Index)))    '            <Accessory>Blah</Accessory>
+                        End If
+                        writer.WriteEndElement()                                       '        </member>
+                        Index = Index + 1
+                    Next
+                    writer.WriteEndElement()                                           '    </party>
+                End If
+
+                If My.Settings.QuicknotesOn = True Then
+                    writer.WriteElementString("quicknotes", Input.LastEvent)            '    <lastevent>I Picked a Booger</lastevent>
+                End If
+                If My.Settings.ModList = True Then
                     writer.WriteStartElement("modlist")
                     Dim reader2 As XmlReaderSettings = New XmlReaderSettings()
                     Using Reader As XmlReader = XmlReader.Create(".\modlist.xml", reader2)
@@ -176,33 +216,8 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                     End Using
                     writer.WriteEndElement()
                 End If
-                If My.Settings.GilDisplay = True Then
-                    writer.WriteElementString("gil", Input.LiveGil)                        '    <gil>1234</gil>
-                End If
-                writer.WriteStartElement("party")                                  '    <party>
-                Dim Index As Byte = 0
-                For Each myName In Input.PartyNames
-                    writer.WriteStartElement("member")                             '        <member>
-                    writer.WriteElementString("name", myName)                      '            <name>Blah</name>
-                    If My.Settings.HPSet = True Then
-                        writer.WriteElementString("hp", Input.HP(Index).ToString())                      '            <hp>6969</hp>
-                        writer.WriteElementString("basehp", Input.BaseHP(Index).ToString())                      '            <basehp>6969</basehp>
-                    End If
-                    writer.WriteElementString("mp", Input.MP(Index).ToString())                      '            <mp>6969</mp>
-                    writer.WriteElementString("basemp", Input.BaseMP(Index).ToString())                      '            <basemp>6969</basemp>
-                    If My.Settings.Level = True Then
-                        writer.WriteElementString("level", Input.PartyLevels(Index).ToString()) '   <level>3</level>
-                        writer.WriteElementString("exptolevel", Input.ExpToLevel(Index).ToString()) '   <level>3</level>
-                    End If
-                    If My.Settings.WpDisplay = True Then
-                        writer.WriteElementString("weapon", WeaponNames(Input.Weapon(Index)))    '            <weapon>Blah</weapon>
-                    End If
-                    writer.WriteElementString("armor", ArmorNames(Input.Armor(Index)))    '            <armour>Blah</armour>
-                    writer.WriteElementString("accessory", AccessoryNames(Input.Accessory(Index)))    '            <Accessory>Blah</Accessory>
-                    writer.WriteEndElement()                                       '        </member>
-                    Index = Index + 1
-                Next
-                writer.WriteEndElement()                                           '    </party>
+
+
                 writer.WriteEndElement()                                              ' </status>
                 writer.WriteEndDocument()
             End Using

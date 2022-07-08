@@ -46,6 +46,7 @@ Public Class SettingsForm
             StreamTimeCheckBox1.Text = "StreamTime Disabled"
         End If
 
+
         If My.Settings.Discnums = False Then
             DiscCheckBox1.CheckState = CheckState.Unchecked
             DiscCheckBox1.Text = "Disc Disabled"
@@ -69,12 +70,28 @@ Public Class SettingsForm
         End If
 
 
+        If My.Settings.PartySet = True Then
+            PartyDisplayCheckBox1.CheckState = CheckState.Checked
+            PartyDisplayCheckBox1.Text = "Party Enabled"
+            PartyGroupBox1.Visible = True
+        Else
+            PartyDisplayCheckBox1.CheckState = CheckState.Unchecked
+            PartyDisplayCheckBox1.Text = "Party Disabled"
+            PartyGroupBox1.Visible = False
+        End If
         If My.Settings.HPSet = True Then
             HPCheckBox1.CheckState = CheckState.Checked
             HPCheckBox1.Text = "HP Enabled"
         Else
             HPCheckBox1.CheckState = CheckState.Unchecked
             HPCheckBox1.Text = "HP Disabled"
+        End If
+        If My.Settings.MPSet = True Then
+            MPCheckBox1.CheckState = CheckState.Checked
+            MPCheckBox1.Text = "MP Enabled"
+        Else
+            MPCheckBox1.CheckState = CheckState.Unchecked
+            MPCheckBox1.Text = "MP Disabled"
         End If
         If My.Settings.Level = False Then
             LevelCheckbox.CheckState = CheckState.Unchecked
@@ -89,6 +106,20 @@ Public Class SettingsForm
         Else
             WepBox.CheckState = CheckState.Checked
             WepBox.Text = "Weapon Enabled"
+        End If
+        If My.Settings.ArDisplay = False Then
+            ArDisplayCheckBox1.CheckState = CheckState.Unchecked
+            ArDisplayCheckBox1.Text = "Armor Disabled"
+        Else
+            ArDisplayCheckBox1.CheckState = CheckState.Checked
+            ArDisplayCheckBox1.Text = "Armor Enabled"
+        End If
+        If My.Settings.AcDisplay = False Then
+            AcDisplayCheckBox1.CheckState = CheckState.Unchecked
+            AcDisplayCheckBox1.Text = "Acces Disabled"
+        Else
+            AcDisplayCheckBox1.CheckState = CheckState.Checked
+            AcDisplayCheckBox1.Text = "Acces Enabled"
         End If
 
 
@@ -137,7 +168,17 @@ Public Class SettingsForm
         End If
     End Sub
 
-
+    Private Sub PartyDisplayCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles PartyDisplayCheckBox1.CheckedChanged
+        If PartyDisplayCheckBox1.Checked = True Then
+            PartyDisplayCheckBox1.Text = "Party Enabled"
+            My.Settings.PartySet = True
+            Me.PartyGroupBox1.Visible = True
+        Else
+            PartyDisplayCheckBox1.Text = "Party Disabled"
+            My.Settings.PartySet = False
+            Me.PartyGroupBox1.Visible = False
+        End If
+    End Sub
     Private Sub HPCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles HPCheckBox1.CheckedChanged
         If HPCheckBox1.Checked = True Then
             My.Settings.HPSet = True
@@ -145,6 +186,15 @@ Public Class SettingsForm
         Else
             My.Settings.HPSet = False
             HPCheckBox1.Text = "HP Disabled"
+        End If
+    End Sub
+    Private Sub MPCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles MPCheckBox1.CheckedChanged
+        If MPCheckBox1.Checked = True Then
+            My.Settings.MPSet = True
+            MPCheckBox1.Text = "MP Enabled"
+        Else
+            My.Settings.MPSet = False
+            MPCheckBox1.Text = "MP Disabled"
         End If
     End Sub
     Private Sub LevelCheckbox_CheckedChanged(sender As Object, e As EventArgs) Handles LevelCheckbox.CheckedChanged
@@ -164,7 +214,24 @@ Public Class SettingsForm
             My.Settings.WpDisplay = False
             WepBox.Text = "Weapon Disabled"
         End If
-
+    End Sub
+    Private Sub ArDisplayCheckbox1_CheckedChanged(sender As Object, e As EventArgs) Handles ArDisplayCheckBox1.CheckedChanged
+        If ArDisplayCheckBox1.Checked = True Then
+            My.Settings.ArDisplay = True
+            ArDisplayCheckBox1.Text = "Armor Enabled"
+        Else
+            My.Settings.ArDisplay = False
+            ArDisplayCheckBox1.Text = "Armor Disabled"
+        End If
+    End Sub
+    Private Sub AcDisplayCheckbox1_CheckedChanged(sender As Object, e As EventArgs) Handles AcDisplayCheckBox1.CheckedChanged
+        If AcDisplayCheckBox1.Checked = True Then
+            My.Settings.AcDisplay = True
+            AcDisplayCheckBox1.Text = "Acces Enabled"
+        Else
+            My.Settings.AcDisplay = False
+            AcDisplayCheckBox1.Text = "Acces Disabled"
+        End If
     End Sub
 
 
