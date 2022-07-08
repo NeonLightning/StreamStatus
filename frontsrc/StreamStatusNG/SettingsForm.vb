@@ -6,7 +6,6 @@ Public Class SettingsForm
 
 
     Dim mybgArray() As String = Directory.GetFiles("backgrounds\", "*.png")
-    Dim temp As String = ""
 
 
     Private Sub SettingsForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -147,7 +146,6 @@ Public Class SettingsForm
         End If
 
         BackgroundDrop.Items.AddRange(mybgArray)
-        Dim backgroundfilename As String = ""
 
     End Sub
 
@@ -332,8 +330,8 @@ Public Class SettingsForm
         End If
     End Sub
 
-    Private Sub BackgroundDrop_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles BackgroundDrop.SelectionChangeCommitted
-        temp = mybgArray(BackgroundDrop.SelectedIndex)
-        MsgBox(temp)
+    Private Sub BackgroundDrop_SelectedValueChanged(sender As Object, e As EventArgs) Handles BackgroundDrop.SelectedValueChanged
+        Dim temp = mybgArray(BackgroundDrop.SelectedIndex)
+        My.Computer.FileSystem.CopyFile(temp, "base\background.png", overwrite:=True)
     End Sub
 End Class
