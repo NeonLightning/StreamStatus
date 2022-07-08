@@ -56,20 +56,6 @@ Public Class SettingsForm
             TimeCheckBox1.CheckState = CheckState.Checked
             TimeCheckBox1.Text = "Time Enabled"
             TimeGroupBox1.Visible = True
-            If My.Settings.LocalTimeSet = False Then
-                LocalTimeSetCheckBox1.CheckState = CheckState.Unchecked
-                LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
-            Else
-                LocalTimeSetCheckBox1.CheckState = CheckState.Checked
-                LocalTimeSetCheckBox1.Text = "LocalTime Enabled"
-            End If
-            If My.Settings.StreamTimeSet = False Then
-                StreamTimeCheckBox1.CheckState = CheckState.Unchecked
-                StreamTimeCheckBox1.Text = "StreamTime Disabled"
-            Else
-                StreamTimeCheckBox1.CheckState = CheckState.Checked
-                StreamTimeCheckBox1.Text = "StreamTime Enabled"
-            End If
         Else
             TimeCheckBox1.CheckState = CheckState.Unchecked
             TimeCheckBox1.Text = "Time Disabled"
@@ -199,6 +185,23 @@ Public Class SettingsForm
             TimeCheckBox1.Text = "Time Disabled"
             StreamTimeCheckBox1.Text = "StreamTime Disabled"
             Me.TimeGroupBox1.Visible = False
+        End If
+    End Sub
+
+    Private Sub TimeGroupBox1_VisibleChanged(sender As Object, e As EventArgs) Handles TimeGroupBox1.VisibleChanged
+        If My.Settings.LocalTimeSet = False Then
+            LocalTimeSetCheckBox1.CheckState = CheckState.Unchecked
+            LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
+        Else
+            LocalTimeSetCheckBox1.CheckState = CheckState.Checked
+            LocalTimeSetCheckBox1.Text = "LocalTime Enabled"
+        End If
+        If My.Settings.StreamTimeSet = False Then
+            StreamTimeCheckBox1.CheckState = CheckState.Unchecked
+            StreamTimeCheckBox1.Text = "StreamTime Disabled"
+        Else
+            StreamTimeCheckBox1.CheckState = CheckState.Checked
+            StreamTimeCheckBox1.Text = "StreamTime Enabled"
         End If
     End Sub
 End Class

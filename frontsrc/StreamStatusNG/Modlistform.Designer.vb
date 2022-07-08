@@ -79,6 +79,7 @@ Partial Class ModlistForm
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Modlist"
         Me.ResumeLayout(False)
         Me.PerformLayout()

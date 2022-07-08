@@ -32,14 +32,14 @@ Partial Class SettingsForm
         Me.QuicknotesCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.LocalTimeSetCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SettingsPanel = New System.Windows.Forms.FlowLayoutPanel()
+        Me.TimeCheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.TimeGroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.StreamTimeCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.CharSetBox = New System.Windows.Forms.GroupBox()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.StreamTimeCheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.TimeGroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TimeCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SettingsPanel.SuspendLayout()
-        Me.FlowLayoutPanel1.SuspendLayout()
         Me.TimeGroupBox1.SuspendLayout()
+        Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GilDisplayBox
@@ -151,6 +151,40 @@ Partial Class SettingsForm
         Me.SettingsPanel.Size = New System.Drawing.Size(138, 251)
         Me.SettingsPanel.TabIndex = 9
         '
+        'TimeCheckBox1
+        '
+        Me.TimeCheckBox1.AutoSize = True
+        Me.TimeCheckBox1.Location = New System.Drawing.Point(3, 3)
+        Me.TimeCheckBox1.Name = "TimeCheckBox1"
+        Me.TimeCheckBox1.Size = New System.Drawing.Size(86, 17)
+        Me.TimeCheckBox1.TabIndex = 11
+        Me.TimeCheckBox1.Text = "Time Display"
+        Me.TimeCheckBox1.UseVisualStyleBackColor = True
+        '
+        'TimeGroupBox1
+        '
+        Me.TimeGroupBox1.AutoSize = True
+        Me.TimeGroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TimeGroupBox1.Controls.Add(Me.LocalTimeSetCheckBox1)
+        Me.TimeGroupBox1.Controls.Add(Me.StreamTimeCheckBox1)
+        Me.TimeGroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.TimeGroupBox1.Location = New System.Drawing.Point(3, 26)
+        Me.TimeGroupBox1.Name = "TimeGroupBox1"
+        Me.TimeGroupBox1.Size = New System.Drawing.Size(132, 78)
+        Me.TimeGroupBox1.TabIndex = 10
+        Me.TimeGroupBox1.TabStop = False
+        Me.TimeGroupBox1.Text = "Time Group"
+        '
+        'StreamTimeCheckBox1
+        '
+        Me.StreamTimeCheckBox1.AutoSize = True
+        Me.StreamTimeCheckBox1.Location = New System.Drawing.Point(7, 19)
+        Me.StreamTimeCheckBox1.Name = "StreamTimeCheckBox1"
+        Me.StreamTimeCheckBox1.Size = New System.Drawing.Size(119, 17)
+        Me.StreamTimeCheckBox1.TabIndex = 9
+        Me.StreamTimeCheckBox1.Text = "StreamTime Display"
+        Me.StreamTimeCheckBox1.UseVisualStyleBackColor = True
+        '
         'CharSetBox
         '
         Me.CharSetBox.AutoSize = True
@@ -158,7 +192,7 @@ Partial Class SettingsForm
         Me.CharSetBox.BackColor = System.Drawing.Color.Transparent
         Me.CharSetBox.Location = New System.Drawing.Point(539, 107)
         Me.CharSetBox.Name = "CharSetBox"
-        Me.CharSetBox.Size = New System.Drawing.Size(6, 19)
+        Me.CharSetBox.Size = New System.Drawing.Size(6, 5)
         Me.CharSetBox.TabIndex = 10
         Me.CharSetBox.TabStop = False
         Me.CharSetBox.Text = "Char Settings"
@@ -176,61 +210,31 @@ Partial Class SettingsForm
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(110, 46)
         Me.FlowLayoutPanel1.TabIndex = 10
         '
-        'StreamTimeCheckBox1
-        '
-        Me.StreamTimeCheckBox1.AutoSize = True
-        Me.StreamTimeCheckBox1.Location = New System.Drawing.Point(7, 19)
-        Me.StreamTimeCheckBox1.Name = "StreamTimeCheckBox1"
-        Me.StreamTimeCheckBox1.Size = New System.Drawing.Size(119, 17)
-        Me.StreamTimeCheckBox1.TabIndex = 9
-        Me.StreamTimeCheckBox1.Text = "StreamTime Display"
-        Me.StreamTimeCheckBox1.UseVisualStyleBackColor = True
-        '
-        'TimeGroupBox1
-        '
-        Me.TimeGroupBox1.AutoSize = True
-        Me.TimeGroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TimeGroupBox1.Controls.Add(Me.LocalTimeSetCheckBox1)
-        Me.TimeGroupBox1.Controls.Add(Me.StreamTimeCheckBox1)
-        Me.TimeGroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.TimeGroupBox1.Location = New System.Drawing.Point(3, 26)
-        Me.TimeGroupBox1.Name = "TimeGroupBox1"
-        Me.TimeGroupBox1.Size = New System.Drawing.Size(132, 78)
-        Me.TimeGroupBox1.TabIndex = 10
-        Me.TimeGroupBox1.TabStop = False
-        Me.TimeGroupBox1.Text = "Time Group"
-        '
-        'TimeCheckBox1
-        '
-        Me.TimeCheckBox1.AutoSize = True
-        Me.TimeCheckBox1.Location = New System.Drawing.Point(3, 3)
-        Me.TimeCheckBox1.Name = "TimeCheckBox1"
-        Me.TimeCheckBox1.Size = New System.Drawing.Size(86, 17)
-        Me.TimeCheckBox1.TabIndex = 11
-        Me.TimeCheckBox1.Text = "Time Display"
-        Me.TimeCheckBox1.UseVisualStyleBackColor = True
-        '
         'SettingsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(149, 349)
+        Me.ClientSize = New System.Drawing.Size(184, 361)
         Me.Controls.Add(Me.CharSetBox)
         Me.Controls.Add(Me.SettingsPanel)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(200, 400)
+        Me.MinimumSize = New System.Drawing.Size(200, 400)
         Me.Name = "SettingsForm"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Settings"
         Me.SettingsPanel.ResumeLayout(False)
         Me.SettingsPanel.PerformLayout()
-        Me.FlowLayoutPanel1.ResumeLayout(False)
-        Me.FlowLayoutPanel1.PerformLayout()
         Me.TimeGroupBox1.ResumeLayout(False)
         Me.TimeGroupBox1.PerformLayout()
+        Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
