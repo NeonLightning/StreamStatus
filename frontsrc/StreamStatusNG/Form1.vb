@@ -30,10 +30,18 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If Not System.IO.Directory.Exists("backgrounds") Then
             My.Computer.FileSystem.CreateDirectory("backgrounds")
-            MsgBox("Put a png in backgrounds.")
-            My.Forms.StatusUpdateGUIFrontend.Close()
+            If Not System.IO.File.Exists("base/background/background.png") Then
+                Dim bmp As New Bitmap(320, 900)
+                Dim g As Graphics = Graphics.FromImage(bmp)
+                g.Clear(Color.Transparent)
+                bmp.Save("base\background\background.png", System.Drawing.Imaging.ImageFormat.Png)
+            End If
+            Dim bmp1 As New Bitmap(320, 900)
+            Dim g1 As Graphics = Graphics.FromImage(bmp1)
+            g1.Clear(Color.Transparent)
+            bmp1.Save("backgrounds\background.png", System.Drawing.Imaging.ImageFormat.Png)
         Else
-            Dim pngcounter As Integer
+                Dim pngcounter As Integer
             pngcounter = 0
             For Each pngfile In Directory.EnumerateFiles("backgrounds", "*.png")
                 pngcounter = pngcounter + 1
@@ -42,14 +50,19 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 If pngcounter = 1 Then
                     Dim mybgArray() As String = Directory.GetFiles("backgrounds", "*.png")
                     My.Forms.SettingsForm.BackgroundDrop.Items.AddRange(mybgArray)
-                    My.Computer.FileSystem.CopyFile(mybgArray(0), "base\background\background.png", overwrite:=True)
+                    My.Computer.FileSystem.CopyFile(mybgArray(0), ".\base\background\background.png", overwrite:=True)
                 Else
                     Dim mybgArray() As String = Directory.GetFiles("backgrounds", "*.png")
                     My.Forms.SettingsForm.BackgroundDrop.Items.AddRange(mybgArray)
                 End If
             Else
-                    MsgBox("Put a png in backgrounds.")
-                My.Forms.StatusUpdateGUIFrontend.Close()
+                Dim bmp As New Bitmap(320, 900)
+                Dim g As Graphics = Graphics.FromImage(bmp)
+                g.Clear(Color.Transparent)
+                bmp.Save("backgrounds\background.png", System.Drawing.Imaging.ImageFormat.Png)
+                If Not System.IO.File.Exists(".\base\background\background.png") Then
+                    bmp.Save("base\background\background.png", System.Drawing.Imaging.ImageFormat.Png)
+                End If
             End If
         End If
         Dim Modlist As New List(Of String)
