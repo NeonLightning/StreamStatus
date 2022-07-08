@@ -128,59 +128,24 @@ function fullWrap($string, $length, $font, $pt)
 $status = simplexml_load_file("status.xml");
 
 // Check XML for completeness and parse to variables.
-if (isset($status->disc))
-{
-    $disc = $status->disc;
+if (isset($status->disc)){$disc = $status->disc;}
+else{}
+if (isset($status->modlist)){$modslist = $status->modlist;}
+else{}
+if (isset($status->gil)){$gil = $status->gil;}
+else{}
+if (isset($status->location)){$location = $status->location;}
+else{}
+if (isset($status->timeset)){
+	if (isset($status->timeset->streamtime)){$streamtime = $status->timeset->streamtime;}
+	else{}
+	if (isset($status->timeset->gametime)){$gametime = $status->timeset->gametime;}
+	else{}
 }
-else
-{
-}
-if (isset($status->modlist))
-{
-    $modslist = $status->modlist;
-}
-else
-{
-}
-if (isset($status->gil))
-{
-    $gil = $status->gil;
-}
-else
-{
-}
-if (isset($status->location))
-{
-    $location = $status->location;
-}
-else
-{
-}
-if (isset($status->streamtime))
-{
-    $streamtime = $status->streamtime;
-}
-else
-{
-}
-if (isset($status->gametime))
-{
-    $gametime = $status->gametime;
-}
-else
-{
-}
-if (isset($status->lastevent))
-{
-    $lastevent = $status->lastevent;
-}
-else
-{
-}
-if (isset($status->party))
-{
-    if (isset($status->party->member)) { $members = $status->party->member; }
-}
+else{}
+if (isset($status->lastevent)){$lastevent = $status->lastevent;}
+else{}
+if (isset($status->party)){if (isset($status->party->member)) { $members = $status->party->member; }}
 
 // Create our image, and be sure to save alpha
 $img = imagecreatefrompng("base/background.png");
@@ -205,24 +170,26 @@ $wraplen = $wrapbbox[2] - $wrapbbox[0];
 /* Add our text */
 $outstring = "";
 // Time
-$outstring = $outstring . "Time:\n";
-$ingamebbox = imagettfbbox(pxtoPt(16) , 0, $font, "In-Game");
-$ingamelen = $ingamebbox[2] - $ingamebbox[0];
-$streambbox = imagettfbbox(pxtoPt(16) , 0, $font, "Stream");
-$streamlen = $streambbox[2] - $streambbox[0];
-$localbbox = imagettfbbox(pxtoPt(16) , 0, $font, "Local");
-$locallen = $localbbox[2] - $localbbox[0];
-$streamdiff = $ingamelen - $streamlen;
-$localdiff = $ingamelen - $locallen;
-$streamspaces = $streamdiff / $spacelen;
-$localspaces = $localdiff / $spacelen;
-$streampad = "";
-$localpad = "";
-foreach (range(1, $streamspaces) as $unused) { $streampad = $streampad . " "; }
-foreach (range(1, $localspaces) as $unused) { $localpad = $localpad . " "; }
-$outstring = $outstring . "Local" . $localpad . " - " . date("H:i:s") . "\n";
-if (isset($streamtime)) { $outstring = $outstring . "Stream" . $streampad . " - " . $streamtime . "\n"; }
-$outstring = $outstring . "In-Game - " . $gametime . "\n";
+if (isset($status->timeset)){
+	$outstring = $outstring . "Time:\n";
+	$ingamebbox = imagettfbbox(pxtoPt(16) , 0, $font, "In-Game");
+	$ingamelen = $ingamebbox[2] - $ingamebbox[0];
+	$streambbox = imagettfbbox(pxtoPt(16) , 0, $font, "Stream");
+	$streamlen = $streambbox[2] - $streambbox[0];
+	$localbbox = imagettfbbox(pxtoPt(16) , 0, $font, "Local");
+	$locallen = $localbbox[2] - $localbbox[0];
+	$streamdiff = $ingamelen - $streamlen;
+	$localdiff = $ingamelen - $locallen;
+	$streamspaces = $streamdiff / $spacelen;
+	$localspaces = $localdiff / $spacelen;
+	$streampad = "";
+	$localpad = "";
+	foreach (range(1, $streamspaces) as $unused) { $streampad = $streampad . " "; }
+	foreach (range(1, $localspaces) as $unused) { $localpad = $localpad . " "; }
+	if (isset($status->timeset->localtimeset)) { $outstring = $outstring . "Local" . $localpad . " - " . date("H:i:s") . "\n";}
+	if (isset($streamtime)) { $outstring = $outstring . "Stream" . $streampad . " - " . $streamtime . "\n"; }
+	if (isset($gametime)) { $outstring = $outstring . "In-Game - " . $gametime . "\n";}
+}
 if (isset($disc)) { $outstring = $outstring . "Disc " . $disc . "/3\n"; }
 if (isset($location)) { $outstring = $outstring . "Location:\n " . $location . "\n"; }
 if (isset($status->gil)) { $outstring = $outstring . "Gil " . $status->gil . "\n"; }
@@ -232,15 +199,6 @@ else
 $nummems = 0;
 foreach ($members as $member)
 {
-    /*$namebbox = imagettfbbox(pxtoPt(16) , 0, (dirname(__FILE__) . '/base/washrab.ttf') , $member->name);
-    $namelen = $namebbox[2] - $namebbox[0];
-    if ($namelen < $charlen) { $namestr = $member->name;	$diff = $charlen - $namelen;	$spaces = $diff/$spacelen;
-		if (($diff%$spacelen) > $spacelen-3) { $spaces = $spaces + 1; }
-		foreach (range(1, $spaces) as $unused) { $namestr = $namestr . " "; }
-	}
-	else { $namestr = $member->name; }
-    $namestr = $member->name;
-    $outstring = $outstring . $namestr;*/
 	$outstring = $outstring . $member->name;
     if (isset($member->level)) { $outstring = $outstring . " " . " L";	$outstring = $outstring . $member->level; }
     if (isset($member->exptolevel)) { $outstring = $outstring . " XpToLvl "; $outstring = $outstring . $member->exptolevel; }
