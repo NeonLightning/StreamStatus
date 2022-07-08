@@ -23,7 +23,6 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             SettingsForm.Show()
         Else
             SettingsForm.Close()
-            SettingsForm.Show()
         End If
     End Sub
 

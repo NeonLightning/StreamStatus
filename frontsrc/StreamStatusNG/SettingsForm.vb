@@ -66,7 +66,6 @@ Public Class SettingsForm
             ModlistForm.Show()
         Else
             ModlistForm.Close()
-            ModlistForm.Show()
         End If
     End Sub
 

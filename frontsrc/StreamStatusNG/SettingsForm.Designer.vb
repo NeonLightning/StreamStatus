@@ -175,13 +175,13 @@ Partial Class SettingsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 461)
+        Me.ClientSize = New System.Drawing.Size(184, 261)
         Me.Controls.Add(Me.CharSetBox)
         Me.Controls.Add(Me.SettingsPanel)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(800, 500)
-        Me.MinimumSize = New System.Drawing.Size(800, 500)
+        Me.MaximumSize = New System.Drawing.Size(200, 300)
+        Me.MinimumSize = New System.Drawing.Size(200, 300)
         Me.Name = "SettingsForm"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
