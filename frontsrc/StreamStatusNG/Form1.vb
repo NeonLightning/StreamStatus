@@ -28,11 +28,11 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim Modlist As New List(Of String)
-        If Not System.IO.File.Exists(".\modlist.xml") Then
+        If Not System.IO.File.Exists(".\base\modlist.xml") Then
             Dim xmlset As XmlWriterSettings = New XmlWriterSettings()
             xmlset.Indent = True
             xmlset.NewLineOnAttributes = True
-            Using writer2 As XmlWriter = XmlWriter.Create(".\modlist.xml", xmlset)
+            Using writer2 As XmlWriter = XmlWriter.Create(".\base\modlist.xml", xmlset)
                 writer2.WriteStartDocument()
                 writer2.WriteStartElement("listomods")
                 For Each modnamed In ModlistForm.MainModList.Items
@@ -134,7 +134,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         Settings.Indent = True
         Try
             wait(50)
-            Using writer As XmlWriter = XmlWriter.Create(".\status.xml", Settings)
+            Using writer As XmlWriter = XmlWriter.Create(".\base\status.xml", Settings)
                 writer.WriteStartDocument()
                 writer.WriteStartElement("status")                                 ' <status>
 
@@ -202,7 +202,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 If My.Settings.ModList = True Then
                     writer.WriteStartElement("modlist")
                     Dim reader2 As XmlReaderSettings = New XmlReaderSettings()
-                    Using Reader As XmlReader = XmlReader.Create(".\modlist.xml", reader2)
+                    Using Reader As XmlReader = XmlReader.Create(".\base\modlist.xml", reader2)
                         While Reader.Read()
                             If Reader.IsStartElement Then
                                 If Reader.Name = "modname" Then
@@ -216,8 +216,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                     End Using
                     writer.WriteEndElement()
                 End If
-
-
+                Dim limitpercent As Integer
                 writer.WriteEndElement()                                              ' </status>
                 writer.WriteEndDocument()
             End Using
@@ -337,11 +336,9 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             myXMLInput.PartyLevels(0) = 0
             myXMLInput.ExpToLevel(0) = 0
         End If
-#Disable Warning BC42108 ' Variable is passed by reference before it has been assigned a value
         myXMLInput.LastEvent = committedLastEvent
         wait(50)
         XmlWrite(myXMLInput)
-#Enable Warning BC42108 ' Variable is passed by reference before it has been assigned a value
 
     End Sub
     Function StripTags(html As String) As String

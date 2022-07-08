@@ -12,7 +12,7 @@
    code is freely available for your use.
 */
 
-$font = dirname(__FILE__) . '/base/washrab.ttf';
+$font = dirname(__FILE__) . '/font.ttf';
 function pxtoPt($pixels)
 {
     return ($pixels * 3) / 4;
@@ -41,21 +41,6 @@ function utf8_wordwrap($string, $width = 75, $break = "\n", $cut = false)
 // Code fast, compile young, and leave a beautifulCorpse(). Needs to be less than 24 characters!
 function beautifulCorpse($string)
 {
-    $errimg = imagecreatefrompng("base/background.png");
-    imagesavealpha($errimg, true);
-    $ercolor = imagecolorallocatealpha($errimg, 255, 255, 255, 0);
-    imagettftext($errimg, pxtoPt(12) , 0, 25, 30, $ercolor, dirname(__FILE__) . '/base/washrab.ttf', $string);
-    imagepng($errimg, "error.png", 0, NULL);
-    $myurl = $_SERVER['REQUEST_URI'];
-    $temparray = explode("/", $myurl);
-    end($temparray);
-    $tempkey = key($temparray);
-    unset($temparray[$tempkey]);
-    reset($temparray);
-    unset($tempkey);
-    $newurl = implode("/", $temparray) . "/error.png";
-    unset($temparray);
-    die($newurl);
 }
 
 //Function to word-wrap a string to the specified pixel length.
@@ -148,7 +133,7 @@ else{}
 if (isset($status->party)){if (isset($status->party->member)) { $members = $status->party->member; }}
 
 // Create our image, and be sure to save alpha
-$img = imagecreatefrompng("base/background.png");
+$img = imagecreatefrompng("background/background.png");
 imagesavealpha($img, true);
 
 /* Define our colors: This time it's a lot easier, as for

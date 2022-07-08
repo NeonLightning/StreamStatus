@@ -332,6 +332,6 @@ Public Class SettingsForm
 
     Private Sub BackgroundDrop_SelectedValueChanged(sender As Object, e As EventArgs) Handles BackgroundDrop.SelectedValueChanged
         Dim temp = mybgArray(BackgroundDrop.SelectedIndex)
-        My.Computer.FileSystem.CopyFile(temp, "base\background.png", overwrite:=True)
+        My.Computer.FileSystem.CopyFile(temp, "base\background\background.png", overwrite:=True)
     End Sub
 End Class
