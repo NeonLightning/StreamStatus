@@ -60,7 +60,8 @@ Partial Class SettingsForm
         '
         'ModlistButton
         '
-        Me.ModlistButton.Location = New System.Drawing.Point(15, 156)
+        Me.ModlistButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ModlistButton.Location = New System.Drawing.Point(47, 141)
         Me.ModlistButton.Name = "ModlistButton"
         Me.ModlistButton.Size = New System.Drawing.Size(75, 23)
         Me.ModlistButton.TabIndex = 2
@@ -138,10 +139,11 @@ Partial Class SettingsForm
         Me.SettingsPanel.Controls.Add(Me.GilDisplayBox)
         Me.SettingsPanel.Controls.Add(Me.QuicknotesCheckBox1)
         Me.SettingsPanel.Controls.Add(Me.ModlistCheckbox)
+        Me.SettingsPanel.Controls.Add(Me.ModlistButton)
         Me.SettingsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.SettingsPanel.Location = New System.Drawing.Point(12, 12)
         Me.SettingsPanel.Name = "SettingsPanel"
-        Me.SettingsPanel.Size = New System.Drawing.Size(125, 138)
+        Me.SettingsPanel.Size = New System.Drawing.Size(125, 167)
         Me.SettingsPanel.TabIndex = 9
         '
         'CharSetBox
@@ -151,7 +153,7 @@ Partial Class SettingsForm
         Me.CharSetBox.BackColor = System.Drawing.Color.Transparent
         Me.CharSetBox.Location = New System.Drawing.Point(539, 107)
         Me.CharSetBox.Name = "CharSetBox"
-        Me.CharSetBox.Size = New System.Drawing.Size(6, 19)
+        Me.CharSetBox.Size = New System.Drawing.Size(6, 5)
         Me.CharSetBox.TabIndex = 10
         Me.CharSetBox.TabStop = False
         Me.CharSetBox.Text = "Char Settings"
@@ -164,7 +166,7 @@ Partial Class SettingsForm
         Me.FlowLayoutPanel1.Controls.Add(Me.LevelCheckbox)
         Me.FlowLayoutPanel1.Controls.Add(Me.WepBox)
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(15, 185)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 185)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(110, 46)
         Me.FlowLayoutPanel1.TabIndex = 10
@@ -176,7 +178,6 @@ Partial Class SettingsForm
         Me.ClientSize = New System.Drawing.Size(784, 461)
         Me.Controls.Add(Me.CharSetBox)
         Me.Controls.Add(Me.SettingsPanel)
-        Me.Controls.Add(Me.ModlistButton)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(800, 500)
