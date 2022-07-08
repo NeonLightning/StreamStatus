@@ -60,7 +60,15 @@ Public Class SettingsForm
             TimeCheckBox1.CheckState = CheckState.Unchecked
             TimeCheckBox1.Text = "Time Disabled"
             TimeGroupBox1.Visible = False
-        End if
+        End If
+        If My.Settings.GameTimeSet = True Then
+            GameTimeCheckBox1.CheckState = CheckState.Checked
+            GameTimeCheckBox1.Text = "GameTime Enabled"
+        Else
+            GameTimeCheckBox1.CheckState = CheckState.Unchecked
+            GameTimeCheckBox1.Text = "GameTime Disabled"
+            GameTimeCheckBox1.Visible = False
+        End If
     End Sub
 
     Private Sub ModlistButton_Click(sender As Object, e As EventArgs) Handles ModlistButton.Click
@@ -170,38 +178,58 @@ Public Class SettingsForm
 
     Private Sub TimeCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles TimeCheckBox1.CheckedChanged
         If TimeCheckBox1.Checked = True Then
-            My.Settings.TimeSet = True
-            My.Settings.StreamTimeSet = True
-            My.Settings.LocalTimeSet = True
-            LocalTimeSetCheckBox1.Text = "LocalTime Enabled"
             TimeCheckBox1.Text = "Time Enabled"
-            StreamTimeCheckBox1.Text = "StreamTime Enabled"
+            My.Settings.TimeSet = True
             Me.TimeGroupBox1.Visible = True
         Else
-            My.Settings.TimeSet = False
-            My.Settings.StreamTimeSet = False
-            My.Settings.LocalTimeSet = False
-            LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
             TimeCheckBox1.Text = "Time Disabled"
-            StreamTimeCheckBox1.Text = "StreamTime Disabled"
+            My.Settings.TimeSet = False
             Me.TimeGroupBox1.Visible = False
         End If
     End Sub
 
     Private Sub TimeGroupBox1_VisibleChanged(sender As Object, e As EventArgs) Handles TimeGroupBox1.VisibleChanged
-        If My.Settings.LocalTimeSet = False Then
-            LocalTimeSetCheckBox1.CheckState = CheckState.Unchecked
-            LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
+        If TimeGroupBox1.Visible = True Then
+            If My.Settings.LocalTimeSet = False Then
+                LocalTimeSetCheckBox1.CheckState = CheckState.Unchecked
+                LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
+            Else
+                LocalTimeSetCheckBox1.CheckState = CheckState.Checked
+                LocalTimeSetCheckBox1.Text = "LocalTime Enabled"
+            End If
+            If My.Settings.StreamTimeSet = False Then
+                StreamTimeCheckBox1.CheckState = CheckState.Unchecked
+                StreamTimeCheckBox1.Text = "StreamTime Disabled"
+            Else
+                StreamTimeCheckBox1.CheckState = CheckState.Checked
+                StreamTimeCheckBox1.Text = "StreamTime Enabled"
+            End If
+            If My.Settings.GameTimeSet = False Then
+                GameTimeCheckBox1.CheckState = CheckState.Unchecked
+                GameTimeCheckBox1.Text = "GameTime Disabled"
+            Else
+                GameTimeCheckBox1.CheckState = CheckState.Checked
+                GameTimeCheckBox1.Text = "GameTime Enabled"
+            End If
         Else
-            LocalTimeSetCheckBox1.CheckState = CheckState.Checked
-            LocalTimeSetCheckBox1.Text = "LocalTime Enabled"
-        End If
-        If My.Settings.StreamTimeSet = False Then
             StreamTimeCheckBox1.CheckState = CheckState.Unchecked
             StreamTimeCheckBox1.Text = "StreamTime Disabled"
+            LocalTimeSetCheckBox1.CheckState = CheckState.Unchecked
+            LocalTimeSetCheckBox1.Text = "LocalTime Disabled"
+            GameTimeCheckBox1.CheckState = CheckState.Unchecked
+            GameTimeCheckBox1.Text = "GameTime Disabled"
+
+        End If
+
+    End Sub
+
+    Private Sub GameTimeCheckBox1_CheckedChanged_1(sender As Object, e As EventArgs) Handles GameTimeCheckBox1.CheckedChanged
+        If GameTimeCheckBox1.Checked = True Then
+            My.Settings.GameTimeSet = True
+            StreamTimeCheckBox1.Text = "GameTime Enabled"
         Else
-            StreamTimeCheckBox1.CheckState = CheckState.Checked
-            StreamTimeCheckBox1.Text = "StreamTime Enabled"
+            My.Settings.GameTimeSet = False
+            GameTimeCheckBox1.Text = "GameTime Disabled"
         End If
     End Sub
 End Class

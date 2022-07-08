@@ -154,10 +154,12 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                     If My.Settings.StreamTimeSet Then
                         writer.WriteElementString("streamtime", Input.StreamTime)          '    <timestarted>1428292404</timestarted>
                     End If
-                    writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
+                    If My.Settings.GameTimeSet Then
+                        writer.WriteElementString("gametime", Input.GameTime)              '    <gametime>79324</gametime>
+                    End If
                     writer.WriteEndElement()
-                End If
-                If My.Settings.ModList = True Then
+                    End If
+                    If My.Settings.ModList = True Then
                     writer.WriteStartElement("modlist")
                     Dim reader2 As XmlReaderSettings = New XmlReaderSettings()
                     Using Reader As XmlReader = XmlReader.Create(".\modlist.xml", reader2)
