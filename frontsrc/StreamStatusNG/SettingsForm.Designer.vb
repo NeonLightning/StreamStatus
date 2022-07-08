@@ -22,7 +22,6 @@ Partial Class SettingsForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.GilDisplayBox = New System.Windows.Forms.CheckBox()
         Me.WepBox = New System.Windows.Forms.CheckBox()
         Me.ModlistButton = New System.Windows.Forms.Button()
@@ -37,18 +36,18 @@ Partial Class SettingsForm
         Me.TimeGroupBox1 = New System.Windows.Forms.GroupBox()
         Me.StreamTimeCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.GameTimeCheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.PartyDisplayCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.PartyGroupBox1 = New System.Windows.Forms.GroupBox()
         Me.AcDisplayCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.ArDisplayCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.MPCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.HPCheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.PartyDisplayCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.BackgroundDrop = New System.Windows.Forms.ComboBox()
-        Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.SettingsPanel.SuspendLayout()
         Me.TimeGroupBox1.SuspendLayout()
         Me.PartyGroupBox1.SuspendLayout()
-        CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GilDisplayBox
@@ -207,6 +206,16 @@ Partial Class SettingsForm
         Me.GameTimeCheckBox1.Text = "GameTime Display"
         Me.GameTimeCheckBox1.UseVisualStyleBackColor = True
         '
+        'PartyDisplayCheckBox1
+        '
+        Me.PartyDisplayCheckBox1.AutoSize = True
+        Me.PartyDisplayCheckBox1.Location = New System.Drawing.Point(3, 202)
+        Me.PartyDisplayCheckBox1.Name = "PartyDisplayCheckBox1"
+        Me.PartyDisplayCheckBox1.Size = New System.Drawing.Size(87, 17)
+        Me.PartyDisplayCheckBox1.TabIndex = 12
+        Me.PartyDisplayCheckBox1.Text = "Party Display"
+        Me.PartyDisplayCheckBox1.UseVisualStyleBackColor = True
+        '
         'PartyGroupBox1
         '
         Me.PartyGroupBox1.Controls.Add(Me.AcDisplayCheckBox1)
@@ -262,31 +271,27 @@ Partial Class SettingsForm
         Me.HPCheckBox1.Text = "HP Display"
         Me.HPCheckBox1.UseVisualStyleBackColor = True
         '
-        'PartyDisplayCheckBox1
-        '
-        Me.PartyDisplayCheckBox1.AutoSize = True
-        Me.PartyDisplayCheckBox1.Location = New System.Drawing.Point(3, 202)
-        Me.PartyDisplayCheckBox1.Name = "PartyDisplayCheckBox1"
-        Me.PartyDisplayCheckBox1.Size = New System.Drawing.Size(87, 17)
-        Me.PartyDisplayCheckBox1.TabIndex = 12
-        Me.PartyDisplayCheckBox1.Text = "Party Display"
-        Me.PartyDisplayCheckBox1.UseVisualStyleBackColor = True
-        '
         'BackgroundDrop
         '
         Me.BackgroundDrop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.BackgroundDrop.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.BackgroundDrop.FormattingEnabled = True
-        Me.BackgroundDrop.Location = New System.Drawing.Point(15, 505)
+        Me.BackgroundDrop.Location = New System.Drawing.Point(3, 19)
         Me.BackgroundDrop.MaxDropDownItems = 1
         Me.BackgroundDrop.Name = "BackgroundDrop"
-        Me.BackgroundDrop.Size = New System.Drawing.Size(128, 21)
+        Me.BackgroundDrop.Size = New System.Drawing.Size(151, 21)
         Me.BackgroundDrop.Sorted = True
         Me.BackgroundDrop.TabIndex = 10
         '
-        'MyApplicationBindingSource
+        'GroupBox1
         '
-        Me.MyApplicationBindingSource.DataSource = GetType(StreamStatusNeon.My.MyApplication)
+        Me.GroupBox1.Controls.Add(Me.BackgroundDrop)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 482)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(160, 49)
+        Me.GroupBox1.TabIndex = 13
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Background"
         '
         'SettingsForm
         '
@@ -295,10 +300,11 @@ Partial Class SettingsForm
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(184, 561)
-        Me.Controls.Add(Me.BackgroundDrop)
         Me.Controls.Add(Me.SettingsPanel)
+        Me.Controls.Add(Me.GroupBox1)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(200, 600)
+        Me.MinimizeBox = False
         Me.MinimumSize = New System.Drawing.Size(200, 600)
         Me.Name = "SettingsForm"
         Me.ShowIcon = False
@@ -312,7 +318,7 @@ Partial Class SettingsForm
         Me.TimeGroupBox1.PerformLayout()
         Me.PartyGroupBox1.ResumeLayout(False)
         Me.PartyGroupBox1.PerformLayout()
-        CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -339,5 +345,5 @@ Partial Class SettingsForm
     Friend WithEvents AcDisplayCheckBox1 As CheckBox
     Friend WithEvents PartyDisplayCheckBox1 As CheckBox
     Friend WithEvents BackgroundDrop As ComboBox
-    Friend WithEvents MyApplicationBindingSource As BindingSource
+    Friend WithEvents GroupBox1 As GroupBox
 End Class

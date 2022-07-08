@@ -182,6 +182,7 @@ else
 {
 }
 $nummems = 0;
+if (isset($members)) {
 foreach ($members as $member)
 {
 	$outstring = $outstring . $member->name;
@@ -195,6 +196,7 @@ foreach ($members as $member)
     if (isset($member->armor)) { $outstring = $outstring . "\n  Ar: ";	$outstring = $outstring . $member->armor; }
     if (isset($member->accessory)) { $outstring = $outstring . "\n  Ac: ";	$outstring = $outstring . $member->accessory . "\n"; }
     $outstring = $outstring . "\n";
+}
 }
 if (isset($status->quicknotes))
 {
