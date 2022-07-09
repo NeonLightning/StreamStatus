@@ -112,6 +112,7 @@ function fullWrap($string, $length, $font, $pt)
 // Load our XML status file.
 $status = simplexml_load_file("../status.xml");
 
+
 // Check XML for completeness and parse to variables.
 if (isset($status->disc)){$disc = $status->disc;}
 else{}
@@ -134,7 +135,68 @@ if (isset($status->party)){if (isset($status->party->member)) { $members = $stat
 
 // Create our image, and be sure to save alpha
 $img = imagecreatefrompng("../background/background.png");
-imagesavealpha($img, true);
+$nummems = 0;
+foreach ($members as $member) {
+$nummems = $nummems + 1;
+}
+if ($nummems > 0 ) {
+$party1 = $status->party->member[0]->defaultname;
+$temp = imagecreatefrompng("../../avatars/" . $status->party->member[0]->defaultname . ".png");
+$pppng1= imagescale ( $temp, 100 , 100);
+$sx = imagesx($pppng1);
+$sy = imagesy($pppng1);
+$right = 0;
+$bottom = 0;
+imagecopy(
+	$img,
+	$pppng1,
+	0,
+	0,
+    0,
+    0,
+    $sx,
+    $sy
+);
+}
+
+if ($nummems > 1 ) {
+$party2 = $status->party->member[1]->defaultname;
+$temp = imagecreatefrompng("../../avatars/" . $status->party->member[1]->defaultname . ".png");
+$pppng2= imagescale ( $temp, 100 , 100);
+$sx = imagesx($pppng2);
+$sy = imagesy($pppng2);
+$right = 0;
+$bottom = 0;
+imagecopy(
+	$img,
+	$pppng2,
+	$sx,
+	0,
+    0,
+    0,
+    $sx,
+    $sy
+);
+}
+if ($nummems > 2 ) {
+$party3 = $status->party->member[2]->defaultname;
+$temp = imagecreatefrompng("../../avatars/" . $status->party->member[2]->defaultname . ".png");
+$pppng3= imagescale ( $temp, 100 , 100);
+$sx = imagesx($pppng3);
+$sy = imagesy($pppng3);
+$right = 0;
+$bottom = 0;
+imagecopy(
+	$img,
+	$pppng3,
+	$sx + $sx,
+	0,
+    0,
+    0,
+    $sx,
+    $sy
+);
+}
 
 /* Define our colors: This time it's a lot easier, as for
    starters we'll just be using white, with black for dropshadow.
@@ -154,6 +216,7 @@ $wraplen = $wrapbbox[2] - $wrapbbox[0];
 
 /* Add our text */
 $outstring = "";
+$outstring = $outstring . "\n\n\n\n\n";
 // Time
 if (isset($status->timeset)){
 	$outstring = $outstring . "Time:\n";
@@ -185,6 +248,8 @@ $nummems = 0;
 if (isset($members)) {
 foreach ($members as $member)
 {
+	$temp = imagecreatefrompng("../../avatars/" . $status->party->member[2]->defaultname . ".png");
+	$pppng3= imagescale ( $temp, 100 , 100);
 	$outstring = $outstring . $member->name;
     if (isset($member->level)) { $outstring = $outstring . " " . " L";	$outstring = $outstring . $member->level; }
     if (isset($member->exptolevel)) { $outstring = $outstring . " XpToLvl "; $outstring = $outstring . $member->exptolevel; }
@@ -212,7 +277,7 @@ if (isset($status->modlist)) {
 	
 // Trim any leading/trailing newlines or etc from output string
 
-$outstring = trim($outstring);
+//$outstring = trim($outstring);
 
 // And output! Now with hacky drop shadow.
 // First, center it.

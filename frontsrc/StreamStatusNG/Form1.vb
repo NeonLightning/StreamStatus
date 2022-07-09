@@ -22,11 +22,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         End If
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Settings.Click
-        If SettingsForm.Visible = False Then
-            SettingsForm.Show()
-        Else
-            SettingsForm.Close()
-        End If
+        SettingsForm.ShowDialog()
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -95,8 +91,6 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
     Dim MemRead As NativeMemoryReader
     Dim committedLastEvent As String = "None"
     Dim sReader As String
-
-
 
 
     Structure WriterInput

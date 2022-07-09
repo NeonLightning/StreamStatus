@@ -3,18 +3,8 @@ Imports System.IO
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class SettingsForm
-
-    Private Sub SettingsForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        If ModlistForm.Visible = True Then
-            ModlistForm.Close()
-        End If
-    End Sub
     Private Sub ModlistButton_Click(sender As Object, e As EventArgs) Handles ModlistButton.Click
-        If ModlistForm.Visible = False Then
-            ModlistForm.Show()
-        Else
-            ModlistForm.Close()
-        End If
+        ModlistForm.ShowDialog()
     End Sub
     Private Sub Form2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         BackgroundDrop.Items.AddRange(My.Forms.StatusUpdateGUIFrontend.mybgArray)
