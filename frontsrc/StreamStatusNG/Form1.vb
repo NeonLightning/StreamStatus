@@ -7,6 +7,8 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Taskbar
 
 
 Public Class StatusUpdateGUIFrontend : Inherits Form
+    Public mybgArray() As String = Directory.GetFiles("backgrounds\", "*.png")
+
     Private Sub LastEvent_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles LastEvent.KeyDown
         If Started = True Then
             If e.KeyCode = Keys.Enter Then
@@ -51,9 +53,6 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                     Dim mybgArray() As String = Directory.GetFiles("backgrounds", "*.png")
                     My.Forms.SettingsForm.BackgroundDrop.Items.AddRange(mybgArray)
                     My.Computer.FileSystem.CopyFile(mybgArray(0), ".\base\background\background.png", overwrite:=True)
-                Else
-                    Dim mybgArray() As String = Directory.GetFiles("backgrounds", "*.png")
-                    My.Forms.SettingsForm.BackgroundDrop.Items.AddRange(mybgArray)
                 End If
             Else
                 Dim bmp As New Bitmap(320, 900)

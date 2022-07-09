@@ -17,7 +17,7 @@ Public Class SettingsForm
         End If
     End Sub
     Private Sub Form2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+        BackgroundDrop.Items.AddRange(My.Forms.StatusUpdateGUIFrontend.mybgArray)
 
         If My.Settings.TimeSet = True Then
             TimeCheckBox1.CheckState = CheckState.Checked
@@ -324,9 +324,8 @@ Public Class SettingsForm
         End If
     End Sub
 
-    Private Sub BackgroundDrop_SelectedValueChanged(sender As Object, e As EventArgs) Handles BackgroundDrop.SelectedValueChanged
-        Dim mybgArray() As String = Directory.GetFiles("backgrounds\", "*.png")
-        Dim temp = mybgArray(BackgroundDrop.SelectedIndex)
+    Public Sub BackgroundDrop_SelectedValueChanged(sender As Object, e As EventArgs) Handles BackgroundDrop.SelectedValueChanged
+        Dim temp = My.Forms.StatusUpdateGUIFrontend.mybgArray(BackgroundDrop.SelectedIndex)
         My.Computer.FileSystem.CopyFile(temp, "base\background\background.png", overwrite:=True)
     End Sub
 End Class
