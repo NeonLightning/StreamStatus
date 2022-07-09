@@ -44,6 +44,7 @@ Partial Class SettingsForm
         Me.HPCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.BackgroundDrop = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.NameCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SettingsPanel.SuspendLayout()
         Me.TimeGroupBox1.SuspendLayout()
         Me.PartyGroupBox1.SuspendLayout()
@@ -63,7 +64,7 @@ Partial Class SettingsForm
         'WepBox
         '
         Me.WepBox.AutoSize = True
-        Me.WepBox.Location = New System.Drawing.Point(3, 88)
+        Me.WepBox.Location = New System.Drawing.Point(0, 108)
         Me.WepBox.Name = "WepBox"
         Me.WepBox.Size = New System.Drawing.Size(104, 17)
         Me.WepBox.TabIndex = 1
@@ -73,7 +74,7 @@ Partial Class SettingsForm
         'ModlistButton
         '
         Me.ModlistButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ModlistButton.Location = New System.Drawing.Point(56, 441)
+        Me.ModlistButton.Location = New System.Drawing.Point(56, 464)
         Me.ModlistButton.Name = "ModlistButton"
         Me.ModlistButton.Size = New System.Drawing.Size(75, 23)
         Me.ModlistButton.TabIndex = 2
@@ -83,7 +84,7 @@ Partial Class SettingsForm
         'ModlistCheckbox
         '
         Me.ModlistCheckbox.AutoSize = True
-        Me.ModlistCheckbox.Location = New System.Drawing.Point(3, 418)
+        Me.ModlistCheckbox.Location = New System.Drawing.Point(3, 441)
         Me.ModlistCheckbox.Name = "ModlistCheckbox"
         Me.ModlistCheckbox.Size = New System.Drawing.Size(59, 17)
         Me.ModlistCheckbox.TabIndex = 3
@@ -93,7 +94,7 @@ Partial Class SettingsForm
         'LevelCheckbox
         '
         Me.LevelCheckbox.AutoSize = True
-        Me.LevelCheckbox.Location = New System.Drawing.Point(3, 65)
+        Me.LevelCheckbox.Location = New System.Drawing.Point(0, 85)
         Me.LevelCheckbox.Name = "LevelCheckbox"
         Me.LevelCheckbox.Size = New System.Drawing.Size(89, 17)
         Me.LevelCheckbox.TabIndex = 4
@@ -123,7 +124,7 @@ Partial Class SettingsForm
         'QuicknotesCheckBox1
         '
         Me.QuicknotesCheckBox1.AutoSize = True
-        Me.QuicknotesCheckBox1.Location = New System.Drawing.Point(3, 395)
+        Me.QuicknotesCheckBox1.Location = New System.Drawing.Point(3, 418)
         Me.QuicknotesCheckBox1.Name = "QuicknotesCheckBox1"
         Me.QuicknotesCheckBox1.Size = New System.Drawing.Size(119, 17)
         Me.QuicknotesCheckBox1.TabIndex = 7
@@ -158,7 +159,7 @@ Partial Class SettingsForm
         Me.SettingsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.SettingsPanel.Location = New System.Drawing.Point(12, 12)
         Me.SettingsPanel.Name = "SettingsPanel"
-        Me.SettingsPanel.Size = New System.Drawing.Size(134, 467)
+        Me.SettingsPanel.Size = New System.Drawing.Size(134, 490)
         Me.SettingsPanel.TabIndex = 9
         '
         'TimeCheckBox1
@@ -218,6 +219,7 @@ Partial Class SettingsForm
         '
         'PartyGroupBox1
         '
+        Me.PartyGroupBox1.Controls.Add(Me.NameCheckBox1)
         Me.PartyGroupBox1.Controls.Add(Me.AcDisplayCheckBox1)
         Me.PartyGroupBox1.Controls.Add(Me.ArDisplayCheckBox1)
         Me.PartyGroupBox1.Controls.Add(Me.MPCheckBox1)
@@ -226,7 +228,7 @@ Partial Class SettingsForm
         Me.PartyGroupBox1.Controls.Add(Me.LevelCheckbox)
         Me.PartyGroupBox1.Location = New System.Drawing.Point(3, 225)
         Me.PartyGroupBox1.Name = "PartyGroupBox1"
-        Me.PartyGroupBox1.Size = New System.Drawing.Size(128, 164)
+        Me.PartyGroupBox1.Size = New System.Drawing.Size(128, 187)
         Me.PartyGroupBox1.TabIndex = 11
         Me.PartyGroupBox1.TabStop = False
         Me.PartyGroupBox1.Text = "Party Group"
@@ -234,7 +236,7 @@ Partial Class SettingsForm
         'AcDisplayCheckBox1
         '
         Me.AcDisplayCheckBox1.AutoSize = True
-        Me.AcDisplayCheckBox1.Location = New System.Drawing.Point(3, 134)
+        Me.AcDisplayCheckBox1.Location = New System.Drawing.Point(0, 154)
         Me.AcDisplayCheckBox1.Name = "AcDisplayCheckBox1"
         Me.AcDisplayCheckBox1.Size = New System.Drawing.Size(93, 17)
         Me.AcDisplayCheckBox1.TabIndex = 8
@@ -244,7 +246,7 @@ Partial Class SettingsForm
         'ArDisplayCheckBox1
         '
         Me.ArDisplayCheckBox1.AutoSize = True
-        Me.ArDisplayCheckBox1.Location = New System.Drawing.Point(3, 111)
+        Me.ArDisplayCheckBox1.Location = New System.Drawing.Point(0, 131)
         Me.ArDisplayCheckBox1.Name = "ArDisplayCheckBox1"
         Me.ArDisplayCheckBox1.Size = New System.Drawing.Size(90, 17)
         Me.ArDisplayCheckBox1.TabIndex = 7
@@ -254,7 +256,7 @@ Partial Class SettingsForm
         'MPCheckBox1
         '
         Me.MPCheckBox1.AutoSize = True
-        Me.MPCheckBox1.Location = New System.Drawing.Point(3, 42)
+        Me.MPCheckBox1.Location = New System.Drawing.Point(0, 62)
         Me.MPCheckBox1.Name = "MPCheckBox1"
         Me.MPCheckBox1.Size = New System.Drawing.Size(79, 17)
         Me.MPCheckBox1.TabIndex = 6
@@ -264,7 +266,7 @@ Partial Class SettingsForm
         'HPCheckBox1
         '
         Me.HPCheckBox1.AutoSize = True
-        Me.HPCheckBox1.Location = New System.Drawing.Point(3, 19)
+        Me.HPCheckBox1.Location = New System.Drawing.Point(0, 39)
         Me.HPCheckBox1.Name = "HPCheckBox1"
         Me.HPCheckBox1.Size = New System.Drawing.Size(78, 17)
         Me.HPCheckBox1.TabIndex = 5
@@ -292,6 +294,16 @@ Partial Class SettingsForm
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Background"
+        '
+        'NameCheckBox1
+        '
+        Me.NameCheckBox1.AutoSize = True
+        Me.NameCheckBox1.Location = New System.Drawing.Point(0, 16)
+        Me.NameCheckBox1.Name = "NameCheckBox1"
+        Me.NameCheckBox1.Size = New System.Drawing.Size(91, 17)
+        Me.NameCheckBox1.TabIndex = 9
+        Me.NameCheckBox1.Text = "Name Display"
+        Me.NameCheckBox1.UseVisualStyleBackColor = True
         '
         'SettingsForm
         '
@@ -346,4 +358,5 @@ Partial Class SettingsForm
     Friend WithEvents PartyDisplayCheckBox1 As CheckBox
     Friend WithEvents BackgroundDrop As ComboBox
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents NameCheckBox1 As CheckBox
 End Class

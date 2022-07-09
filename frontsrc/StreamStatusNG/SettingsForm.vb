@@ -73,6 +73,13 @@ Public Class SettingsForm
             PartyDisplayCheckBox1.Text = "Party Disabled"
             PartyGroupBox1.Visible = False
         End If
+        If My.Settings.NameSet = True Then
+            NameCheckBox1.CheckState = CheckState.Checked
+            NameCheckBox1.Text = "Name Enabled"
+        Else
+            NameCheckBox1.CheckState = CheckState.Unchecked
+            NameCheckBox1.Text = "Name Disabled"
+        End If
         If My.Settings.HPSet = True Then
             HPCheckBox1.CheckState = CheckState.Checked
             HPCheckBox1.Text = "HP Enabled"
@@ -171,6 +178,15 @@ Public Class SettingsForm
             PartyDisplayCheckBox1.Text = "Party Disabled"
             My.Settings.PartySet = False
             Me.PartyGroupBox1.Visible = False
+        End If
+    End Sub
+    Private Sub NameCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles NameCheckBox1.CheckedChanged
+        If NameCheckBox1.Checked = True Then
+            My.Settings.NameSet = True
+            NameCheckBox1.Text = "Name Enabled"
+        Else
+            My.Settings.NameSet = False
+            NameCheckBox1.Text = "Name Disabled"
         End If
     End Sub
     Private Sub HPCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles HPCheckBox1.CheckedChanged
@@ -318,4 +334,6 @@ Public Class SettingsForm
         Dim temp = My.Forms.StatusUpdateGUIFrontend.mybgArray(BackgroundDrop.SelectedIndex)
         My.Computer.FileSystem.CopyFile(temp, "base\background\background.png", overwrite:=True)
     End Sub
+
+
 End Class
