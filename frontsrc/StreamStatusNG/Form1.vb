@@ -73,6 +73,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 Next
                 writer2.WriteEndDocument()
             End Using
+            My.Forms.ModlistForm.Modlist_read()
         End If
         SetStyle(ControlStyles.SupportsTransparentBackColor, True)
         StartButton.Image = My.Resources.Resources._start

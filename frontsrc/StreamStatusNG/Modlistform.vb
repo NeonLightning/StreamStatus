@@ -4,7 +4,7 @@ Public Class ModlistForm
     Private Sub ModlistForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not System.IO.File.Exists(".\modlist.xml") Then
             Dim xmlset As XmlWriterSettings = New XmlWriterSettings()
-            Using writer2 As XmlWriter = XmlWriter.Create(".\modlist.xml", xmlset)
+            Using writer2 As XmlWriter = XmlWriter.Create(".\base\modlist.xml", xmlset)
                 xmlset.Indent = True
                 xmlset.NewLineOnAttributes = True
                 writer2.WriteStartDocument()
@@ -13,13 +13,22 @@ Public Class ModlistForm
             End Using
         End If
         Modlist_read()
-        If Me.MainModList.Items.Count = 0 Then Me.MainModList.Items.Add("None")
+        If Me.MainModList.Items.Count = 0 Then
+            Me.MainModList.Items.Clear()
+            Dim xmlset As XmlWriterSettings = New XmlWriterSettings()
+            Using writer2 As XmlWriter = XmlWriter.Create(".\base\modlist.xml", xmlset)
+                writer2.WriteStartDocument()
+                writer2.WriteStartElement("listomods")
+                writer2.WriteElementString("modname", "None")
+            End Using
+            Me.MainModList.Items.Add("None")
+        End If
     End Sub
     Public Sub Modlist_update()
         Dim xmlset As XmlWriterSettings = New XmlWriterSettings()
         xmlset.Indent = True
         xmlset.NewLineOnAttributes = True
-        Using writer2 As XmlWriter = XmlWriter.Create(".\modlist.xml", xmlset)
+        Using writer2 As XmlWriter = XmlWriter.Create(".\base\modlist.xml", xmlset)
             writer2.WriteStartDocument()
             writer2.WriteStartElement("listomods")
             For Each modnamed In Me.MainModList.Items
@@ -32,7 +41,8 @@ Public Class ModlistForm
 
     Public Sub Modlist_read()
         Dim reader2 As XmlReaderSettings = New XmlReaderSettings()
-        Using Reader As XmlReader = XmlReader.Create(".\modlist.xml", reader2)
+        Me.MainModList.Items.Clear()
+        Using Reader As XmlReader = XmlReader.Create(".\base\modlist.xml", reader2)
             While Reader.Read()
                 If Reader.IsStartElement Then
                     If Reader.Name = "modname" Then
