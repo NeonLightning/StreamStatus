@@ -107,6 +107,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         Public GameTime As String
         Public LastEvent As String
         Public PartyNames As String()
+        Public DefaultNames As String()
         Public PartyLevels As String()
         Public ExpToLevel As String()
         Public Weapon As String()
@@ -206,6 +207,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                     Dim Index As Byte = 0
                     For Each myName In Input.PartyNames
                         writer.WriteStartElement("member")                             '        <member>
+                        writer.WriteElementString("defaultname", Input.DefaultNames(Index))
                         writer.WriteElementString("name", myName)                      '            <name>Blah</name>
                         If My.Settings.HPSet = True Then
                             writer.WriteElementString("hp", Input.HP(Index).ToString())                      '            <hp>6969</hp>
@@ -331,6 +333,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         End If
         Party.Text = TempStr
         If numParty > 0 Then
+            ReDim myXMLInput.DefaultNames(numParty - 1)
             ReDim myXMLInput.PartyNames(numParty - 1)
             ReDim myXMLInput.Weapon(numParty - 1)
             ReDim myXMLInput.Armor(numParty - 1)
@@ -342,6 +345,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             ReDim myXMLInput.BaseHP(numParty - 1)
             ReDim myXMLInput.BaseMP(numParty - 1)
             For myIterator As Byte = 0 To (numParty - 1)
+                myXMLInput.DefaultNames(myIterator) = mySaveMap.LiveParty(myIterator).DefaultName
                 myXMLInput.PartyNames(myIterator) = mySaveMap.LiveParty(myIterator).Name
                 myXMLInput.Weapon(myIterator) = mySaveMap.LiveParty(myIterator).Weapon
                 myXMLInput.Armor(myIterator) = mySaveMap.LiveParty(myIterator).Armor
