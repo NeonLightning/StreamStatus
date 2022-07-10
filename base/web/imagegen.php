@@ -135,7 +135,9 @@ if (isset($status->party)){if (isset($status->party->member)) { $members = $stat
 
 // Create our image, and be sure to save alpha
 $img = imagecreatefrompng("../background/background.png");
+
 $nummems = 0;
+if (isset($members)) {
 foreach ($members as $member) {
 $nummems = $nummems + 1;
 }
@@ -157,6 +159,7 @@ imagecopy(
     $sx,
     $sy
 );
+}
 }
 
 if ($nummems > 1 ) {
@@ -216,8 +219,10 @@ $wraplen = $wrapbbox[2] - $wrapbbox[0];
 
 /* Add our text */
 $outstring = "";
-$outstring = $outstring . "\n\n\n\n\n";
 // Time
+if (isset($members)) {
+	$outstring = $outstring . "\n\n\n\n\n";
+}
 if (isset($status->timeset)){
 	$outstring = $outstring . "Time:\n";
 	$ingamebbox = imagettfbbox(pxtoPt(16) , 0, $font, "In-Game");
@@ -245,12 +250,13 @@ else
 {
 }
 $nummems = 0;
+
 if (isset($members)) {
 foreach ($members as $member)
 {
 	$temp = imagecreatefrompng("../../avatars/" . $status->party->member[2]->defaultname . ".png");
 	$pppng3= imagescale ( $temp, 100 , 100);
-	$outstring = $outstring . $member->name;
+	if (isset($member->name)) { $outstring = $outstring . $member->name; }
     if (isset($member->level)) { $outstring = $outstring . " " . " L";	$outstring = $outstring . $member->level; }
     if (isset($member->exptolevel)) { $outstring = $outstring . " XpToLvl "; $outstring = $outstring . $member->exptolevel; }
     if (isset($member->hp))	{ $outstring = $outstring . "\n  HP ";	$outstring = $outstring . $member->hp; }
