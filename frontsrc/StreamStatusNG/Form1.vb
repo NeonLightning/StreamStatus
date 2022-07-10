@@ -7,6 +7,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Taskbar
 
 
 Public Class StatusUpdateGUIFrontend : Inherits Form
+    Public trbgcolor As Int32 = mySaveMap.GradientTopRight
     Public mybgArray() As String = Directory.GetFiles("backgrounds\", "*.png")
 
     Private Sub LastEvent_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles LastEvent.KeyDown
@@ -110,6 +111,9 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         Public HP As String()
         Public MP As String()
         Public LiveGil As Integer
+        Public LimitBar As String()
+        Public LimitLevel As String()
+        Public LimitTime As Short()
         Public BaseHP As String()
         Public BaseMP As String()
     End Structure
@@ -202,6 +206,12 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                     For Each myName In Input.PartyNames
                         writer.WriteStartElement("member")                             '        <member>
                         writer.WriteElementString("defaultname", Input.DefaultNames(Index))
+
+                        Input.LimitBar(Index) = Math.Round(Input.LimitBar(Index) / 255 * 100)
+                        writer.WriteElementString("limitbar", Input.LimitBar(Index))
+
+
+                        writer.WriteElementString("limitlevel", Input.LimitLevel(Index))
                         If My.Settings.NameSet = True Then
                             writer.WriteElementString("name", myName)                      '            <name>Blah</name>
                         End If
@@ -275,6 +285,8 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             StatusBar = 0
         End If
         UpdateStatus()
+
+
         If mySaveMap.Disc >= 1 And mySaveMap.Disc <= 3 Then
             myXMLInput.Disc = mySaveMap.Disc
         Else
@@ -292,6 +304,8 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             Location.Text = ""
             myXMLInput.Location = "Unknown"
         End If
+
+
         If StreamTime > 0 Then
             myXMLInput.StreamTime = SecsToHMS(StreamTime)
             Time.Text = "Time: Local (" & DateTime.Now.ToString("HH:mm:ss") & ") Stream (" & SecsToHMS(StreamTime) & ")"
@@ -303,13 +317,13 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
                 Time.Text = "Time: Local (" & DateTime.Now.ToString("HH:mm:ss") & ") Stream (" & SecsToHMS(StreamTime) & ")"
                 myXMLInput.GameTime = "00:00:00"
             End If
-
-
         Else
             Time.Text = "Time: Local (" & DateTime.Now.ToString("HH:mm:ss") & ")"
             myXMLInput.StreamTime = "00:00:00"
             myXMLInput.GameTime = "00:00:00"
         End If
+
+
         Dim TempStr As String
         Dim numParty As Byte = 0
         TempStr = ""
@@ -332,6 +346,9 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             ReDim myXMLInput.DefaultNames(numParty - 1)
             ReDim myXMLInput.PartyNames(numParty - 1)
             ReDim myXMLInput.Weapon(numParty - 1)
+            ReDim myXMLInput.LimitBar(numParty - 1)
+            ReDim myXMLInput.LimitLevel(numParty - 1)
+            ReDim myXMLInput.LimitTime(numParty - 1)
             ReDim myXMLInput.Armor(numParty - 1)
             ReDim myXMLInput.Accessory(numParty - 1)
             ReDim myXMLInput.PartyLevels(numParty - 1)
@@ -343,6 +360,9 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             For myIterator As Byte = 0 To (numParty - 1)
                 myXMLInput.DefaultNames(myIterator) = mySaveMap.LiveParty(myIterator).DefaultName
                 myXMLInput.PartyNames(myIterator) = mySaveMap.LiveParty(myIterator).Name
+                myXMLInput.LimitBar(myIterator) = mySaveMap.LiveParty(myIterator).LimitBar
+                myXMLInput.LimitLevel(myIterator) = mySaveMap.LiveParty(myIterator).LimitLevel
+                myXMLInput.LimitTime(myIterator) = mySaveMap.LiveParty(myIterator).LimitTimes(myIterator)
                 myXMLInput.Weapon(myIterator) = mySaveMap.LiveParty(myIterator).Weapon
                 myXMLInput.Armor(myIterator) = mySaveMap.LiveParty(myIterator).Armor
                 myXMLInput.Accessory(myIterator) = mySaveMap.LiveParty(myIterator).Accessory
@@ -355,6 +375,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             Next
         Else
             ReDim myXMLInput.PartyNames(0)
+            ReDim myXMLInput.LimitBar(0)
             ReDim myXMLInput.Weapon(0)
             ReDim myXMLInput.Armor(0)
             ReDim myXMLInput.Accessory(0)
@@ -368,6 +389,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             myXMLInput.BaseHP(0) = 0
             myXMLInput.HP(0) = 0
             myXMLInput.LiveGil = 0
+            myXMLInput.LimitBar(0) = 0
             myXMLInput.Weapon(0) = "None"
             myXMLInput.Accessory(255) = "None"
             myXMLInput.Armor(0) = "None"
@@ -522,6 +544,8 @@ Public Class FF7SaveMap
         Public WeaponMateria As Int32() ' 0x40, 0x44, 0x48, 0x4C, 0x50, 0x54, 0x58, 0x5C
         Public ArmorMateria As Int32() ' 0x60, 0x64, 0x68, 0x6C, 0x60, 0x74, 0x78, 0x7C
         Public ExpToLevel As Int32 ' 0x80
+        Public GradientTopRight As Int32 ' 0x004B
+
     End Structure
 
 #End Region
@@ -616,6 +640,12 @@ Public Class FF7SaveMap
     Public ReadOnly Property LiveGil As Int32
         Get
             Return BitConverter.ToInt32(_Map, &HB7C)
+        End Get
+    End Property
+
+    Public ReadOnly Property GradientTopRight As Int32
+        Get
+            Return BitConverter.ToInt32(_Map, &H4B)
         End Get
     End Property
 

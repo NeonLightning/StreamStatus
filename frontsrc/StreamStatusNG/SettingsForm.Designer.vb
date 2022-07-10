@@ -45,6 +45,7 @@ Partial Class SettingsForm
         Me.BackgroundDrop = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.NameCheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SettingsPanel.SuspendLayout()
         Me.TimeGroupBox1.SuspendLayout()
         Me.PartyGroupBox1.SuspendLayout()
@@ -305,6 +306,15 @@ Partial Class SettingsForm
         Me.NameCheckBox1.Text = "Name Display"
         Me.NameCheckBox1.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(44, 526)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 14
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'SettingsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -312,6 +322,7 @@ Partial Class SettingsForm
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(184, 561)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.SettingsPanel)
         Me.Controls.Add(Me.GroupBox1)
         Me.MaximizeBox = False
@@ -359,4 +370,5 @@ Partial Class SettingsForm
     Friend WithEvents BackgroundDrop As ComboBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents NameCheckBox1 As CheckBox
+    Friend WithEvents Button1 As Button
 End Class
