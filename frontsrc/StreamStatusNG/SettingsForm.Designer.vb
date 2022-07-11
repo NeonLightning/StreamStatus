@@ -38,14 +38,15 @@ Partial Class SettingsForm
         Me.GameTimeCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.PartyDisplayCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.PartyGroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.NameCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.AcDisplayCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.ArDisplayCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.MPCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.HPCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.BackgroundDrop = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.NameCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.SettingsPanel.SuspendLayout()
         Me.TimeGroupBox1.SuspendLayout()
         Me.PartyGroupBox1.SuspendLayout()
@@ -234,6 +235,16 @@ Partial Class SettingsForm
         Me.PartyGroupBox1.TabStop = False
         Me.PartyGroupBox1.Text = "Party Group"
         '
+        'NameCheckBox1
+        '
+        Me.NameCheckBox1.AutoSize = True
+        Me.NameCheckBox1.Location = New System.Drawing.Point(0, 16)
+        Me.NameCheckBox1.Name = "NameCheckBox1"
+        Me.NameCheckBox1.Size = New System.Drawing.Size(91, 17)
+        Me.NameCheckBox1.TabIndex = 9
+        Me.NameCheckBox1.Text = "Name Display"
+        Me.NameCheckBox1.UseVisualStyleBackColor = True
+        '
         'AcDisplayCheckBox1
         '
         Me.AcDisplayCheckBox1.AutoSize = True
@@ -295,16 +306,6 @@ Partial Class SettingsForm
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Background"
-        '
-        'NameCheckBox1
-        '
-        Me.NameCheckBox1.AutoSize = True
-        Me.NameCheckBox1.Location = New System.Drawing.Point(0, 16)
-        Me.NameCheckBox1.Name = "NameCheckBox1"
-        Me.NameCheckBox1.Size = New System.Drawing.Size(91, 17)
-        Me.NameCheckBox1.TabIndex = 9
-        Me.NameCheckBox1.Text = "Name Display"
-        Me.NameCheckBox1.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -371,4 +372,5 @@ Partial Class SettingsForm
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents NameCheckBox1 As CheckBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents ColorDialog1 As ColorDialog
 End Class

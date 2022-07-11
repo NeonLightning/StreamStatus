@@ -336,9 +336,9 @@ Public Class SettingsForm
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.ColorDialog1.ShowDialog()
         Dim bmp1 As New Bitmap(320, 900)
-        Dim color1 As New Color
-        Dim brush As New Drawing.Drawing2D.LinearGradientBrush(New PointF(0, 0), New PointF(bmp1.Width, bmp1.Height), color1, SystemColors.ControlDark)
+        Dim brush As New Drawing.Drawing2D.LinearGradientBrush(New PointF(0, 0), New PointF(bmp1.Width, bmp1.Height), ColorDialog1.Color, Color.Transparent)
         Dim gr As Graphics = Graphics.FromImage(bmp1)
         gr.FillRectangle(brush, New RectangleF(0, 0, bmp1.Width, bmp1.Height))
         bmp1.Save("backgrounds\background.png", System.Drawing.Imaging.ImageFormat.Png)

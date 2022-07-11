@@ -7,7 +7,6 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Taskbar
 
 
 Public Class StatusUpdateGUIFrontend : Inherits Form
-    Public trbgcolor As Int32 = mySaveMap.GradientTopRight
     Public mybgArray() As String = Directory.GetFiles("backgrounds\", "*.png")
 
     Private Sub LastEvent_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles LastEvent.KeyDown
