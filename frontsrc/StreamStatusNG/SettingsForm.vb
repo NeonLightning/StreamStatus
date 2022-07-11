@@ -1,8 +1,15 @@
 ﻿Imports System.ComponentModel
+Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class SettingsForm
+    Private Const V As String = "base\background\background.png"
+    Dim TopLeftColor As Color = System.Drawing.Color.Transparent
+    Dim TopRightColor As Color = System.Drawing.Color.Transparent
+    Dim BottomLeftColor As Color = System.Drawing.Color.Transparent
+    Dim BottomRightColor As Color = System.Drawing.Color.Transparent
+
     Private Sub ModlistButton_Click(sender As Object, e As EventArgs) Handles ModlistButton.Click
         ModlistForm.ShowDialog()
     End Sub
@@ -332,15 +339,92 @@ Public Class SettingsForm
 
     Public Sub BackgroundDrop_SelectedValueChanged(sender As Object, e As EventArgs) Handles BackgroundDrop.SelectedValueChanged
         Dim temp = My.Forms.StatusUpdateGUIFrontend.mybgArray(BackgroundDrop.SelectedIndex)
-        My.Computer.FileSystem.CopyFile(temp, "base\background\background.png", overwrite:=True)
+        My.Settings.SelectedPNG = temp
+        My.Computer.FileSystem.CopyFile(temp, V, overwrite:=True)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.ColorDialog1.ShowDialog()
+    Private Sub SelectedPNGRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SelectedPNGRadioButton.CheckedChanged
+        If SelectedPNGRadioButton.Checked = True Then
+            SolidColorButton.Enabled = False
+            TopLeftButton.Enabled = False
+            TopRightButton.Enabled = False
+            BottomLeftButton.Enabled = False
+            BottomRightButton.Enabled = False
+            BackgroundDrop.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles SolidColorButton.Click
+        Me.SolidColorDialog.ShowDialog()
         Dim bmp1 As New Bitmap(320, 900)
-        Dim brush As New Drawing.Drawing2D.LinearGradientBrush(New PointF(0, 0), New PointF(bmp1.Width, bmp1.Height), ColorDialog1.Color, Color.Transparent)
+        Dim brush As New Drawing.Drawing2D.LinearGradientBrush(New PointF(0, 0), New PointF(bmp1.Width, bmp1.Height), SolidColorDialog.Color, SolidColorDialog.Color)
         Dim gr As Graphics = Graphics.FromImage(bmp1)
         gr.FillRectangle(brush, New RectangleF(0, 0, bmp1.Width, bmp1.Height))
-        bmp1.Save("backgrounds\background.png", System.Drawing.Imaging.ImageFormat.Png)
+        bmp1.Save(V, System.Drawing.Imaging.ImageFormat.Png)
+    End Sub
+
+    Private Sub SolidColorRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SolidColorRadioButton.CheckedChanged
+        If SolidColorRadioButton.Checked = True Then
+            SolidColorButton.Enabled = True
+            TopLeftButton.Enabled = False
+            TopRightButton.Enabled = False
+            BottomLeftButton.Enabled = False
+            BottomRightButton.Enabled = False
+            BackgroundDrop.Enabled = False
+        End If
+    End Sub
+
+    Private Sub SelectedGradientRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SelectedGradientRadioButton.CheckedChanged
+        If SelectedGradientRadioButton.Checked = True Then
+            SolidColorButton.Enabled = False
+            TopLeftButton.Enabled = True
+            TopRightButton.Enabled = True
+            BottomLeftButton.Enabled = True
+            BottomRightButton.Enabled = True
+            BackgroundDrop.Enabled = False
+        End If
+    End Sub
+
+    Private Sub SettingsForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If SelectedGradientRadioButton.Checked = True Then
+            Dim image As New Bitmap(320, 900)
+            Dim G As Graphics
+            G = Me.CreateGraphics
+            G.Clear(Me.BackColor)
+            Dim path As New GraphicsPath()
+            path.AddLine(New Point(0, 0), New Point(320, 900))
+            path.AddLine(New Point(320, 0), New Point(0, 900))
+            path.AddLine(New Point(0, 900), New Point(320, 0))
+            path.AddLine(New Point(320, 900), New Point(0, 0))
+            Dim pathBrush As New PathGradientBrush(path)
+            Dim centerColor As Color = Color.Transparent
+            Dim surroundColors() As Color = {TopLeftColor, TopRightColor, BottomLeftColor, BottomRightColor}
+            pathBrush.CenterColor = centerColor
+            pathBrush.SurroundColors = surroundColors
+            G.FillPath(pathBrush, path)
+            G.Dispose()
+            image.Save(V, System.Drawing.Imaging.ImageFormat.Png)
+            image.Dispose()
+        End If
+    End Sub
+
+    Private Sub TopLeftButton_Click(sender As Object, e As EventArgs) Handles TopLeftButton.Click
+        Me.TopLeftColorDialog.ShowDialog()
+        TopLeftColor = TopLeftColorDialog.Color
+    End Sub
+
+    Private Sub TopRightButton_Click(sender As Object, e As EventArgs) Handles TopRightButton.Click
+        Me.TopRightColorDialog.ShowDialog()
+        TopRightColor = TopRightColorDialog.Color
+    End Sub
+
+    Private Sub BottomLeftButton_Click(sender As Object, e As EventArgs) Handles BottomLeftButton.Click
+        Me.BottomLeftColorDialog.ShowDialog()
+        BottomLeftColor = BottomLeftColorDialog.Color
+    End Sub
+
+    Private Sub BottomRightButton_Click(sender As Object, e As EventArgs) Handles BottomRightButton.Click
+        Me.BottomRightColorDialog.ShowDialog()
+        BottomRightColor = BottomRightColorDialog.Color
     End Sub
 End Class

@@ -320,6 +320,33 @@ Partial Public NotInheritable Class MySettings
             Me("NameSet") = value
         End Set
     End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Configuration.SettingsProviderAttribute(GetType(Bluegrams.Application.PortableSettingsProvider)),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute(""),  _
+     Global.System.Configuration.SettingsManageabilityAttribute(Global.System.Configuration.SettingsManageability.Roaming)>  _
+    Public Property SelectedPNG() As String
+        Get
+            Return CType(Me("SelectedPNG"),String)
+        End Get
+        Set
+            Me("SelectedPNG") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Configuration.SettingsProviderAttribute(GetType(Bluegrams.Application.PortableSettingsProvider)),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+    Public Property SelectedBGType() As Byte
+        Get
+            Return CType(Me("SelectedBGType"),Byte)
+        End Get
+        Set
+            Me("SelectedBGType") = value
+        End Set
+    End Property
 End Class
 
 Namespace My
