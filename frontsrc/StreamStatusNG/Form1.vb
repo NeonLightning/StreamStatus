@@ -8,6 +8,11 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Taskbar
 
 Public Class StatusUpdateGUIFrontend : Inherits Form
     Public mybgArray() As String = Directory.GetFiles("backgrounds\", "*.png")
+    Public TopLeftColor As Color = System.Drawing.Color.Red
+    Public TopRightColor As Color = System.Drawing.Color.Green
+    Public BottomLeftColor As Color = System.Drawing.Color.Blue
+    Public BottomRightColor As Color = System.Drawing.Color.Yellow
+    Public BackgrounPreviewImage As Bitmap
 
     Private Sub LastEvent_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles LastEvent.KeyDown
         If Started = True Then

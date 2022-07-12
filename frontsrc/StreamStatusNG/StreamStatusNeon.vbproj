@@ -132,6 +132,12 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="gradiantwindow.Designer.vb">
+      <DependentUpon>gradiantwindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="gradiantwindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="SettingsForm.Designer.vb">
@@ -165,6 +171,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gradiantwindow.resx">
+      <DependentUpon>gradiantwindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.vb</DependentUpon>
