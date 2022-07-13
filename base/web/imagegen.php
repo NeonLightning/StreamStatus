@@ -372,6 +372,7 @@ imagettftext($img, pxtoPt(16) , 0, 25, $topy, $white, $font, $outstring);
 array_map('unlink', glob("*.png"));
 $mytime = time();
 $filename = "img" . $mytime . ".png";
+imagesavealpha($img,true); 
 imagepng($img, $filename, 0, NULL);
 
 /* Get the current URL, remove the reference to the
