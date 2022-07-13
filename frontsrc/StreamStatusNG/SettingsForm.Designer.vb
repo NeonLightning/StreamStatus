@@ -52,6 +52,7 @@ Partial Class SettingsForm
         Me.SelectedPNGRadioButton = New System.Windows.Forms.RadioButton()
         Me.SolidColorDialog = New System.Windows.Forms.ColorDialog()
         Me.ColorButton2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SettingsPanel.SuspendLayout()
         Me.TimeGroupBox1.SuspendLayout()
         Me.PartyGroupBox1.SuspendLayout()
@@ -313,7 +314,7 @@ Partial Class SettingsForm
         Me.GroupBox1.Controls.Add(Me.SelectedPNGRadioButton)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 506)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(180, 243)
+        Me.GroupBox1.Size = New System.Drawing.Size(180, 185)
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Background"
@@ -381,19 +382,33 @@ Partial Class SettingsForm
         Me.ColorButton2.Text = "Color 2"
         Me.ColorButton2.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.Button1.Location = New System.Drawing.Point(126, 5)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 14
+        Me.Button1.Text = "Cancel"
+        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
+        '
         'SettingsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(184, 761)
+        Me.CancelButton = Me.Button1
+        Me.ClientSize = New System.Drawing.Size(184, 711)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.SettingsPanel)
         Me.Controls.Add(Me.GroupBox1)
+        Me.KeyPreview = True
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(200, 800)
+        Me.MaximumSize = New System.Drawing.Size(200, 750)
         Me.MinimizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(200, 800)
+        Me.MinimumSize = New System.Drawing.Size(200, 750)
         Me.Name = "SettingsForm"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
@@ -443,4 +458,5 @@ Partial Class SettingsForm
     Friend WithEvents SelectedPNGRadioButton As RadioButton
     Friend WithEvents GradientSetButton As Button
     Friend WithEvents ColorButton2 As Button
+    Friend WithEvents Button1 As Button
 End Class

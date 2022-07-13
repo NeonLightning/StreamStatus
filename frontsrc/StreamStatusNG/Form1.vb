@@ -44,7 +44,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
             g1.Clear(Color.Transparent)
             bmp1.Save("backgrounds\background.png", System.Drawing.Imaging.ImageFormat.Png)
         Else
-                Dim pngcounter As Integer
+            Dim pngcounter As Integer
             pngcounter = 0
             For Each pngfile In Directory.EnumerateFiles("backgrounds", "*.png")
                 pngcounter = pngcounter + 1

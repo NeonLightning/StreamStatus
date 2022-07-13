@@ -157,7 +157,7 @@ $bottom = 0;
 imagecopy(
 	$img,
 	$pppng1,
-	0,
+	4,
 	0,
     0,
     0,
@@ -179,7 +179,7 @@ $sy = imagesy($limitbar);
 imagecopy(
 	$img,
 	$limitbar,
-	0,
+	4,
 	100,
 	0,
 	0,
@@ -200,7 +200,7 @@ $bottom = 0;
 imagecopy(
 	$img,
 	$pppng2,
-	$sx,
+	$sx +8,
 	0,
     0,
     0,
@@ -222,7 +222,7 @@ $sy = imagesy($limitbar);
 imagecopy(
 	$img,
 	$limitbar,
-	100,
+	$sx +8,
 	100,
 	0,
 	0,
@@ -243,7 +243,7 @@ $bottom = 0;
 imagecopy(
 	$img,
 	$pppng3,
-	$sx + $sx,
+	$sx + $sx +12,
 	0,
     0,
     0,
@@ -265,7 +265,7 @@ $sy = imagesy($limitbar);
 imagecopy(
 	$img,
 	$limitbar,
-	200,
+	200 + 12,
 	100,
 	0,
 	0,

@@ -37,16 +37,19 @@ Public Class gradiantwindow
         path.AddLine(New Point(320, 0), New Point(320, 900))
         path.AddLine(New Point(320, 900), New Point(0, 900))
         path.AddLine(New Point(0, 900), New Point(0, 0))
+        path.CloseFigure()
         Dim pathBrush As New PathGradientBrush(path)
-        Dim colors As Color() = {tlc.Color, trc.Color, blc.Color, brc.Color}
+        'Dim colors As Color() = {tlc.Color, trc.Color, blc.Color, brc.Color}
+        Dim colors As Color() = {Color.Blue, Color.Red, Color.Green, Color.Yellow}
         pathBrush.SurroundColors = colors
         pathBrush.CenterColor = Color.Transparent
         g.FillRectangle(pathBrush, New Rectangle(0, 0, 320, 900))
-        bmp.Save("backgrounds\gradient.png", System.Drawing.Imaging.ImageFormat.Png)
-        File.Copy("backgrounds\gradient.png", "base\background\background.png")
-        PreviewWindow.Image = Image.FromFile("backgrounds\gradient.png")
+        bmp.Save("base\background\streamstatusneongradient.png", System.Drawing.Imaging.ImageFormat.Png)
+        File.Copy("base\background\streamstatusneongradient.png", "base\background\background.png", overwrite:=True)
+        PreviewWindow.Image = Image.FromFile("base\background\streamstatusneongradient.png")
         PreviewWindow.Refresh()
         PreviewWindow.Dispose()
+        File.Delete("base\background\streamstatusneongradient.png")
     End Sub
 
     Private Sub gradiantwindow_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing

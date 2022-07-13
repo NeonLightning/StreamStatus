@@ -3,6 +3,7 @@ Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Windows
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports System.Windows.Input
 
 Public Class SettingsForm
     Private Const V As String = "base\background\background.png"
@@ -362,7 +363,7 @@ Public Class SettingsForm
             ColorButton2.Enabled = False
             BackgroundDrop.Enabled = True
             GradientSetButton.Enabled = False
-            SelectedGradientRadioButton.Enabled = False
+            'SelectedGradientRadioButton.Enabled = False
         End If
     End Sub
 
@@ -370,21 +371,41 @@ Public Class SettingsForm
 
         My.Forms.ColourDialog.ShowDialog()
         temp1 = pickedColor
+        ColorButton2.Enabled = True
+        ColorButton1.Enabled = False
     End Sub
     Private Sub ColorButton2_Click(sender As Object, e As EventArgs) Handles ColorButton2.Click
         My.Forms.ColourDialog.ShowDialog()
         temp2 = pickedColor
-        'SolidColorDialog.ShowDialog()
         Dim bmp1 As New Bitmap(320, 900)
         Dim brush As New Drawing.Drawing2D.LinearGradientBrush(New PointF(0, 0), New PointF(bmp1.Width, bmp1.Height), temp1, temp2)
         Dim gr As Graphics = Graphics.FromImage(bmp1)
-        gr.FillRectangle(brush, New RectangleF(0, 0, bmp1.Width, bmp1.Height))
+        gr.FillRectangle(brush, New RectangleF(5, 5, (bmp1.Width - 11), (bmp1.Height - 11)))
         Dim myPen As Pen
         myPen = New Pen(Drawing.Color.White, 10)
-        Dim rec As Rectangle = New Rectangle(0, 0, 320, 900)
-        gr.DrawRectangle(myPen, rec)
+        Dim rect As RectangleF = New RectangleF(0, 0, 320, 900)
+        Dim dimension As Integer = 30
+        Dim graphicsPath As GraphicsPath = New GraphicsPath
+        graphicsPath.AddArc((rect.X + 3), (rect.Y + 3), dimension, dimension, 180, 90)
+        graphicsPath.AddArc((rect.X + (rect.Width - dimension) - 3), (rect.Y + 3), dimension, dimension, 270, 90)
+        graphicsPath.AddArc((rect.X + (rect.Width - dimension) - 3), (rect.Y + (rect.Height - dimension) - 3), dimension, dimension, 0, 90)
+        graphicsPath.AddArc((rect.X + 3), (rect.Y + (rect.Height - dimension) - 3), dimension, dimension, 90, 90)
+        graphicsPath.CloseFigure()
+        Dim points() As PointF = graphicsPath.PathPoints
+        Dim pathTypes() As Byte = graphicsPath.PathTypes
+        Using blackPen As New Pen(Brushes.DarkGray, 3) With {.Alignment = Drawing2D.PenAlignment.Right}
+            gr.DrawPath(blackPen, graphicsPath)
+        End Using
+        Using greyPen As New Pen(Brushes.Gray, 5) With {.Alignment = Drawing2D.PenAlignment.Inset}
+            gr.DrawPath(greyPen, graphicsPath)
+        End Using
+        Using whitePen As New Pen(Brushes.White, 3) With {.Alignment = Drawing2D.PenAlignment.Inset}
+            gr.DrawPath(whitePen, graphicsPath)
+        End Using
         bmp1.Save(V, System.Drawing.Imaging.ImageFormat.Png)
         bmp1.Dispose()
+        gr.Dispose()
+        ColorButton1.Enabled = True
     End Sub
 
     Private Sub SolidColorRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles ColorRadioButton.CheckedChanged
@@ -394,7 +415,9 @@ Public Class SettingsForm
             ColorButton2.Enabled = True
             BackgroundDrop.Enabled = False
             GradientSetButton.Enabled = False
-            SelectedGradientRadioButton.Enabled = False
+            'SelectedGradientRadioButton.Enabled = False
+            ColorButton2.Enabled = False
+            ColorButton1.Enabled = True
         End If
     End Sub
 
@@ -413,5 +436,13 @@ Public Class SettingsForm
         gradiantwindow.ShowDialog()
     End Sub
 
+    Private Sub SelectedPNGRadioButton_Click(sender As Object, e As EventArgs) Handles SelectedPNGRadioButton.Click
+        Dim mybgArray() As String = Directory.GetFiles("backgrounds", "*.png")
+        Me.BackgroundDrop.Items.Clear()
+        Me.BackgroundDrop.Items.AddRange(mybgArray)
+    End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Dispose()
+    End Sub
 End Class
