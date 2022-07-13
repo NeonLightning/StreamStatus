@@ -1,10 +1,14 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing.Drawing2D
 Imports System.IO
+Imports System.Windows
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Public Class SettingsForm
     Private Const V As String = "base\background\background.png"
+    Public pickedColor As Color
+    Public temp1 As Color = System.Drawing.Color.Transparent
+    Public temp2 As Color = System.Drawing.Color.Transparent
 
 
     Private Sub ModlistButton_Click(sender As Object, e As EventArgs) Handles ModlistButton.Click
@@ -15,8 +19,11 @@ Public Class SettingsForm
         BackgroundDrop.Items.AddRange(My.Forms.StatusUpdateGUIFrontend.mybgArray)
         If My.Settings.SelectedBGType = 0 Then
             SelectedPNGRadioButton.Checked = True
+            If My.Settings.SelectedPNG IsNot "" Then
+                BackgroundDrop.Text = My.Settings.SelectedPNG
+            End If
         ElseIf My.Settings.SelectedBGType = 1 Then
-            SolidColorRadioButton.Checked = True
+            ColorRadioButton.Checked = True
         ElseIf My.Settings.SelectedBGType = 2 Then
             SelectedGradientRadioButton.Checked = True
         End If
@@ -351,35 +358,51 @@ Public Class SettingsForm
     Private Sub SelectedPNGRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SelectedPNGRadioButton.CheckedChanged
         If SelectedPNGRadioButton.Checked = True Then
             My.Settings.SelectedBGType = 0
-            SolidColorButton.Enabled = False
+            ColorButton1.Enabled = False
+            ColorButton2.Enabled = False
             BackgroundDrop.Enabled = True
             GradientSetButton.Enabled = False
+            SelectedGradientRadioButton.Enabled = False
         End If
     End Sub
 
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles SolidColorButton.Click
-        Me.SolidColorDialog.ShowDialog()
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ColorButton1.Click
+
+        My.Forms.ColourDialog.ShowDialog()
+        temp1 = pickedColor
+    End Sub
+    Private Sub ColorButton2_Click(sender As Object, e As EventArgs) Handles ColorButton2.Click
+        My.Forms.ColourDialog.ShowDialog()
+        temp2 = pickedColor
+        'SolidColorDialog.ShowDialog()
         Dim bmp1 As New Bitmap(320, 900)
-        Dim brush As New Drawing.Drawing2D.LinearGradientBrush(New PointF(0, 0), New PointF(bmp1.Width, bmp1.Height), SolidColorDialog.Color, SolidColorDialog.Color)
+        Dim brush As New Drawing.Drawing2D.LinearGradientBrush(New PointF(0, 0), New PointF(bmp1.Width, bmp1.Height), temp1, temp2)
         Dim gr As Graphics = Graphics.FromImage(bmp1)
         gr.FillRectangle(brush, New RectangleF(0, 0, bmp1.Width, bmp1.Height))
+        Dim myPen As Pen
+        myPen = New Pen(Drawing.Color.White, 10)
+        Dim rec As Rectangle = New Rectangle(0, 0, 320, 900)
+        gr.DrawRectangle(myPen, rec)
         bmp1.Save(V, System.Drawing.Imaging.ImageFormat.Png)
         bmp1.Dispose()
     End Sub
 
-    Private Sub SolidColorRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SolidColorRadioButton.CheckedChanged
-        If SolidColorRadioButton.Checked = True Then
+    Private Sub SolidColorRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles ColorRadioButton.CheckedChanged
+        If ColorRadioButton.Checked = True Then
             My.Settings.SelectedBGType = 1
-            SolidColorButton.Enabled = True
+            ColorButton1.Enabled = True
+            ColorButton2.Enabled = True
             BackgroundDrop.Enabled = False
             GradientSetButton.Enabled = False
+            SelectedGradientRadioButton.Enabled = False
         End If
     End Sub
 
     Private Sub SelectedGradientRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SelectedGradientRadioButton.CheckedChanged
         If SelectedGradientRadioButton.Checked = True Then
             My.Settings.SelectedBGType = 2
-            SolidColorButton.Enabled = False
+            ColorButton1.Enabled = False
+            ColorButton2.Enabled = False
             BackgroundDrop.Enabled = False
             GradientSetButton.Enabled = True
         End If
@@ -389,4 +412,6 @@ Public Class SettingsForm
     Private Sub GradientSetButton_Click(sender As Object, e As EventArgs) Handles GradientSetButton.Click
         gradiantwindow.ShowDialog()
     End Sub
+
+
 End Class

@@ -11,7 +11,7 @@
     <AssemblyName>StreamStatusNeon</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -95,21 +95,29 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cyotek.Windows.Forms.ColorPicker, Version=1.0.0.0, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cyotek.Windows.Forms.ColorPicker.2.0.0-beta.7\lib\net462\Cyotek.Windows.Forms.ColorPicker.dll</HintPath>
+    </Reference>
     <Reference Include="PortableSettingsProvider, Version=0.2.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PortableSettingsProvider.0.2.4\lib\net45\PortableSettingsProvider.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Import Include="Bluegrams.Application" />
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
     <Import Include="System.Collections" />
@@ -130,6 +138,12 @@
     </Compile>
     <Compile Include="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColourDialog.Designer.vb">
+      <DependentUpon>ColourDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ColourDialog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="gradiantwindow.Designer.vb">
@@ -169,6 +183,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ColourDialog.resx">
+      <DependentUpon>ColourDialog.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>

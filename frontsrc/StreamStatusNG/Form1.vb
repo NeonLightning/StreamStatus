@@ -430,7 +430,7 @@ Public Class StatusUpdateGUIFrontend : Inherits Form
         End If
         StatusBar = 254
         UpdateStatus()
-        MessageBox.Show(ExceptionMessage)
+        Windows.Forms.MessageBox.Show(ExceptionMessage)
         Application.Exit()
     End Sub
 #End Region

@@ -8,25 +8,26 @@ Public Class gradiantwindow
     Dim brc As New ColorDialog
     Private Sub TopLeftButton_Click(sender As Object, e As EventArgs) Handles TopLeftButton.Click
         tlc.ShowDialog()
-        My.Forms.StatusUpdateGUIFrontend.TopLeftColor = tlc.Color
+        tlc.Color = My.Forms.StatusUpdateGUIFrontend.TopLeftColor
     End Sub
 
     Private Sub TopRightButton_Click(sender As Object, e As EventArgs) Handles TopRightButton.Click
         trc.ShowDialog()
-        My.Forms.StatusUpdateGUIFrontend.TopRightColor = trc.Color
+        trc.Color = My.Forms.StatusUpdateGUIFrontend.TopRightColor
     End Sub
 
     Private Sub BottomLeftButton_Click(sender As Object, e As EventArgs) Handles BottomLeftButton.Click
         blc.ShowDialog()
-        My.Forms.StatusUpdateGUIFrontend.BottomLeftColor = blc.Color
+        blc.Color = My.Forms.StatusUpdateGUIFrontend.BottomLeftColor
     End Sub
 
     Private Sub BottomRightButton_Click(sender As Object, e As EventArgs) Handles BottomRightButton.Click
         brc.ShowDialog()
-        My.Forms.StatusUpdateGUIFrontend.BottomRightColor = blc.Color
+        blc.Color = My.Forms.StatusUpdateGUIFrontend.BottomRightColor
     End Sub
 
     Private Sub PreviewButton_Click(sender As Object, e As EventArgs) Handles PreviewButton.Click
+        PreviewWindow.Dispose()
         My.Forms.StatusUpdateGUIFrontend.BackgrounPreviewImage = New Bitmap(320, 900)
         Dim bmp As New Bitmap(320, 900)
         Dim g As Graphics = Graphics.FromImage(bmp)
@@ -40,16 +41,17 @@ Public Class gradiantwindow
         Dim colors As Color() = {tlc.Color, trc.Color, blc.Color, brc.Color}
         pathBrush.SurroundColors = colors
         pathBrush.CenterColor = Color.Transparent
-        g.FillPath(pathBrush, path)
-        'g.FillRectangle(pathBrush, New Rectangle(0, 0, 320, 900))
+        g.FillRectangle(pathBrush, New Rectangle(0, 0, 320, 900))
         bmp.Save("backgrounds\gradient.png", System.Drawing.Imaging.ImageFormat.Png)
+        File.Copy("backgrounds\gradient.png", "base\background\background.png")
         PreviewWindow.Image = Image.FromFile("backgrounds\gradient.png")
         PreviewWindow.Refresh()
+        PreviewWindow.Dispose()
     End Sub
 
     Private Sub gradiantwindow_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         PreviewWindow.Refresh()
-        Me.PreviewWindow.Dispose()
+        PreviewWindow.Dispose()
     End Sub
 
     Private Sub gradiantwindow_Load(sender As Object, e As EventArgs) Handles Me.Load
