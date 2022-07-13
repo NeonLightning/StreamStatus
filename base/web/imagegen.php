@@ -1,4 +1,9 @@
 <?php
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+header("Cache-Control: no-store, no-cache, must-revalidate");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 /* Copyright (C) 2015 Dylan J. Morrison <insidious@gmail.com>
    This work is free. You can redistribute it and/or modify
    it under the terms of the Do What The Fuck You Want To 
@@ -159,6 +164,28 @@ imagecopy(
     $sx,
     $sy
 );
+$fillpercent = ((float) $status->party->member[0]->limitbar);
+$limitbar = imagecreatetruecolor(100, 10);
+$bgcolour = imagecolorallocatealpha($limitbar, 255, 255, 255, 0);
+imagefill($limitbar, 0, 0, $bgcolour);
+if (((float) $status->party->member[0]->limitbar) > 99) {
+imagefilledrectangle($limitbar, 2, 2, ($fillpercent - 2), 8, 0xFF000);
+}
+else {
+imagefilledrectangle($limitbar, 2, 2, ($fillpercent - 2), 8, 0x0000FF);
+}
+$sx = imagesx($limitbar);
+$sy = imagesy($limitbar);
+imagecopy(
+	$img,
+	$limitbar,
+	0,
+	100,
+	0,
+	0,
+	imagesx($limitbar),
+	imagesy($limitbar),
+	);
 }
 }
 
@@ -180,7 +207,31 @@ imagecopy(
     $sx,
     $sy
 );
+$fillpercent = ((float) $status->party->member[1]->limitbar);
+$limitbar = imagecreatetruecolor(100, 10);
+$bgcolour = imagecolorallocatealpha($limitbar, 255, 255, 255, 0);
+imagefill($limitbar, 0, 0, $bgcolour);
+if (((float) $status->party->member[1]->limitbar) > 99 ) {
+imagefilledrectangle($limitbar, 2, 2, ($fillpercent - 2), 8, 0xFF000);
 }
+else {
+imagefilledrectangle($limitbar, 2, 2, ($fillpercent - 2), 8, 0x0000FF);
+}
+$sx = imagesx($limitbar);
+$sy = imagesy($limitbar);
+imagecopy(
+	$img,
+	$limitbar,
+	100,
+	100,
+	0,
+	0,
+	imagesx($limitbar),
+	imagesy($limitbar),
+	);
+}
+
+
 if ($nummems > 2 ) {
 $party3 = $status->party->member[2]->defaultname;
 $temp = imagecreatefrompng("../../avatars/" . $status->party->member[2]->defaultname . ".png");
@@ -199,6 +250,28 @@ imagecopy(
     $sx,
     $sy
 );
+$fillpercent = ((float) $status->party->member[2]->limitbar);
+$limitbar = imagecreatetruecolor(100, 10);
+$bgcolour = imagecolorallocatealpha($limitbar, 255, 255, 255, 0);
+imagefill($limitbar, 0, 0, $bgcolour);
+if (((float) $status->party->member[2]->limitbar) > 99) {
+imagefilledrectangle($limitbar, 2, 2, ($fillpercent - 2), 8, 0xFF000);
+}
+else {
+imagefilledrectangle($limitbar, 2, 2, ($fillpercent - 2), 8, 0x0000FF);
+}
+$sx = imagesx($limitbar);
+$sy = imagesy($limitbar);
+imagecopy(
+	$img,
+	$limitbar,
+	200,
+	100,
+	0,
+	0,
+	imagesx($limitbar),
+	imagesy($limitbar),
+	);
 }
 
 /* Define our colors: This time it's a lot easier, as for
@@ -256,7 +329,8 @@ foreach ($members as $member)
 {
 	$temp = imagecreatefrompng("../../avatars/" . $status->party->member[2]->defaultname . ".png");
 	$pppng3= imagescale ( $temp, 100 , 100);
-	if (isset($member->name)) { $outstring = $outstring . $member->name; }
+	if (isset($member->limitbar)) { $outstring = $outstring . $member->limitbar . "\n"; }
+	if (isset($member->name)) { $outstring = $outstring . $member->name . "\n" ; }
     if (isset($member->level)) { $outstring = $outstring . " " . " L";	$outstring = $outstring . $member->level; }
     if (isset($member->exptolevel)) { $outstring = $outstring . " XpToLvl "; $outstring = $outstring . $member->exptolevel; }
     if (isset($member->hp))	{ $outstring = $outstring . "\n  HP ";	$outstring = $outstring . $member->hp; }
