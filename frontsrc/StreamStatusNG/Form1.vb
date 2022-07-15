@@ -827,7 +827,7 @@ Public Class FF7SaveMap
         Return -1
     End Function
 
-    Private Function FFStringtoString(ByVal FFString As Byte())
+    Private Function FFStringtoString(ByVal FFString As Byte()) As String
         ' Dirty translation, will only work for printable chars.
         Dim DestBytes(FFString.Length - 1) As Byte
         Dim myIterator As Byte = 0

@@ -45,14 +45,11 @@ Partial Class SettingsForm
         Me.HPCheckBox1 = New System.Windows.Forms.CheckBox()
         Me.BackgroundDrop = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GradientSetButton = New System.Windows.Forms.Button()
+        Me.ColorButton2 = New System.Windows.Forms.Button()
         Me.ColorButton1 = New System.Windows.Forms.Button()
-        Me.SelectedGradientRadioButton = New System.Windows.Forms.RadioButton()
         Me.ColorRadioButton = New System.Windows.Forms.RadioButton()
         Me.SelectedPNGRadioButton = New System.Windows.Forms.RadioButton()
         Me.SolidColorDialog = New System.Windows.Forms.ColorDialog()
-        Me.ColorButton2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.SettingsPanel.SuspendLayout()
         Me.TimeGroupBox1.SuspendLayout()
         Me.PartyGroupBox1.SuspendLayout()
@@ -299,55 +296,41 @@ Partial Class SettingsForm
         Me.BackgroundDrop.Location = New System.Drawing.Point(0, 42)
         Me.BackgroundDrop.MaxDropDownItems = 1
         Me.BackgroundDrop.Name = "BackgroundDrop"
-        Me.BackgroundDrop.Size = New System.Drawing.Size(151, 21)
+        Me.BackgroundDrop.Size = New System.Drawing.Size(134, 21)
         Me.BackgroundDrop.Sorted = True
         Me.BackgroundDrop.TabIndex = 10
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.ColorButton2)
-        Me.GroupBox1.Controls.Add(Me.GradientSetButton)
         Me.GroupBox1.Controls.Add(Me.ColorButton1)
-        Me.GroupBox1.Controls.Add(Me.SelectedGradientRadioButton)
         Me.GroupBox1.Controls.Add(Me.BackgroundDrop)
         Me.GroupBox1.Controls.Add(Me.ColorRadioButton)
         Me.GroupBox1.Controls.Add(Me.SelectedPNGRadioButton)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 506)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(180, 185)
+        Me.GroupBox1.Size = New System.Drawing.Size(134, 117)
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Background"
         '
-        'GradientSetButton
+        'ColorButton2
         '
-        Me.GradientSetButton.Location = New System.Drawing.Point(2, 147)
-        Me.GradientSetButton.Name = "GradientSetButton"
-        Me.GradientSetButton.Size = New System.Drawing.Size(75, 23)
-        Me.GradientSetButton.TabIndex = 14
-        Me.GradientSetButton.Text = "Set Gradient"
-        Me.GradientSetButton.UseVisualStyleBackColor = True
+        Me.ColorButton2.Location = New System.Drawing.Point(56, 92)
+        Me.ColorButton2.Name = "ColorButton2"
+        Me.ColorButton2.Size = New System.Drawing.Size(48, 23)
+        Me.ColorButton2.TabIndex = 22
+        Me.ColorButton2.Text = "Color 2"
+        Me.ColorButton2.UseVisualStyleBackColor = True
         '
         'ColorButton1
         '
         Me.ColorButton1.Location = New System.Drawing.Point(0, 92)
         Me.ColorButton1.Name = "ColorButton1"
-        Me.ColorButton1.Size = New System.Drawing.Size(75, 23)
+        Me.ColorButton1.Size = New System.Drawing.Size(53, 23)
         Me.ColorButton1.TabIndex = 21
         Me.ColorButton1.Text = "Color 1"
         Me.ColorButton1.UseVisualStyleBackColor = True
-        '
-        'SelectedGradientRadioButton
-        '
-        Me.SelectedGradientRadioButton.AutoSize = True
-        Me.SelectedGradientRadioButton.BackColor = System.Drawing.Color.Transparent
-        Me.SelectedGradientRadioButton.Location = New System.Drawing.Point(2, 124)
-        Me.SelectedGradientRadioButton.Name = "SelectedGradientRadioButton"
-        Me.SelectedGradientRadioButton.Size = New System.Drawing.Size(110, 17)
-        Me.SelectedGradientRadioButton.TabIndex = 17
-        Me.SelectedGradientRadioButton.TabStop = True
-        Me.SelectedGradientRadioButton.Text = "Selected Gradient"
-        Me.SelectedGradientRadioButton.UseVisualStyleBackColor = False
         '
         'ColorRadioButton
         '
@@ -355,10 +338,10 @@ Partial Class SettingsForm
         Me.ColorRadioButton.BackColor = System.Drawing.Color.Transparent
         Me.ColorRadioButton.Location = New System.Drawing.Point(0, 69)
         Me.ColorRadioButton.Name = "ColorRadioButton"
-        Me.ColorRadioButton.Size = New System.Drawing.Size(165, 17)
+        Me.ColorRadioButton.Size = New System.Drawing.Size(120, 17)
         Me.ColorRadioButton.TabIndex = 16
         Me.ColorRadioButton.TabStop = True
-        Me.ColorRadioButton.Text = "Selected Solid/Gradient Color"
+        Me.ColorRadioButton.Text = "Solid/Gradient Color"
         Me.ColorRadioButton.UseVisualStyleBackColor = False
         '
         'SelectedPNGRadioButton
@@ -367,31 +350,11 @@ Partial Class SettingsForm
         Me.SelectedPNGRadioButton.BackColor = System.Drawing.Color.Transparent
         Me.SelectedPNGRadioButton.Location = New System.Drawing.Point(2, 19)
         Me.SelectedPNGRadioButton.Name = "SelectedPNGRadioButton"
-        Me.SelectedPNGRadioButton.Size = New System.Drawing.Size(93, 17)
+        Me.SelectedPNGRadioButton.Size = New System.Drawing.Size(48, 17)
         Me.SelectedPNGRadioButton.TabIndex = 15
         Me.SelectedPNGRadioButton.TabStop = True
-        Me.SelectedPNGRadioButton.Text = "Selected PNG"
+        Me.SelectedPNGRadioButton.Text = "PNG"
         Me.SelectedPNGRadioButton.UseVisualStyleBackColor = False
-        '
-        'ColorButton2
-        '
-        Me.ColorButton2.Location = New System.Drawing.Point(81, 92)
-        Me.ColorButton2.Name = "ColorButton2"
-        Me.ColorButton2.Size = New System.Drawing.Size(75, 23)
-        Me.ColorButton2.TabIndex = 22
-        Me.ColorButton2.Text = "Color 2"
-        Me.ColorButton2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Button1.Location = New System.Drawing.Point(126, 5)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 14
-        Me.Button1.Text = "Cancel"
-        Me.Button1.UseVisualStyleBackColor = True
-        Me.Button1.Visible = False
         '
         'SettingsForm
         '
@@ -399,16 +362,14 @@ Partial Class SettingsForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.CancelButton = Me.Button1
-        Me.ClientSize = New System.Drawing.Size(184, 711)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(144, 631)
         Me.Controls.Add(Me.SettingsPanel)
         Me.Controls.Add(Me.GroupBox1)
         Me.KeyPreview = True
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(200, 750)
+        Me.MaximumSize = New System.Drawing.Size(160, 670)
         Me.MinimizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(200, 750)
+        Me.MinimumSize = New System.Drawing.Size(160, 670)
         Me.Name = "SettingsForm"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
@@ -453,10 +414,7 @@ Partial Class SettingsForm
     Friend WithEvents NameCheckBox1 As CheckBox
     Friend WithEvents SolidColorDialog As ColorDialog
     Friend WithEvents ColorButton1 As Button
-    Friend WithEvents SelectedGradientRadioButton As RadioButton
     Friend WithEvents ColorRadioButton As RadioButton
     Friend WithEvents SelectedPNGRadioButton As RadioButton
-    Friend WithEvents GradientSetButton As Button
     Friend WithEvents ColorButton2 As Button
-    Friend WithEvents Button1 As Button
 End Class

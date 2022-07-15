@@ -167,7 +167,7 @@ imagecopy(
 $fillpercent = ((float) $status->party->member[0]->limitbar);
 $limitbar = imagecreatetruecolor(100, 10);
 $bgcolour = imagecolorallocatealpha($limitbar, 255, 255, 255, 0);
-imagefill($limitbar, 0, 0, $bgcolour);
+/* imagefill($limitbar, 0, 0, $bgcolour);
 if (((float) $status->party->member[0]->limitbar) > 99) {
 imagefilledrectangle($limitbar, 2, 2, ($fillpercent - 2), 8, 0xFF000);
 }
@@ -185,7 +185,7 @@ imagecopy(
 	0,
 	imagesx($limitbar),
 	imagesy($limitbar),
-	);
+	); */
 }
 }
 
@@ -210,7 +210,7 @@ imagecopy(
 $fillpercent = ((float) $status->party->member[1]->limitbar);
 $limitbar = imagecreatetruecolor(100, 10);
 $bgcolour = imagecolorallocatealpha($limitbar, 255, 255, 255, 0);
-imagefill($limitbar, 0, 0, $bgcolour);
+/* imagefill($limitbar, 0, 0, $bgcolour);
 if (((float) $status->party->member[1]->limitbar) > 99 ) {
 imagefilledrectangle($limitbar, 2, 2, ($fillpercent - 2), 8, 0xFF000);
 }
@@ -228,7 +228,7 @@ imagecopy(
 	0,
 	imagesx($limitbar),
 	imagesy($limitbar),
-	);
+	); */
 }
 
 
@@ -254,7 +254,7 @@ $fillpercent = ((float) $status->party->member[2]->limitbar);
 $limitbar = imagecreatetruecolor(100, 10);
 $bgcolour = imagecolorallocatealpha($limitbar, 255, 255, 255, 0);
 imagefill($limitbar, 0, 0, $bgcolour);
-if (((float) $status->party->member[2]->limitbar) > 99) {
+/* if (((float) $status->party->member[2]->limitbar) > 99) {
 imagefilledrectangle($limitbar, 2, 2, ($fillpercent - 2), 8, 0xFF000);
 }
 else {
@@ -271,7 +271,7 @@ imagecopy(
 	0,
 	imagesx($limitbar),
 	imagesy($limitbar),
-	);
+	); */
 }
 
 /* Define our colors: This time it's a lot easier, as for

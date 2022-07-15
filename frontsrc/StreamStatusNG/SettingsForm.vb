@@ -25,8 +25,6 @@ Public Class SettingsForm
             End If
         ElseIf My.Settings.SelectedBGType = 1 Then
             ColorRadioButton.Checked = True
-        ElseIf My.Settings.SelectedBGType = 2 Then
-            SelectedGradientRadioButton.Checked = True
         End If
 
         If My.Settings.TimeSet = True Then
@@ -362,8 +360,6 @@ Public Class SettingsForm
             ColorButton1.Enabled = False
             ColorButton2.Enabled = False
             BackgroundDrop.Enabled = True
-            GradientSetButton.Enabled = False
-            'SelectedGradientRadioButton.Enabled = False
         End If
     End Sub
 
@@ -414,35 +410,14 @@ Public Class SettingsForm
             ColorButton1.Enabled = True
             ColorButton2.Enabled = True
             BackgroundDrop.Enabled = False
-            GradientSetButton.Enabled = False
-            'SelectedGradientRadioButton.Enabled = False
             ColorButton2.Enabled = False
             ColorButton1.Enabled = True
         End If
-    End Sub
-
-    Private Sub SelectedGradientRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SelectedGradientRadioButton.CheckedChanged
-        If SelectedGradientRadioButton.Checked = True Then
-            My.Settings.SelectedBGType = 2
-            ColorButton1.Enabled = False
-            ColorButton2.Enabled = False
-            BackgroundDrop.Enabled = False
-            GradientSetButton.Enabled = True
-        End If
-    End Sub
-
-
-    Private Sub GradientSetButton_Click(sender As Object, e As EventArgs) Handles GradientSetButton.Click
-        gradiantwindow.ShowDialog()
     End Sub
 
     Private Sub SelectedPNGRadioButton_Click(sender As Object, e As EventArgs) Handles SelectedPNGRadioButton.Click
         Dim mybgArray() As String = Directory.GetFiles("backgrounds", "*.png")
         Me.BackgroundDrop.Items.Clear()
         Me.BackgroundDrop.Items.AddRange(mybgArray)
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.Dispose()
     End Sub
 End Class
