@@ -376,7 +376,7 @@ Public Class SettingsForm
         Dim bmp1 As New Bitmap(320, 900)
         Dim brush As New Drawing.Drawing2D.LinearGradientBrush(New PointF(0, 0), New PointF(bmp1.Width, bmp1.Height), temp1, temp2)
         Dim gr As Graphics = Graphics.FromImage(bmp1)
-        gr.FillRectangle(brush, New RectangleF(5, 5, (bmp1.Width - 11), (bmp1.Height - 11)))
+        gr.FillRectangle(brush, New RectangleF(7, 7, (bmp1.Width - 13), (bmp1.Height - 13)))
         Dim myPen As Pen
         myPen = New Pen(Drawing.Color.White, 10)
         Dim rect As RectangleF = New RectangleF(0, 0, 320, 900)

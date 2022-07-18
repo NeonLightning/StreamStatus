@@ -329,7 +329,7 @@ foreach ($members as $member)
 {
 	$temp = imagecreatefrompng("../../avatars/" . $status->party->member[2]->defaultname . ".png");
 	$pppng3= imagescale ( $temp, 100 , 100);
-	if (isset($member->limitbar)) { $outstring = $outstring . $member->limitbar . "\n"; }
+	// if (isset($member->limitbar)) { $outstring = $outstring . $member->limitbar . "\n"; }
 	if (isset($member->name)) { $outstring = $outstring . $member->name . "\n" ; }
     if (isset($member->level)) { $outstring = $outstring . " " . " L";	$outstring = $outstring . $member->level; }
     if (isset($member->exptolevel)) { $outstring = $outstring . " XpToLvl "; $outstring = $outstring . $member->exptolevel; }
