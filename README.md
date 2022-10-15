@@ -3,8 +3,7 @@ well i changed a bunch i can't really rememember what right now. the original i 
 of trying to figure out how i did some changes. and those just kept going. i hope to merge this but i doubt they will.
 (mostly because i have no idea what i'm doing)
 one thing to note that i didn't realize is the resolution for the overlay is mostly based on the image size
-and for the earliest supported version of xammp(last one to have php 7.x) you'll need to use full path for the fonts.
-should be easy to figure out how to change my modlist. and where to edit the font/put the fonts/what font is needed.
+and for the earliest supported version of xammp(last one to have php 7.x)
 
 # StreamStatus
 My stream overlay project, designed for my Final Fantasy 7 streaming. An unholy combination of VB, PHP, and JavaScript.
